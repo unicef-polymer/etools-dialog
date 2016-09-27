@@ -1,0 +1,113 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-button/paper-button.html">
+
+<!--
+`etools-dialog`
+
+Simple dialog element
+
+@demo demo/index.html 
+-->
+
+<dom-module id="etools-dialog">
+  <template>
+    <style>
+      paper-dialog {
+        border-radius: 4px;
+      }
+      paper-dialog.sm {
+        width: 450px;
+      }
+      paper-dialog.md {
+        width: 720px;
+      }
+      paper-dialog.lg {
+        width: 900px;
+      }
+      .dialog-title {
+        margin: 0 0 15px 0;
+        border-bottom: 1px solid var(--etools-dialog-borders-color, #dedede);
+        padding: 10px 24px;
+        min-height: 26px;
+      }
+      paper-dialog-scrollable {
+        display: block;
+      }
+      .buttons {
+        margin-top: 15px;
+      }
+      @media screen and (max-width: 767px) {
+        paper-dialog.md,
+        paper-dialog.lg {
+          width: calc(100vw - 30px);
+        }
+      }
+      @media screen and (max-width: 480px) {
+        paper-dialog.sm {
+          width: calc(100vw - 30px);
+        }
+      }
+    </style>
+    <paper-dialog class$="[[size]]"
+                  opened="[[opened]]"
+                  with-backdrop="[[backdrop]]"
+                  modal="[[modal]]"
+                  entry-animation="scale-up-animation"
+                  exit-animation="fade-out-animation"
+                  on-iron-overlay-closed="_dialogCloseHandling">
+      <h2 class="dialog-title">[[dialogTitle]]</h2>
+      <paper-dialog-scrollable>
+        <content></content>
+      </paper-dialog-scrollable>
+      <div class="buttons">
+        <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
+        <paper-button dialog-confirm autofocus>[[okBtnText]]</paper-button>
+      </div>
+    </paper-dialog>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'etools-dialog',
+
+      properties: {
+        dialogTitle: {
+          type: String,
+          value: '',
+        },
+        okBtnText: {
+          type: String,
+          value: 'Ok'
+        },
+        cancelBtnText: {
+          type: String,
+          value: 'Cancel'
+        },
+        size: {
+          type: String,
+          value: 'sm'
+        },
+        opened: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+        backdrop: {
+          type: Boolean,
+          value: true
+        },
+        modal: {
+          type: Boolean,
+          value: true
+        }
+      },
+      _dialogCloseHandling: function(event) {
+        this.fire('close', {confirmed: event.detail.confirmed});
+      }
+    });
+  </script>
+</dom-module>

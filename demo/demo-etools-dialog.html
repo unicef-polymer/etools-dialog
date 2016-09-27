@@ -1,0 +1,38 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../etools-dialog.html">
+
+<dom-module id="demo-etools-dialog">
+  <template>
+    <etools-dialog size="md" opened="[[opened]]" on-close="onCloseActionHandler" dialog-title="Some title">
+      Dialog content goes here... as text or html
+      <h3>Some subtitle</h3>
+      <p>Some paragraph</p>
+    </etools-dialog>
+  </template>
+
+  <script>
+    (function() {
+      // jscs:disable
+      'use strict';
+
+      Polymer({
+        is: 'demo-etools-dialog',
+        properties: {
+          opened: {
+            value: false
+          }
+        },
+        onCloseActionHandler: function(event) {
+          console.log('onCloseActionHandler', event.detail);
+        },
+        ready: function() {
+          var _this = this;
+          setTimeout(function(){
+            _this.opened = true;
+          }, 1000);
+        }
+      });
+
+    })();
+  </script>
+</dom-module>
