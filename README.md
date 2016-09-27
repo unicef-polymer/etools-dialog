@@ -10,6 +10,16 @@ Simple dialog element
 </etools-dialog>
 ```
 
+```javascript
+onCloseActionHandler: function(event) {
+  if (event.detail.confirmed === true) {
+    // ok action
+  } else {
+    // cancel action
+  }
+}
+```
+
 Available attributes:
 * opened: Boolean, default: false
 * backdrop: Boolean, default: true
