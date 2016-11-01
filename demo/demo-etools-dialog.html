@@ -1,5 +1,6 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../etools-dialog.html">
+<link rel="import" href="../dynamic-dialog-behavior.html">
 
 <dom-module id="demo-etools-dialog">
   <template>
@@ -17,6 +18,9 @@
 
       Polymer({
         is: 'demo-etools-dialog',
+
+        behaviors: [DynamicDialogBehavior],
+
         properties: {
           opened: {
             value: false
@@ -30,7 +34,18 @@
           setTimeout(function(){
             _this.opened = true;
           }, 1000);
+
+          // add a dialog programmatically then open it
+          var dialogContent = document.createElement('p');
+          dialogContent.innerHTML = 'This is a dynamically created dialog ... yey!';
+          var dialog = this.createDialog('Dynamic dialog title', 'md', 'Ok', 'Close', this._dynamicDialogCloseCallback, dialogContent);
+          dialog.opened = true;
+        },
+
+        _dynamicDialogCloseCallback: function(event) {
+          console.log('dynamic dialog closed', event.detail);
         }
+
       });
 
     })();

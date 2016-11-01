@@ -61,7 +61,7 @@ Simple dialog element
                   on-iron-overlay-closed="_dialogCloseHandling">
       <h2 class="dialog-title">[[dialogTitle]]</h2>
       <paper-dialog-scrollable>
-        <content></content>
+        <slot></slot>
       </paper-dialog-scrollable>
       <div class="buttons">
         <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
@@ -108,7 +108,8 @@ Simple dialog element
       },
       _dialogCloseHandling: function(event) {
         this.fire('close', {confirmed: event.detail.confirmed});
-      }
+      },
+
     });
   </script>
 </dom-module>

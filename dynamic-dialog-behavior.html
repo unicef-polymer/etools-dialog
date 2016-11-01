@@ -1,0 +1,45 @@
+<!-- Create etools-dialog programmatically and add them directly to the body.
+     Now paper-dialog has an issues and the backdrop that covers all the content(if dialog is not a child of body), everything becomes unselectable.
+     This behaviour will fix the issue. -->
+<link rel="import" href="etools-dialog.html">
+<script>
+  var DynamicDialogBehavior = {
+
+    createDialog: function(title, size, okBtnText, cancelBtnText, closeCallback, content) {
+      if (typeof content === 'undefined' || content === null) {
+        console.error('[DynamicDialogBehavior] You must provide a valid dialog content');
+        return false;
+      }
+      var dialog = document.createElement('etools-dialog');
+      if (typeof size === 'string' && size !== '') {
+        dialog.size = 'md';
+      }
+      if (typeof okBtnText === 'string' && okBtnText !== '') {
+        dialog.okBtnText = okBtnText;
+      }
+      if (typeof cancelBtnText === 'string' && cancelBtnText !== '') {
+        dialog.cancelBtnText = cancelBtnText;
+      }
+      if (typeof title === 'string' && title !== '') {
+        dialog.dialogTitle = title;
+      }
+
+      // set close callback
+      if (closeCallback) {
+        dialog.addEventListener('close', function(event) {
+            closeCallback(event);
+        });
+      }
+
+      Polymer.dom(document.querySelector('body')).appendChild(dialog);
+      Polymer.dom(dialog.root).querySelector('paper-dialog-scrollable').appendChild(content);
+
+      return dialog;
+    },
+
+    removeDialog: function(dialogElement) {
+      Polymer.dom(document.querySelector('body')).removeChild(dialogElement);
+    }
+
+  }
+</script>
