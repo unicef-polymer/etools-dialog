@@ -3,8 +3,8 @@
      This behaviour will fix the issue. -->
 <link rel="import" href="etools-dialog.html">
 <script>
-  var DynamicDialogBehavior = {
-
+  window.etoolsBehaviors = window.etoolsBehaviors || {};
+  etoolsBehaviors.DynamicDialogBehavior = {
     createDialog: function(title, size, okBtnText, cancelBtnText, closeCallback, content) {
       if (typeof content === 'undefined' || content === null) {
         console.error('[DynamicDialogBehavior] You must provide a valid dialog content');
@@ -41,5 +41,5 @@
       Polymer.dom(document.querySelector('body')).removeChild(dialogElement);
     }
 
-  }
+  };
 </script>
