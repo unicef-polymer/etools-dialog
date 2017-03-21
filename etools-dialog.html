@@ -65,7 +65,7 @@ Simple dialog element
       </paper-dialog-scrollable>
       <div class="buttons">
         <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
-        <paper-button dialog-confirm autofocus>[[okBtnText]]</paper-button>
+        <paper-button dialog-confirm autofocus disabled="{{disableConfirmBtn}}">[[okBtnText]]</paper-button>
       </div>
     </paper-dialog>
   </template>
@@ -104,6 +104,10 @@ Simple dialog element
         modal: {
           type: Boolean,
           value: true
+        },
+         disableConfirmBtn: {
+          type: Boolean,
+          value: false
         }
       },
       _dialogCloseHandling: function(event) {
