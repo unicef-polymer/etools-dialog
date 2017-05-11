@@ -34,7 +34,6 @@ Available attributes:
 Custom property | Description | Default
  ----------------|-------------|----------
  `--etools-dialog-borders-color` | Borders color | `#dedede`
- `--etools-dialog-scrollable` | Mixin applied to paper-dialog-scrollable element | `{}`
 
 
 ## Install
