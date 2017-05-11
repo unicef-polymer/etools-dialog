@@ -29,6 +29,14 @@ Available attributes:
 * okBtnText: String, default: 'Ok'
 * size: String, default: 'sm', possible values: 'sm', 'md', 'lg'
 
+## Styling
+
+Custom property | Description | Default
+ ----------------|-------------|----------
+ `--etools-dialog-borders-color` | Borders color | `#dedede`
+ `--etools-dialog-scrollable` | Mixin applied to paper-dialog-scrollable element | `{}`
+
+
 ## Install
 ```bash
 $ bower install --save etools-dialog
