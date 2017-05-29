@@ -5,9 +5,11 @@
 <script>
   /** @polymerBehavior etoolsBehaviors.DynamicDialogBehavior */
   window.etoolsBehaviors = window.etoolsBehaviors || {};
+  // eslint-disable-next-line no-undef
   etoolsBehaviors.DynamicDialogBehavior = {
     createDialog: function(title, size, okBtnText, cancelBtnText, closeCallback, content) {
       if (typeof content === 'undefined' || content === null) {
+        // eslint-disable-next-line no-console
         console.error('[DynamicDialogBehavior] You must provide a valid dialog content');
         return false;
       }
