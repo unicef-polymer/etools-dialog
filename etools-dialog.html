@@ -54,6 +54,9 @@ Simple dialog element
           width: calc(100vw - 30px);
         }
       }
+      .cancelBtn {
+        color: dimgray;
+      }
       .xbtn {
         padding-right: 0 !important;
         align-items: flex-end !important;
@@ -86,7 +89,7 @@ Simple dialog element
         <slot></slot>
       </paper-dialog-scrollable>
       <div class="buttons">
-        <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
+        <paper-button class="cancelBtn" dialog-dismiss>[[cancelBtnText]]</paper-button>
         <paper-button dialog-confirm autofocus disabled="{{disableConfirmBtn}}">[[okBtnText]]</paper-button>
       </div>
     </paper-dialog>
