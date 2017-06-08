@@ -54,6 +54,11 @@ Simple dialog element
           width: calc(100vw - 30px);
         }
       }
+      .xbtn {
+        padding-right: 0 !important;
+        align-items: flex-end !important;
+        justify-content: flex-end !important;
+      }
       .container {
         @apply(--layout-horizontal);
       }
@@ -64,6 +69,7 @@ Simple dialog element
         margin: 0 0 15px 0 !important;
         border-bottom: 1px solid var(--etools-dialog-borders-color, #dedede);
       }
+
     </style>
     <paper-dialog class$="[[size]]"
                   opened="{{opened}}"
@@ -74,7 +80,7 @@ Simple dialog element
                   on-iron-overlay-closed="_dialogCloseHandling">
       <div class="container">
             <div class="alignLeft"><h2 class="dialog-title">[[dialogTitle]]</h2></div>
-            <div class="alignRight"><paper-button dialog-dismiss> <iron-icon icon="close"></iron-icon></paper-button></div>
+            <div class="alignRight"><paper-button class="xbtn" dialog-dismiss> <iron-icon icon="close"></iron-icon></paper-button></div>
       </div>
       <paper-dialog-scrollable>
         <slot></slot>
