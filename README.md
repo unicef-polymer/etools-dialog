@@ -34,6 +34,7 @@ Available attributes:
 Custom property | Description | Default
  ----------------|-------------|----------
  `--etools-dialog-borders-color` | Borders color | `#dedede`
+ `--etools-dialog-title` | Mixin applied to dialog title | `{}`
 
 
 ## Install
