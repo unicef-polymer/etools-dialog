@@ -35,7 +35,12 @@
       }
 
       Polymer.dom(document.querySelector('body')).appendChild(dialog);
-      Polymer.dom(dialog.root).querySelector('paper-dialog-scrollable').appendChild(content);
+
+      var slottedPlaceholder = Polymer.dom(dialog.root).querySelector('paper-dialog-scrollable').querySelector('.scrollable');//* IE11 //
+      if (!slottedPlaceholder) {
+        slottedPlaceholder = Polymer.dom(dialog.root).querySelector('paper-dialog-scrollable');
+      }
+      slottedPlaceholder.appendChild(content);
 
       return dialog;
     },
