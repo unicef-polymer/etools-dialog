@@ -30,7 +30,7 @@ Simple dialog element
         width: 900px;
       }
       paper-dialog .dialog-title {
-        margin: 0 0 15px 0 !important;
+        margin: 0 !important;
         border-bottom: 1px solid var(--etools-dialog-borders-color, #dedede);
         padding: 10px 24px;
         min-height: 26px;
@@ -38,6 +38,7 @@ Simple dialog element
       }
       paper-dialog-scrollable {
         display: block;
+        margin-top: 0 !important;
       }
       .buttons {
         margin-top: 15px;
@@ -53,21 +54,42 @@ Simple dialog element
           width: calc(100vw - 30px);
         }
       }
+      .dialog-title paper-icon-button {
+        float: right;
+        margin-right: -8px;
+        opacity: 0.65;
+        padding: 5px;
+        width: 35px;
+        height: 35px;
+      }
+      paper-dialog.blue  .dialog-title {
+        border-bottom: none !important;
+        line-height: 35px;
+        background: var(--etools-dialog-primary-color, #0099FF);
+        color: var(--etools-dialog-contrast-text-color, #fff);
+      }
+      paper-dialog.blue paper-button.confirm-btn {
+        min-width: 90px;
+        margin-right: 0;
+        background: var(--etools-dialog-primary-color, #0099FF);
+        color: var(--etools-dialog-contrast-text-color, #fff);
+      }
     </style>
-    <paper-dialog class$="[[size]]"
+    <paper-dialog class$="[[getDialogClass(size, theme)]]"
                   opened="{{opened}}"
                   with-backdrop="[[backdrop]]"
                   modal="[[modal]]"
                   entry-animation="scale-up-animation"
                   exit-animation="fade-out-animation"
                   on-iron-overlay-closed="_dialogCloseHandling">
-      <h2 class="dialog-title">[[dialogTitle]]</h2>
+      <h2 class="dialog-title">[[dialogTitle]] <paper-icon-button icon="close" dialog-dismiss></paper-icon-button> </h2>
+
       <paper-dialog-scrollable>
         <slot></slot>
       </paper-dialog-scrollable>
       <div class="buttons">
         <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
-        <paper-button dialog-confirm autofocus disabled="{{disableConfirmBtn}}">[[okBtnText]]</paper-button>
+        <paper-button dialog-confirm autofocus disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]</paper-button>
       </div>
     </paper-dialog>
   </template>
@@ -107,13 +129,21 @@ Simple dialog element
           type: Boolean,
           value: true
         },
-         disableConfirmBtn: {
+        disableConfirmBtn: {
           type: Boolean,
           value: false
+        },
+        theme: {
+          type: String,
+          value: 'blue',
+          reflectToAttribute: true
         }
       },
       _dialogCloseHandling: function(event) {
         this.fire('close', {confirmed: event.detail.confirmed});
+      },
+      getDialogClass: function(size, theme) {
+        return size + ' ' + theme;
       },
 
     });
