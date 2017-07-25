@@ -37,11 +37,15 @@ Simple dialog element
         @apply(--etools-dialog-title);
       }
       paper-dialog-scrollable {
-        display: block;
-        margin-top: 0 !important;
+        --paper-dialog-scrollable: {
+          display: block;
+          margin-top: 0;
+          @apply(--etools-dialog-scrollable);
+        };
       }
       .buttons {
         margin-top: 15px;
+        @apply(--etools-dialog-button-styles);
       }
       @media screen and (max-width: 767px) {
         paper-dialog.md,
@@ -62,18 +66,57 @@ Simple dialog element
         width: 35px;
         height: 35px;
       }
-      paper-dialog.blue  .dialog-title {
-        border-bottom: none !important;
+      .dialog-close-btn {
+        display: none;
+      }
+      paper-dialog.default  .dialog-title {
+        border-color: transparent;
         line-height: 35px;
         background: var(--etools-dialog-primary-color, #0099FF);
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
-      paper-dialog.blue paper-button.confirm-btn {
+      paper-dialog.default paper-button.confirm-btn {
         min-width: 90px;
         margin-right: 0;
         background: var(--etools-dialog-primary-color, #0099FF);
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
+
+      paper-dialog.confirmation paper-button {
+        color: initial;
+        opacity: 0.65;
+      }
+      paper-dialog.confirmation paper-button.confirm-btn {
+        background: var(--etools-dialog-confirm-btn-bg, #ea4022);
+        color: var(--etools-dialog-contrast-text-color, #fff);
+        opacity: 1;
+      }
+      paper-dialog.confirmation .dialog-title {
+        display: none;
+      }
+      paper-dialog.confirmation p {
+        font-size: 19px;
+        font-weight: 500;
+        margin: 8px;
+      }
+      paper-dialog.confirmation paper-dialog-scrollable {
+        min-height: 80px;
+      }
+      paper-dialog.confirmation #dialog-close-wrapper {
+        height: 100%;
+        float: right;
+        padding: none !important;
+        @apply(--layout-vertical);
+        @apply(--layout-center-justified);
+      }
+      paper-dialog.confirmation #dialog-close-btn {
+        display: block;
+        opacity: 0.65;
+        padding: 5px;
+        height: 35px;
+        width: 35px;
+      }
+
     </style>
     <paper-dialog class$="[[getDialogClass(size, theme)]]"
                   opened="{{opened}}"
@@ -86,7 +129,14 @@ Simple dialog element
 
       <paper-dialog-scrollable>
         <slot></slot>
+        <div id="dialog-close-wrapper">
+          <paper-icon-button icon="close"
+                            dialog-dismiss
+                            id="dialog-close-btn">
+          </paper-icon-button>
+        </div>
       </paper-dialog-scrollable>
+
       <div class="buttons">
         <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
         <paper-button dialog-confirm autofocus disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]</paper-button>
@@ -135,7 +185,7 @@ Simple dialog element
         },
         theme: {
           type: String,
-          value: 'blue',
+          value: 'default',
           reflectToAttribute: true
         }
       },
