@@ -24,7 +24,7 @@
       if (typeof title === 'string' && title !== '') {
         dialog.dialogTitle = title;
       }
-
+      dialog.theme = 'confirmation';
       // set close callback
       if (closeCallback) {
         dialog.addEventListener('close', function(event) {
