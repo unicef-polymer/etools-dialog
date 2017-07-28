@@ -16,6 +16,17 @@ Simple dialog element
 <dom-module id="etools-dialog">
   <template>
     <style>
+      :host {
+        --paper-dialog-scrollable: {
+          width: 100%;
+          overflow-x: hidden;
+          overflow-y: auto;
+          display: block;
+          margin-top: 0;
+          padding: 0;
+          @apply(--etools-dialog-scrollable);
+        };
+      }
       paper-dialog {
         background-color: #fff;
         border-radius: 4px;
@@ -30,17 +41,15 @@ Simple dialog element
         width: 900px;
       }
       paper-dialog .dialog-title {
-        margin: 0 0 15px 0 !important;
-        border-bottom: 1px solid var(--etools-dialog-borders-color, #dedede);
-        padding: 10px 24px;
-        min-height: 26px;
+        margin: 0 !important;
+        padding: 8px 24px;
+        min-height: 40px;
         @apply(--etools-dialog-title);
       }
-      paper-dialog-scrollable {
-        display: block;
-      }
       .buttons {
-        margin-top: 15px;
+        margin-top: 16px;
+        padding: 8px;
+        @apply(--etools-dialog-button-styles);
       }
       @media screen and (max-width: 767px) {
         paper-dialog.md,
@@ -53,21 +62,79 @@ Simple dialog element
           width: calc(100vw - 30px);
         }
       }
+      paper-icon-button {
+        position: absolute;
+        top: 9px;
+        right: 14px;
+        z-index: 1;
+        margin: 0 !important;
+        padding: 8px !important;
+        opacity: 0.65;
+        color: var(--etools-dialog-contrast-text-color, #fff);
+      }
+      paper-dialog.default .buttons {
+        border-top: 1px solid var(--divider-color);
+      }
+      paper-dialog.default .dialog-title {
+        line-height: 40px;
+        background: var(--etools-dialog-primary-color, --primary-color);
+        color: var(--etools-dialog-contrast-text-color, #fff);
+      }
+      paper-dialog.default paper-button.confirm-btn {
+        min-width: 90px;
+        margin-right: 0;
+        background: var(--etools-dialog-primary-color, --primary-color);
+        color: var(--etools-dialog-contrast-text-color, #fff);
+      }
+      paper-button {
+        color: initial;
+      }
+      paper-button:not(.confirm-btn) {
+        opacity: 0.65;
+      }
+      paper-dialog.confirmation paper-button.confirm-btn {
+        background: var(--etools-dialog-confirm-btn-bg, #ea4022);
+        color: var(--etools-dialog-contrast-text-color, #fff);
+      }
+      paper-dialog.confirmation paper-icon-button {
+        color: initial;
+      }
+      paper-dialog.confirmation .dialog-title {
+        display: none;
+      }
+      paper-dialog.confirmation paper-dialog-scrollable {
+        min-height: 80px;
+        margin-top: 16px;
+        margin-right: 56px;
+        padding-right: 0 !important;
+        font-size: 20px;
+        line-height: 1.4;
+        @apply --etools-dialog-confirmation-content;
+      }
+      paper-dialog-scrollable {
+        --divider-color: #fff;
+      }
+      paper-dialog-scrollable.padded {
+        padding: 0 24px !important;
+      }
     </style>
-    <paper-dialog class$="[[size]]"
+    <paper-dialog class$="[[getDialogClass(size, theme)]]"
                   opened="{{opened}}"
                   with-backdrop="[[backdrop]]"
                   modal="[[modal]]"
                   entry-animation="scale-up-animation"
                   exit-animation="fade-out-animation"
                   on-iron-overlay-closed="_dialogCloseHandling">
+      <paper-icon-button icon="close" dialog-dismiss></paper-icon-button>
       <h2 class="dialog-title">[[dialogTitle]]</h2>
-      <paper-dialog-scrollable>
+
+      <paper-dialog-scrollable class$="[[getScrollableDialogClass(noPadding)]]">
         <slot></slot>
       </paper-dialog-scrollable>
+
       <div class="buttons">
         <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
-        <paper-button dialog-confirm autofocus disabled="{{disableConfirmBtn}}">[[okBtnText]]</paper-button>
+        <paper-button dialog-confirm autofocus disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]</paper-button>
       </div>
     </paper-dialog>
   </template>
@@ -107,15 +174,29 @@ Simple dialog element
           type: Boolean,
           value: true
         },
-         disableConfirmBtn: {
+        noPadding: {
           type: Boolean,
           value: false
+        },
+        disableConfirmBtn: {
+          type: Boolean,
+          value: false
+        },
+        theme: {
+          type: String,
+          value: 'default',
+          reflectToAttribute: true
         }
       },
       _dialogCloseHandling: function(event) {
         this.fire('close', {confirmed: event.detail.confirmed});
       },
-
+      getDialogClass: function(size, theme) {
+        return size + ' ' + theme;
+      },
+      getScrollableDialogClass: function (noPadding) {
+        return noPadding ? 'no-padding': 'padded';
+      }
     });
   </script>
 </dom-module>
