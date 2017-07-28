@@ -72,6 +72,9 @@ Simple dialog element
         opacity: 0.65;
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
+      paper-dialog.default .buttons {
+        border-top: 1px solid var(--divider-color);
+      }
       paper-dialog.default .dialog-title {
         line-height: 40px;
         background: var(--etools-dialog-primary-color, --primary-color);
@@ -103,10 +106,13 @@ Simple dialog element
         min-height: 80px;
         margin-top: 16px;
         margin-right: 56px;
-        padding-right: 0;
+        padding-right: 0 !important;
         font-size: 20px;
         line-height: 1.4;
         @apply --etools-dialog-confirmation-content;
+      }
+      paper-dialog-scrollable {
+        --divider-color: #fff;
       }
       paper-dialog-scrollable.padded {
         padding: 0 24px !important;
