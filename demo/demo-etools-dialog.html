@@ -36,7 +36,8 @@
           }, 1000);
 
           // add a dialog programmatically then open it
-          var dialogContent = document.createElement('p');
+          var dialogContent = document.createElement('div');
+          dialogContent.classList.add('confirmation-content');
           dialogContent.innerHTML = 'This is a dynamically created dialog ... yey!';
           var dialog = this.createDialog('Dynamic dialog title', 'md', 'Ok', 'Close', this._dynamicDialogCloseCallback, dialogContent);
           dialog.opened = true;
