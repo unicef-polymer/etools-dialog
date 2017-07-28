@@ -4,7 +4,7 @@ Simple dialog element
 
 ## Usage
 ```html
-<etools-dialog size="md" opened="[[opened]]" 
+<etools-dialog size="md" opened="[[opened]]"
   on-close="onCloseActionHandler" dialog-title="Some title">
       Dialog content goes here... as text or html
 </etools-dialog>
@@ -24,9 +24,11 @@ Available attributes:
 * opened: Boolean, default: false
 * backdrop: Boolean, default: true
 * modal: Boolean, default: true
+* noPadding: Boolean, default: false
 * dialogTitle: String, default: ''
 * cancelBtnText: String, default: 'Cancel'
 * okBtnText: String, default: 'Ok'
+* theme: String, default: 'default', possible values: 'default', 'confirmation'
 * size: String, default: 'sm', possible values: 'sm', 'md', 'lg'
 
 ## Styling
