@@ -45,7 +45,7 @@ Simple dialog element
         padding: 8px 24px;
         min-height: 40px;
         @apply(--etools-dialog-title);
-      }      
+      }
       .buttons {
         margin-top: 16px;
         padding: 8px;
@@ -72,7 +72,7 @@ Simple dialog element
         opacity: 0.65;
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
-      paper-dialog.default .dialog-title {        
+      paper-dialog.default .dialog-title {
         line-height: 40px;
         background: var(--etools-dialog-primary-color, --primary-color);
         color: var(--etools-dialog-contrast-text-color, #fff);
@@ -98,17 +98,18 @@ Simple dialog element
       }
       paper-dialog.confirmation .dialog-title {
         display: none;
-      }      
+      }
       paper-dialog.confirmation paper-dialog-scrollable {
         min-height: 80px;
-        margin-top: 8px; 
+        margin-top: 16px;
         margin-right: 56px;
+        padding-right: 0;
         font-size: 20px;
-        line-height: 40px;
+        line-height: 1.4;
         @apply --etools-dialog-confirmation-content;
       }
       paper-dialog-scrollable.padded {
-        padding: 0 24px !important; 
+        padding: 0 24px !important;
       }
     </style>
     <paper-dialog class$="[[getDialogClass(size, theme)]]"
@@ -188,7 +189,7 @@ Simple dialog element
         return size + ' ' + theme;
       },
       getScrollableDialogClass: function (noPadding) {
-        return noPadding ? '': 'padded';
+        return noPadding ? 'no-padding': 'padded';
       }
     });
   </script>
