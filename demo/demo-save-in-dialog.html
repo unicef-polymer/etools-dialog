@@ -1,0 +1,53 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../etools-dialog.html">
+<link rel="import" href="add-edit-some-item-dialog.html">
+<link rel="import" href="../../etools-loading/etools-loading.html">
+
+<dom-module id="demo-save-in-dialog">
+  <style>
+    paper-button {
+      background-color: blue;
+      color: white;
+    }
+   </style>
+  <template>
+    <div style="position:relative">
+    <paper-button on-tap="_openDialog"> Open Dialog Window</paper-button>
+    <!-- <etools-loading id="etoolsLoading" active></etools-loading> -->
+    </div>
+  </template>
+
+  <script>
+    (function() {
+      // jscs:disable
+      'use strict';
+
+      Polymer({
+        is: 'demo-save-in-dialog',
+
+        properties: {
+
+        },
+
+        ready: function() {
+          this.addEditDialog = document.createElement('add-edit-some-item-dialog');
+          this.addEditDialog.setAttribute('id', 'addEditDialog');
+          this.addEditDialog.keepDialogOpen =true;
+          console.log(this.addEditDialog);
+          console.log(this.addEditDialog.keepDialogOpen);
+          Polymer.dom(document.querySelector('body')).appendChild(this.addEditDialog);
+        },
+
+        _dynamicDialogCloseCallback: function(event) {
+          console.log('dynamic dialog closed', event.detail);
+        },
+        _openDialog: function() {
+          this.addEditDialog.open();
+        }
+
+      });
+
+    })();
+  </script>
+</dom-module>

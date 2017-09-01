@@ -1,0 +1,22 @@
+
+<script>
+  /** @polymerBehavior etoolsBehaviors.SaveInDialogBehavior */
+  window.etoolsBehaviors = window.etoolsBehaviors || {};
+  // eslint-disable-next-line no-undef
+  etoolsBehaviors.SaveInDialogBehavior = {
+    properties: {
+      keepDialogOpen: {
+        type: Boolean
+      },
+      confirmBtnClickedCallback: {
+        type: Object
+      },
+      showSpinner: {
+        type: Boolean,
+        reflectToAttribute: true
+      }
+    },
+
+  };
+
+</script>

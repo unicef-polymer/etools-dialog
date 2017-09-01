@@ -1,0 +1,57 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../etools-dialog.html">
+<link rel="import" href="../../etools-loading/etools-loading.html">
+
+<dom-module id="add-edit-some-item-dialog">
+  <template>
+    <div style="position: relative">
+    <etools-dialog kee-dialog-open="[[keepDialogOpen]]"
+      show-spinner
+      confirm-btn-clicked-callback="[[saveBtnClickedCallback]]"
+      id="saveDialog" size="md" opened="[[opened]]" on-close="onCloseActionHandler" dialog-title="Some title">
+      <h3>Some subtitle</h3>
+      <p>Some paragraph</p>
+      Form content goes here...
+    </etools-dialog>
+    <etools-loading id="etoolsLoading" active></etools-loading>
+    </div>
+  </template>
+
+  <script>
+    (function() {
+      // jscs:disable
+      'use strict';
+
+      Polymer({
+        is: 'add-edit-some-item-dialog',
+        properties: {
+          keepDialogOpen: {
+            type: Boolean
+          },
+          saveBtnClickedCallback: {
+            type: Object
+          }
+        },
+        ready: function() {
+          this.saveBtnClickedCallback = this._save;
+        },
+        open: function() {
+          this.$.saveDialog.opened = true;
+        },
+        _save: function(callback) {
+          console.log('_save');
+          fetch('https://httpbin.org/').then(function(resp) {
+            console.log(resp);
+            //callback();
+          })
+        }
+
+
+      });
+
+    })();
+  </script>
+</dom-module>
+
+
+

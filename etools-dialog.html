@@ -4,6 +4,9 @@
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../etools-loading/etools-loading.html">
+
+<link rel="import" href="save-in-dialog-behavior.html">
 
 <!--
 `etools-dialog`
@@ -118,32 +121,43 @@ Simple dialog element
       paper-dialog-scrollable.padded {
         padding: 0 24px !important;
       }
-    </style>
-    <paper-dialog class$="[[getDialogClass(size, theme)]]"
-                  opened="{{opened}}"
-                  with-backdrop="[[backdrop]]"
-                  modal="[[modal]]"
-                  entry-animation="scale-up-animation"
-                  exit-animation="fade-out-animation"
-                  on-iron-overlay-closed="_dialogCloseHandling">
-      <paper-icon-button icon="close" dialog-dismiss></paper-icon-button>
-      <h2 class="dialog-title">[[dialogTitle]]</h2>
+      .relative {
+        position: relative;
+      }
+</style>
+    <div class="relative">
+      <paper-dialog class$="[[getDialogClass(size, theme)]]"
+                    opened="{{opened}}"
+                    with-backdrop="[[backdrop]]"
+                    modal="[[modal]]"
+                    entry-animation="scale-up-animation"
+                    exit-animation="fade-out-animation"
+                    on-iron-overlay-closed="_dialogCloseHandling">
+        <paper-icon-button icon="close" dialog-dismiss></paper-icon-button>
+        <h2 class="dialog-title">[[dialogTitle]]</h2>
 
-      <paper-dialog-scrollable class$="[[getScrollableDialogClass(noPadding)]]">
-        <slot></slot>
-      </paper-dialog-scrollable>
+        <paper-dialog-scrollable class$="[[getScrollableDialogClass(noPadding)]]">
+          <slot></slot>
+        </paper-dialog-scrollable>
 
-      <div class="buttons">
-        <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
-        <paper-button dialog-confirm autofocus disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]</paper-button>
-      </div>
-    </paper-dialog>
+        <div class="buttons">
+          <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
+          <paper-button dialog-confirm$="[[keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]</paper-button>
+        </div>
+      </paper-dialog>
+
+      <etools-loading id="etoolsLoading"></etools-loading>
+    </div>
   </template>
 
   <script>
     Polymer({
 
       is: 'etools-dialog',
+
+      behaviors: [
+        etoolsBehaviors.SaveInDialogBehavior
+      ],
 
       properties: {
         dialogTitle: {
@@ -197,6 +211,20 @@ Simple dialog element
       },
       getScrollableDialogClass: function (noPadding) {
         return noPadding ? 'no-padding': 'padded';
+      },
+      _confirmBtClicked: function() {
+        console.log('_confirmBtClicked');
+        if (this.showSpinner) {
+          this.$.etoolsLoading.active = true;
+        }
+        if (this.confirmBtnClickedCallback) {
+          this.confirmBtnClickedCallback(this._reactToConfirmBtnCallbackFinished.bind(this));
+        }
+
+      },
+      _reactToConfirmBtnCallbackFinished: function() {
+        console.log('_reactToConfirmBtnCallbackFinished');
+        this.$.etoolsLoading.active = false;
       }
     });
   </script>
