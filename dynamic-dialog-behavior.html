@@ -5,13 +5,22 @@
 <script>
   /** @polymerBehavior etoolsBehaviors.DynamicDialogBehavior */
   window.etoolsBehaviors = window.etoolsBehaviors || {};
+  // eslint-disable-next-line no-undef
   etoolsBehaviors.DynamicDialogBehavior = {
-    createDialog: function(title, size, okBtnText, cancelBtnText, closeCallback, content) {
+    createDialog: function(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
       if (typeof content === 'undefined' || content === null) {
+        // eslint-disable-next-line no-console
         console.error('[DynamicDialogBehavior] You must provide a valid dialog content');
         return false;
       }
       var dialog = document.createElement('etools-dialog');
+      dialog.theme = 'confirmation';
+      if (typeof theme === 'string' && theme !== '') {
+        dialog.theme = theme;
+      }
+      if (typeof removePadding === 'boolean') {
+        dialog.noPadding = removePadding;
+      }
       if (typeof size === 'string' && size !== '') {
         dialog.size = 'md';
       }
@@ -24,7 +33,6 @@
       if (typeof title === 'string' && title !== '') {
         dialog.dialogTitle = title;
       }
-
       // set close callback
       if (closeCallback) {
         dialog.addEventListener('close', function(event) {
