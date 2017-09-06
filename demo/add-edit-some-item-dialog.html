@@ -4,16 +4,30 @@
 
 <dom-module id="add-edit-some-item-dialog">
   <template>
-    <div style="position: relative">
-    <etools-dialog kee-dialog-open="[[keepDialogOpen]]"
+    <style>
+      [hidden] {
+        display: none !important;
+      }
+      #divErroMsg {
+        padding: 10px;
+        border: solid 1px red;
+        background-color: pink
+      }
+     </style>
+    <div>
+    <etools-dialog id="saveDialog"
+      keep-dialog-open
       show-spinner
       confirm-btn-clicked-callback="[[saveBtnClickedCallback]]"
-      id="saveDialog" size="md" opened="[[opened]]" on-close="onCloseActionHandler" dialog-title="Some title">
-      <h3>Some subtitle</h3>
-      <p>Some paragraph</p>
-      Form content goes here...
+      size="md" opened="[[opened]]" dialog-title="Some title"
+      on-close="onClose" ok-btn-text="Save">
+       <div id="divErroMsg" hidden$="[[!showError]]">
+         There was an error saving data ...
+       </div>
+        <h3>Some subtitle</h3>
+        <p>Some paragraph</p>
+        Form content goes here...
     </etools-dialog>
-    <etools-loading id="etoolsLoading" active></etools-loading>
     </div>
   </template>
 
@@ -25,24 +39,45 @@
       Polymer({
         is: 'add-edit-some-item-dialog',
         properties: {
-          keepDialogOpen: {
-            type: Boolean
-          },
           saveBtnClickedCallback: {
             type: Object
+          },
+          showError: {
+            type: Boolean,
+            value: false
+          },
+          successfulApiCall: {
+            type : Boolean,
+            value: true
           }
+
         },
         ready: function() {
-          this.saveBtnClickedCallback = this._save;
+          this.saveBtnClickedCallback = this._save.bind(this);
+
+        },
+        onClose: function() {
+          this.showError = false;
+          this.$.saveDialog.stopSpinner();
         },
         open: function() {
           this.$.saveDialog.opened = true;
         },
         _save: function(callback) {
-          console.log('_save');
-          fetch('https://httpbin.org/').then(function(resp) {
-            console.log(resp);
-            //callback();
+          var self = this;
+          var url = 'https://httpbin.org/delay/2';
+          if (!this.successfulApiCall) {
+            url = 'https://httpbin.org/status/500';
+          }
+          fetch(url).then(function(resp) {
+            self.$.saveDialog.stopSpinner();
+            if (resp.ok) {
+              self.$.saveDialog.opened = false;
+            } else {
+              self.showError = true;
+            }
+
+
           })
         }
 

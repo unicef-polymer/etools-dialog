@@ -6,16 +6,38 @@
   etoolsBehaviors.SaveInDialogBehavior = {
     properties: {
       keepDialogOpen: {
-        type: Boolean
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
       },
       confirmBtnClickedCallback: {
         type: Object
       },
       showSpinner: {
         type: Boolean,
+        value: false,
         reflectToAttribute: true
+      },
+      spinnerText: {
+        type: String,
+        value: 'Saving data..'
       }
     },
+
+    _confirmBtClicked: function() {
+      console.log('_confirmBtClicked');
+      if (this.showSpinner) {
+        this.$.etoolsLoading.active = true;
+      }
+      if (this.confirmBtnClickedCallback) {
+        this.confirmBtnClickedCallback();
+      }
+
+    },
+    stopSpinner: function() {
+      console.log('stopSpinner');
+      this.$.etoolsLoading.active = false;
+    }
 
   };
 

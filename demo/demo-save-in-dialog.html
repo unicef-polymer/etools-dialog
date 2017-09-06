@@ -10,11 +10,17 @@
       background-color: blue;
       color: white;
     }
+    [hidden] {
+        display: none !important;
+    }
    </style>
   <template>
-    <div style="position:relative">
-    <paper-button on-tap="_openDialog"> Open Dialog Window</paper-button>
-    <!-- <etools-loading id="etoolsLoading" active></etools-loading> -->
+    <div style="color:red" hidden$="[[fetchSupport]]">
+      Try a browser that supports `fetch` for this demo to work
+    </div>
+    <div>
+    <paper-button on-tap="_openDialogWithOkApiCall"> Open Dialog Window with Successful Api call</paper-button>
+    <paper-button on-tap="_openDialogWithNotOkApiCall"> Open Dialog Window with error on Api call</paper-button>
     </div>
   </template>
 
@@ -27,22 +33,27 @@
         is: 'demo-save-in-dialog',
 
         properties: {
-
+          fetchSupport: {
+            type: Boolean,
+            value: true
+          }
         },
 
         ready: function() {
           this.addEditDialog = document.createElement('add-edit-some-item-dialog');
           this.addEditDialog.setAttribute('id', 'addEditDialog');
-          this.addEditDialog.keepDialogOpen =true;
-          console.log(this.addEditDialog);
-          console.log(this.addEditDialog.keepDialogOpen);
           Polymer.dom(document.querySelector('body')).appendChild(this.addEditDialog);
+          console.log(this.fetch, this.fetchSupport);
+           if (!window.fetch) {
+            this.fetchSupport = false;
+          }
         },
-
-        _dynamicDialogCloseCallback: function(event) {
-          console.log('dynamic dialog closed', event.detail);
+        _openDialogWithOkApiCall: function() {
+          this.addEditDialog.successfulApiCall = true;
+          this.addEditDialog.open();
         },
-        _openDialog: function() {
+         _openDialogWithNotOkApiCall: function() {
+          this.addEditDialog.successfulApiCall = false;
           this.addEditDialog.open();
         }
 
