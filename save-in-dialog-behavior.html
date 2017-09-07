@@ -25,20 +25,16 @@
     },
 
     _confirmBtClicked: function() {
-      console.log('_confirmBtClicked');
       if (this.showSpinner) {
         this.$.etoolsLoading.active = true;
       }
       if (this.confirmBtnClickedCallback) {
         this.confirmBtnClickedCallback();
       }
-
     },
     stopSpinner: function() {
-      console.log('stopSpinner');
       this.$.etoolsLoading.active = false;
     }
-
   };
 
 </script>
