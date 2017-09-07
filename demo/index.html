@@ -18,6 +18,8 @@
 
     <link rel="import" href="../etools-dialog.html">
     <link rel="import" href="demo-etools-dialog.html">
+    <link rel="import" href="demo-save-in-dialog.html">
+
     <style is="custom-style" include="demo-pages-shared-styles">
       .vertical-section-container {
         max-width: 900px;
@@ -31,13 +33,20 @@
       <h3>etools-dialog demo</h3>
       <demo-snippet>
         <template>
-          <!--
+
           <etools-dialog size="md" opened="[[opened]]"
             on-close="onCloseActionHandler" dialog-title="Some title">
                 Dialog content goes here... as text or html
           </etools-dialog>
-          -->
-          <demo-etools-dialog></demo-etools-dialog>
+
+           <demo-etools-dialog></demo-etools-dialog>
+        </template>
+      </demo-snippet>
+
+       <h3>etools-dialog demo - click Save btn, sppinner is shown  and window closes only if Save was successful</h3>
+      <demo-snippet>
+        <template>
+          <demo-save-in-dialog></demo-save-in-dialog>
         </template>
       </demo-snippet>
     </div>
