@@ -17,7 +17,6 @@
     <div>
     <etools-dialog id="saveDialog"
       keep-dialog-open
-      show-spinner
       confirm-btn-clicked-callback="[[saveBtnClickedCallback]]"
       size="md" opened="[[opened]]" dialog-title="Some title"
       on-close="onClose" ok-btn-text="Save">
@@ -69,6 +68,7 @@
           if (!this.successfulApiCall) {
             url = 'https://httpbin.org/status/500';
           }
+          self.$.saveDialog.startSpinner();
           fetch(url).then(function(resp) {
             self.$.saveDialog.stopSpinner();
             if (resp.ok) {
