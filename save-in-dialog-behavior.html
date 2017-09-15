@@ -25,9 +25,7 @@
     },
 
     _confirmBtClicked: function() {
-      if (typeof this.confirmBtnClickedCallback === 'function') {
-        this.confirmBtnClickedCallback();
-      }
+      this.fire('confirm-btn-clicked');
     },
     startSpinner: function() {
       this.set('showSpinner', true);
