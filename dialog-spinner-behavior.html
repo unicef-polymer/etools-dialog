@@ -25,7 +25,9 @@
     },
 
     _confirmBtClicked: function() {
-      this.fire('confirm-btn-clicked');
+      if (this.keepDialogOpen) {
+        this.fire('confirm-btn-clicked');
+      }
     },
     startSpinner: function() {
       this.set('showSpinner', true);
