@@ -17,8 +17,7 @@
     <div>
     <etools-dialog id="saveDialog"
       keep-dialog-open
-      show-spinner
-      confirm-btn-clicked-callback="[[saveBtnClickedCallback]]"
+      on-confirm-btn-clicked="_save"
       size="md" opened="[[opened]]" dialog-title="Some title"
       on-close="onClose" ok-btn-text="Save">
        <div id="divErroMsg" hidden$="[[!showError]]">
@@ -39,9 +38,6 @@
       Polymer({
         is: 'add-edit-some-item-dialog',
         properties: {
-          saveBtnClickedCallback: {
-            type: Object
-          },
           showError: {
             type: Boolean,
             value: false
@@ -52,10 +48,7 @@
           }
 
         },
-        ready: function() {
-          this.saveBtnClickedCallback = this._save.bind(this);
 
-        },
         onClose: function() {
           this.showError = false;
           this.$.saveDialog.stopSpinner();
@@ -63,12 +56,13 @@
         open: function() {
           this.$.saveDialog.opened = true;
         },
-        _save: function(callback) {
+        _save: function() {
           var self = this;
           var url = 'https://httpbin.org/delay/2';
           if (!this.successfulApiCall) {
             url = 'https://httpbin.org/status/500';
           }
+          self.$.saveDialog.startSpinner();
           fetch(url).then(function(resp) {
             self.$.saveDialog.stopSpinner();
             if (resp.ok) {
