@@ -233,6 +233,11 @@ Simple dialog element
         }
       },
       _dialogCloseHandling: function(event) {
+        if (event.detail.confirmed === undefined) {
+          //* prevent handling here, events fired by containing elements,
+          // that also use the iron-overlay-behavior
+          return;
+        }
         this.fire('close', {confirmed: event.detail.confirmed});
       },
       getDialogClass: function(size, theme) {
