@@ -42,11 +42,8 @@
 
       Polymer.dom(document.querySelector('body')).appendChild(dialog);
 
-      var slottedPlaceholder = Polymer.dom(dialog.root).querySelector('paper-dialog-scrollable').querySelector('.scrollable');//* IE11 //
-      if (!slottedPlaceholder) {
-        slottedPlaceholder = Polymer.dom(dialog.root).querySelector('paper-dialog-scrollable');
-      }
-      slottedPlaceholder.appendChild(content);
+      let msgPlaceholder = Polymer.dom(dialog.root).querySelector('#dynamicContent');
+      msgPlaceholder.appendChild(content);
 
       return dialog;
     },

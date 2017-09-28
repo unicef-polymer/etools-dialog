@@ -162,9 +162,9 @@ Simple dialog element
         <h2 class="dialog-title">[[dialogTitle]]</h2>
 
         <paper-dialog-scrollable class$="relative [[getScrollableDialogClass(noPadding)]]">
-          <slot>
-            <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
-          </slot>
+          <slot></slot>
+          <div id="dynamicContent"></div>
+          <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
         </paper-dialog-scrollable>
 
         <div class="buttons">
