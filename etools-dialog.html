@@ -20,6 +20,7 @@ Simple dialog element
   <template>
     <style>
       :host {
+        color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
         --paper-dialog-scrollable: {
           width: 100%;
           overflow-x: hidden;
@@ -27,7 +28,7 @@ Simple dialog element
           display: block;
           margin-top: 0;
           padding: 0;
-          @apply(--etools-dialog-scrollable);
+          @apply --etools-dialog-scrollable;
         };
       }
 
@@ -53,13 +54,13 @@ Simple dialog element
         margin: 0 !important;
         padding: 8px 24px;
         min-height: 40px;
-        @apply(--etools-dialog-title);
+        @apply --etools-dialog-title;
       }
 
       .buttons {
         margin-top: 16px;
         padding: 8px;
-        @apply(--etools-dialog-button-styles);
+        @apply --etools-dialog-button-styles;
       }
 
       @media screen and (max-width: 767px) {
@@ -108,7 +109,7 @@ Simple dialog element
       }
 
       paper-button:not(.confirm-btn) {
-        opacity: 0.65;
+        opacity: 0.85;
       }
 
       paper-dialog.confirmation paper-button.confirm-btn {
@@ -116,8 +117,8 @@ Simple dialog element
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
 
-      paper-dialog.confirmation paper-icon-button {
-        color: initial;
+      paper-dialog.confirmation .cancel-btn {
+        color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
       }
 
       paper-dialog.confirmation .dialog-title {
@@ -158,17 +159,17 @@ Simple dialog element
                     entry-animation="scale-up-animation"
                     exit-animation="fade-out-animation"
                     on-iron-overlay-closed="_dialogCloseHandling">
-        <paper-icon-button icon="close" dialog-dismiss></paper-icon-button>
+        <paper-icon-button icon="close" dialog-dismiss class="cancel-btn"></paper-icon-button>
         <h2 class="dialog-title">[[dialogTitle]]</h2>
 
         <paper-dialog-scrollable class$="relative [[getScrollableDialogClass(noPadding)]]">
           <slot></slot>
-          <etools-loading id="etoolsLoading"
-                          loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
+          <div id="dynamicContent"></div>
+          <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
         </paper-dialog-scrollable>
 
         <div class="buttons">
-          <paper-button dialog-dismiss>[[cancelBtnText]]</paper-button>
+          <paper-button dialog-dismiss class="cancel-btn">[[cancelBtnText]]</paper-button>
           <paper-button dialog-confirm$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
                         disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]
           </paper-button>
