@@ -1,0 +1,67 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../etools-dialog.html">
+<link rel="import" href="confirmation-dialog.html">
+<link rel="import" href="regular-dialog.html">
+
+<dom-module id="demo-themes">
+  <style>
+    paper-button {
+      color: white;
+    }
+    [hidden] {
+        display: none !important;
+    }
+   </style>
+  <template>
+    <div>
+      <paper-button style="background: #EA4022;" on-tap="_openConfirmationDialog"> Open a confirmation dialog </paper-button>
+      <paper-button style="background: #3F51B5" on-tap="_openRegularDialog"> Open a regular dialog </paper-button>
+    </div>
+  </template>
+
+  <script>
+    (function() {
+      // jscs:disable
+      'use strict';
+
+      Polymer({
+        is: 'demo-themes',
+
+        properties: {
+          fetchSupport: {
+            type: Boolean,
+            value: true
+          }
+        },
+
+        ready: function() {
+          this._createRegularDialog();
+          this._createConfirmationDialog();
+        },
+
+        _createConfirmationDialog: function() {
+          this.confirmationDialog = document.createElement('confirmation-dialog');
+          this.confirmationDialog.setAttribute('id', 'confirmation-dialog');
+          Polymer.dom(document.querySelector('body')).appendChild(this.confirmationDialog);
+        },
+
+        _createRegularDialog: function() {
+          this.regularDialog = document.createElement('regular-dialog');
+          this.regularDialog.setAttribute('id', 'regular-dialog');
+          Polymer.dom(document.querySelector('body')).appendChild(this.regularDialog);
+        },
+
+        _openConfirmationDialog: function() {
+          this.confirmationDialog.open();
+        },
+
+        _openRegularDialog: function() {
+          this.regularDialog.open();
+        },
+
+      });
+
+    })();
+  </script>
+</dom-module>

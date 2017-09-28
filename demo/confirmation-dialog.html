@@ -1,0 +1,35 @@
+<link rel="import" href="../etools-dialog.html">
+
+<dom-module id="confirmation-dialog">
+  <template>
+      <etools-dialog
+          id="confirmationDialog"
+          size="md"
+          ok-btn-text="Okily dokily"
+          cancel-btn-text="No"
+          theme="confirmation"
+          dialog-title="Confirm data">
+       Now can I ding dong diddly do close this for you?
+      </etools-dialog>
+  </template>
+
+  <script>
+    (function() {
+      // jscs:disable
+      'use strict';
+
+      Polymer({
+        is: 'confirmation-dialog',
+
+        open: function() {
+          this.$.confirmationDialog.opened = true;
+        },
+
+      });
+
+    })();
+  </script>
+</dom-module>
+
+
+

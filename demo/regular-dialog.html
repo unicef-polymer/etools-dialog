@@ -1,0 +1,32 @@
+<link rel="import" href="../etools-dialog.html">
+
+<dom-module id="regular-dialog">
+  <template>
+      <etools-dialog
+          id="regularDialog"
+          size="md"
+          dialog-title="Confirm data">
+        Mmm... donuts
+      </etools-dialog>
+  </template>
+
+  <script>
+    (function() {
+      // jscs:disable
+      'use strict';
+
+      Polymer({
+        is: 'regular-dialog',
+
+        open: function() {
+          this.$.regularDialog.opened = true;
+        },
+
+      });
+
+    })();
+  </script>
+</dom-module>
+
+
+
