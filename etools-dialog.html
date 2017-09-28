@@ -20,6 +20,7 @@ Simple dialog element
   <template>
     <style>
       :host {
+        color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
         --paper-dialog-scrollable: {
           width: 100%;
           overflow-x: hidden;
@@ -117,7 +118,7 @@ Simple dialog element
       }
 
       paper-dialog.confirmation .cancel-btn {
-        color: var(--primary-text-color);
+        color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
       }
 
       paper-dialog.confirmation .dialog-title {
