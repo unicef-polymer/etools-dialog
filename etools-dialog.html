@@ -21,21 +21,20 @@ Simple dialog element
     <style>
       :host {
         color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
-        --paper-dialog-scrollable: {
+        --etools-dialog-content: {
           width: 100%;
+          max-width: 100% !important;
+          max-height: calc(90vh - 132px) !important; /* 90vh - (header height + buttons section height) */
           overflow-x: hidden;
           overflow-y: auto;
           display: block;
           margin-top: 0;
-          padding: 0;
-          @apply --etools-dialog-scrollable;
         };
       }
 
       paper-dialog {
         background-color: #fff;
         border-radius: 4px;
-        max-height: 90vh;
       }
 
       paper-dialog.sm {
@@ -137,10 +136,18 @@ Simple dialog element
 
       paper-dialog-scrollable {
         --divider-color: #fff;
+        --paper-dialog-scrollable: {
+          @apply --etools-dialog-content;
+          padding: 0;
+        };
+        @apply --etools-dialog-scrollable;
       }
 
-      paper-dialog-scrollable.padded {
-        padding: 0 24px !important;
+      paper-dialog-scrollable.padded-content {
+        --paper-dialog-scrollable: {
+          @apply --etools-dialog-content;
+          padding: 0 24px;
+        };
       }
 
       .relative {
@@ -151,33 +158,31 @@ Simple dialog element
         margin-top: -20px;
       }
     </style>
-    <div>
-      <paper-dialog class$="[[getDialogClass(size, theme)]]"
-                    opened="{{opened}}"
-                    with-backdrop="[[backdrop]]"
-                    modal="[[modal]]"
-                    entry-animation="scale-up-animation"
-                    exit-animation="fade-out-animation"
-                    on-iron-overlay-closed="_dialogCloseHandling">
-        <paper-icon-button icon="close" dialog-dismiss class="cancel-btn"></paper-icon-button>
-        <h2 class="dialog-title">[[dialogTitle]]</h2>
 
-        <paper-dialog-scrollable class$="relative [[getScrollableDialogClass(noPadding)]]">
-          <slot></slot>
-          <div id="dynamicContent"></div>
-          <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
-        </paper-dialog-scrollable>
+    <paper-dialog class$="[[getDialogClass(size, theme)]]"
+                  opened="{{opened}}"
+                  with-backdrop="[[backdrop]]"
+                  modal="[[modal]]"
+                  entry-animation="scale-up-animation"
+                  exit-animation="fade-out-animation"
+                  on-iron-overlay-closed="_dialogCloseHandling">
+      <paper-icon-button icon="close" dialog-dismiss class="cancel-btn"></paper-icon-button>
+      <h2 class="dialog-title">[[dialogTitle]]</h2>
 
-        <div class="buttons">
-          <paper-button dialog-dismiss class="cancel-btn">[[cancelBtnText]]</paper-button>
-          <paper-button dialog-confirm$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
-                        disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]
-          </paper-button>
-        </div>
-      </paper-dialog>
+      <paper-dialog-scrollable class$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
+        <slot></slot>
+        <div id="dynamicContent"></div>
+        <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
+      </paper-dialog-scrollable>
 
+      <div class="buttons">
+        <paper-button dialog-dismiss class="cancel-btn">[[cancelBtnText]]</paper-button>
+        <paper-button dialog-confirm$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
+                      disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]
+        </paper-button>
+      </div>
+    </paper-dialog>
 
-    </div>
   </template>
 
   <script>
@@ -221,7 +226,8 @@ Simple dialog element
         },
         noPadding: {
           type: Boolean,
-          value: false
+          value: false,
+          observer: '_noContentPaddingChanged'
         },
         disableConfirmBtn: {
           type: Boolean,
@@ -245,8 +251,12 @@ Simple dialog element
         return size + ' ' + theme;
       },
       getScrollableDialogClass: function(noPadding) {
-        return noPadding ? 'no-padding' : 'padded';
+        return noPadding ? '' : 'padded-content';
       },
+
+      _noContentPaddingChanged: function(noPaddingValue) {
+        this.updateStyles();
+      }
 
     });
   </script>
