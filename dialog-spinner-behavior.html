@@ -25,15 +25,15 @@
     },
 
     _confirmBtClicked: function() {
-      if (this.showSpinner) {
-        this.$.etoolsLoading.active = true;
-      }
-      if (this.confirmBtnClickedCallback) {
-        this.confirmBtnClickedCallback();
+      if (this.keepDialogOpen) {
+        this.fire('confirm-btn-clicked');
       }
     },
+    startSpinner: function() {
+      this.set('showSpinner', true);
+    },
     stopSpinner: function() {
-      this.$.etoolsLoading.active = false;
+      this.set('showSpinner', false);
     }
   };
 
