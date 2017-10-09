@@ -116,7 +116,7 @@ Simple dialog element
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
 
-      paper-dialog.confirmation .cancel-btn {
+      paper-dialog.confirmation .close-btn, paper-dialog .cancel-btn {
         color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
       }
 
@@ -159,14 +159,15 @@ Simple dialog element
       }
     </style>
 
-    <paper-dialog class$="[[getDialogClass(size, theme)]]"
+    <paper-dialog id="dialog"
+                  class$="[[getDialogClass(size, theme)]]"
                   opened="{{opened}}"
                   with-backdrop="[[backdrop]]"
                   modal="[[modal]]"
                   entry-animation="scale-up-animation"
                   exit-animation="fade-out-animation"
                   on-iron-overlay-closed="_dialogCloseHandling">
-      <paper-icon-button icon="close" dialog-dismiss class="cancel-btn"></paper-icon-button>
+      <paper-icon-button icon="close" dialog-dismiss class="close-btn"></paper-icon-button>
       <h2 class="dialog-title">[[dialogTitle]]</h2>
 
       <paper-dialog-scrollable class$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
@@ -247,15 +248,21 @@ Simple dialog element
         }
         this.fire('close', {confirmed: event.detail.confirmed});
       },
+
       getDialogClass: function(size, theme) {
         return size + ' ' + theme;
       },
+
       getScrollableDialogClass: function(noPadding) {
         return noPadding ? '' : 'padded-content';
       },
 
       _noContentPaddingChanged: function(noPaddingValue) {
         this.updateStyles();
+      },
+      
+      notifyResize: function() {
+        this.$$('#dialog').notifyResize();
       }
 
     });
