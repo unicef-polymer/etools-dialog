@@ -159,7 +159,8 @@ Simple dialog element
       }
     </style>
 
-    <paper-dialog class$="[[getDialogClass(size, theme)]]"
+    <paper-dialog id="dialog"
+                  class$="[[getDialogClass(size, theme)]]"
                   opened="{{opened}}"
                   with-backdrop="[[backdrop]]"
                   modal="[[modal]]"
@@ -247,15 +248,21 @@ Simple dialog element
         }
         this.fire('close', {confirmed: event.detail.confirmed});
       },
+
       getDialogClass: function(size, theme) {
         return size + ' ' + theme;
       },
+
       getScrollableDialogClass: function(noPadding) {
         return noPadding ? '' : 'padded-content';
       },
 
       _noContentPaddingChanged: function(noPaddingValue) {
         this.updateStyles();
+      },
+      
+      notifyResize: function() {
+        this.$$('#dialog').notifyResize();
       }
 
     });
