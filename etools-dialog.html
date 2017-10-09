@@ -116,7 +116,7 @@ Simple dialog element
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
 
-      paper-dialog.confirmation .cancel-btn {
+      paper-dialog.confirmation .close-btn, paper-dialog .cancel-btn {
         color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
       }
 
@@ -166,7 +166,7 @@ Simple dialog element
                   entry-animation="scale-up-animation"
                   exit-animation="fade-out-animation"
                   on-iron-overlay-closed="_dialogCloseHandling">
-      <paper-icon-button icon="close" dialog-dismiss class="cancel-btn"></paper-icon-button>
+      <paper-icon-button icon="close" dialog-dismiss class="close-btn"></paper-icon-button>
       <h2 class="dialog-title">[[dialogTitle]]</h2>
 
       <paper-dialog-scrollable class$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
