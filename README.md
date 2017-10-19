@@ -28,6 +28,8 @@ Available attributes:
 * dialogTitle: String, default: ''
 * cancelBtnText: String, default: 'Cancel'
 * okBtnText: String, default: 'Ok'
+* hideConfirmBtn: Boolean, default: false,
+* disableConfirmBtn: Boolean, default: false,
 * theme: String, default: 'default', possible values: 'default', 'confirmation'
 * size: String, default: 'sm', possible values: 'sm', 'md', 'lg'
 * keepDialogOpen , confirmBtnClickedCallback, showSpinner, spinnerText - Used to avoid dialog closing when confirm btn is clicked and to show a spinner inside the modal while the confirmBtnClickedCallback method executes
