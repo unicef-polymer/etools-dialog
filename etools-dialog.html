@@ -179,7 +179,9 @@ Simple dialog element
       <div class="buttons">
         <paper-button dialog-dismiss class="cancel-btn">[[cancelBtnText]]</paper-button>
         <paper-button dialog-confirm$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
-                      disabled="{{disableConfirmBtn}}" class="confirm-btn">[[okBtnText]]
+                      disabled="{{disableConfirmBtn}}"
+                      hidden="[[hideConfirmBtn]]"
+                      class="confirm-btn">[[okBtnText]]
         </paper-button>
       </div>
     </paper-dialog>
@@ -234,6 +236,11 @@ Simple dialog element
           type: Boolean,
           value: false
         },
+        hideConfirmBtn: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
         theme: {
           type: String,
           value: 'default',
@@ -260,7 +267,7 @@ Simple dialog element
       _noContentPaddingChanged: function(noPaddingValue) {
         this.updateStyles();
       },
-      
+
       notifyResize: function() {
         this.$$('#dialog').notifyResize();
       }
