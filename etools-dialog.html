@@ -166,7 +166,8 @@ Simple dialog element
                   modal="[[modal]]"
                   entry-animation="scale-up-animation"
                   exit-animation="fade-out-animation"
-                  on-iron-overlay-closed="_dialogCloseHandling">
+                  on-iron-overlay-closed="_dialogCloseHandling"
+                  no-auto-focus="[[noAutoFocus]]">
       <paper-icon-button icon="close" dialog-dismiss class="close-btn"></paper-icon-button>
       <h2 class="dialog-title">[[dialogTitle]]</h2>
 
@@ -244,6 +245,11 @@ Simple dialog element
         theme: {
           type: String,
           value: 'default',
+          reflectToAttribute: true
+        },
+        noAutoFocus: {
+          type: Boolean,
+          value: false,
           reflectToAttribute: true
         }
       },
