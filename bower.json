@@ -10,7 +10,8 @@
     "paper-button": "PolymerElements/paper-button#^1.0.13",
     "neon-animation": "PolymerElements/neon-animation#^1.2.4",
     "paper-dialog-scrollable": "^2.0.0",
-    "etools-loading": "^1.0.9"
+    "etools-loading": "^1.0.9",
+    "etools-searchable-multiselection-menu": "^2.2.7"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
