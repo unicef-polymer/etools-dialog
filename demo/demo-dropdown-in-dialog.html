@@ -1,0 +1,72 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../etools-dialog.html">
+<link rel="import" href="../../etools-searchable-multiselection-menu/etools-searchable-multiselection-menu.html">
+<link rel="import" href="../../etools-searchable-multiselection-menu/etools-single-selection-menu.html">
+<link rel="import" href="../../etools-searchable-multiselection-menu/etools-multi-selection-menu.html">
+
+<dom-module id="demo-dropdown-in-dialog">
+  <style>
+     paper-button {
+      background-color: #7575A3;
+      color: white;
+    }
+   </style>
+  <template>
+    <div>
+      <paper-button on-tap="_openDialogWithDrodpdown"> Open Dialog containing dropdown</paper-button>
+    </div>
+    <etools-dialog id="dialogWithDropdown" no-auto-focus="[[isIEBrowser()]]">
+      <h4>Single selection</h4>
+      <etools-single-selection-menu options="[[realOptions]]"></etools-single-selection-menu>
+
+       <h4>Multi selection</h4>
+       <etools-multi-selection-menu options="[[realOptions]]"></etools-multi-selection-menu>
+
+       <h4>Old esmm version</h4>
+       <etools-searchable-multiselection-menu options="[[realOptions]]"></etools-searchable-multiselection-menu>
+    </etools-dialog>
+  </template>
+
+  <script>
+    (function() {
+      // jscs:disable
+      'use strict';
+
+      Polymer({
+        is: 'demo-dropdown-in-dialog',
+
+        properties: {
+          realOptions: {
+            type: Array,
+            value: function() {
+              var opt = [];
+              for(var i = 1; i <= 25; i++) {
+                opt.push({value: i, label: 'Option ' + i});
+              }
+              return opt;
+            },
+            notify: true
+          },
+        },
+
+        ready: function() {
+
+        },
+        _openDialogWithDrodpdown: function() {
+          this.$.dialogWithDropdown.opened = true;
+        },
+        isIEBrowser: function() {
+          let userAgent = window.navigator.userAgent;
+          if (userAgent.indexOf('Trident/') > -1) {
+            // IE 11
+            return true;
+          }
+          return false;
+        }
+
+      });
+
+    })();
+  </script>
+</dom-module>
