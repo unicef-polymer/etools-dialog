@@ -32,7 +32,7 @@ Available attributes:
 * disableConfirmBtn: Boolean, default: false,
 * theme: String, default: 'default', possible values: 'default', 'confirmation'
 * size: String, default: 'sm', possible values: 'sm', 'md', 'lg'
-* keepDialogOpen , confirmBtnClickedCallback, showSpinner, spinnerText - Used to avoid dialog closing when confirm btn is clicked and to show a spinner inside the modal while the confirmBtnClickedCallback method executes
+* keepDialogOpen , showSpinner, spinnerText - Used to avoid dialog closing when confirm btn is clicked and to show a spinner inside the modal while the confirm btn action executes
 * noAutoFocus: Boolean, default:false . Binded to noAutoFocus property of the iron-overlay-behaviour. When false, it's used to set the focus on the item from which the event to open the overlay originated and if that's empty to the element that has the `autofocus` attribute.
 
 ## Styling
