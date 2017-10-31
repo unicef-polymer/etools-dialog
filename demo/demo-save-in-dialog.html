@@ -7,7 +7,7 @@
 <dom-module id="demo-save-in-dialog">
   <style>
     paper-button {
-      background-color: blue;
+      background-color: #006EFF;
       color: white;
     }
     [hidden] {
@@ -15,13 +15,8 @@
     }
    </style>
   <template>
-    <div style="color:red" hidden$="[[fetchSupport]]">
-      Try a browser that supports `fetch` for this demo to work
-    </div>
-    <div>
     <paper-button on-tap="_openDialogWithOkApiCall"> Open Dialog Window with Successful Api call</paper-button>
     <paper-button on-tap="_openDialogWithNotOkApiCall"> Open Dialog Window with error on Api call</paper-button>
-    </div>
   </template>
 
   <script>
@@ -33,20 +28,14 @@
         is: 'demo-save-in-dialog',
 
         properties: {
-          fetchSupport: {
-            type: Boolean,
-            value: true
-          }
+
         },
 
         ready: function() {
           this.addEditDialog = document.createElement('add-edit-some-item-dialog');
           this.addEditDialog.setAttribute('id', 'addEditDialog');
           Polymer.dom(document.querySelector('body')).appendChild(this.addEditDialog);
-          console.log(this.fetch, this.fetchSupport);
-           if (!window.fetch) {
-            this.fetchSupport = false;
-          }
+
         },
         _openDialogWithOkApiCall: function() {
           this.addEditDialog.successfulApiCall = true;

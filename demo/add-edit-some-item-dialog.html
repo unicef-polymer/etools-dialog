@@ -1,6 +1,7 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../etools-dialog.html">
 <link rel="import" href="../../etools-loading/etools-loading.html">
+<link rel="import" href="../../iron-ajax/iron-request.html">
 
 <dom-module id="add-edit-some-item-dialog">
   <template>
@@ -15,6 +16,7 @@
       }
      </style>
     <div>
+    <iron-request id="xhrEl"></iron-request>
     <etools-dialog id="saveDialog"
       keep-dialog-open
       on-confirm-btn-clicked="_save"
@@ -63,13 +65,15 @@
             url = 'https://httpbin.org/status/500';
           }
           self.$.saveDialog.startSpinner();
-          fetch(url).then(function(resp) {
+          var req = document.createElement('iron-request');
+          req.send({url: url, headers:{'Cache-Control': 'no-cache'}});
+          req.completes.then(function(resp) {
             self.$.saveDialog.stopSpinner();
-            if (resp.ok) {
-              self.$.saveDialog.opened = false;
-            } else {
-              self.showError = true;
-            }
+            self.$.saveDialog.opened = false;
+          }).catch(function(err) {
+            console.log('Error caught', err);
+            self.$.saveDialog.stopSpinner();
+            self.showError = true;
           })
         }
       });
