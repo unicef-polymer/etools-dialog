@@ -1,7 +1,7 @@
 {
   "name": "etools-dialog",
   "description": "Simple dialog element",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "license": "https://github.com/unicef-polymer/etools-dialog/blob/master/LICENSE.md",
   "main": "etools-dialog.html",
   "dependencies": {
@@ -10,7 +10,7 @@
     "paper-button": "PolymerElements/paper-button#^1.0.13",
     "neon-animation": "PolymerElements/neon-animation#^1.2.4",
     "paper-dialog-scrollable": "^2.0.0",
-    "etools-loading": "^1.0.9"
+    "etools-loading": "^2.0.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
@@ -18,5 +18,8 @@
     "web-component-tester": "^4.0.0",
     "iron-test-helpers": "PolymerElements/iron-test-helpers#^1.4.1",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  },
+  "resolutions": {
+    "webcomponentsjs": "^0.7.24"
   }
 }
