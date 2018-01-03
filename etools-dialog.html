@@ -1,10 +1,13 @@
+<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../paper-button/paper-button.html">
-<!-- <link rel="import" href="../etools-loading/etools-loading.html"> -->
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../etools-loading/etools-loading.html">
 
 <link rel="import" href="dialog-spinner-behavior.html">
 
@@ -258,7 +261,7 @@
           // that also use the iron-overlay-behavior
           return;
         }
-        this.fire('close', {confirmed: event.detail.confirmed});
+        this.dispatchEvent(new CustomEvent('close', {detail: {confirmed: event.detail.confirmed}, bubbles: true, composed: true }));
       }
 
       getDialogClass(size, theme) {
@@ -278,5 +281,7 @@
       }
 
     }
+
+    customElements.define(EtoolsDialog.is, EtoolsDialog);
   </script>
 </dom-module>

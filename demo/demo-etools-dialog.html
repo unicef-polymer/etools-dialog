@@ -1,5 +1,6 @@
 <link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../dynamic-dialog-behavior.html">
+<link rel="import" href="../etools-dialog.html">
 <link rel="import" href="../../paper-button/paper-button.html">
 
 <dom-module id="demo-etools-dialog">
@@ -87,7 +88,6 @@
   </template>
 
   <script>
-      'use strict';
 
       class DemoEtoolsDialog extends etoolsBehaviors.DynamicDialogBehavior(Polymer.Element) {
         static get is() {
@@ -136,6 +136,6 @@
         }
 
       }
-
+      customElements.define(DemoEtoolsDialog.is, DemoEtoolsDialog);
   </script>
 </dom-module>

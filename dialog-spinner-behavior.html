@@ -28,7 +28,7 @@
 
     _confirmBtClicked() {
       if (this.keepDialogOpen) {
-        this.fire('confirm-btn-clicked');
+        this.dispatchEvent(new CustomEvent('confirm-btn-clicked', {bubbles: true, composed: true }));
       }
     }
     startSpinner() {
