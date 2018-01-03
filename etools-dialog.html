@@ -1,20 +1,12 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../paper-button/paper-button.html">
-<link rel="import" href="../etools-loading/etools-loading.html">
+<!-- <link rel="import" href="../etools-loading/etools-loading.html"> -->
 
 <link rel="import" href="dialog-spinner-behavior.html">
-
-<!--
-`etools-dialog`
-
-Simple dialog element
-
-@demo demo/index.html
--->
 
 <dom-module id="etools-dialog">
   <template>
@@ -92,14 +84,14 @@ Simple dialog element
 
       paper-dialog.default .dialog-title {
         line-height: 40px;
-        background: var(--etools-dialog-primary-color, --primary-color);
+        background: var(--etools-dialog-primary-color, var(--primary-color));
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
 
       paper-dialog.default paper-button.confirm-btn {
         min-width: 90px;
         margin-right: 0;
-        background: var(--etools-dialog-primary-color, --primary-color);
+        background: var(--etools-dialog-primary-color, var(--primary-color));
         color: var(--etools-dialog-contrast-text-color, #fff);
       }
 
@@ -190,94 +182,101 @@ Simple dialog element
   </template>
 
   <script>
-    Polymer({
+    'use strict'
+     /*
+    * @customElement
+    * @appliesMixin etoolsBehaviors.SaveInDialogBehavior
+    * @demo demo/index.html
+    */
+    class EtoolsDialog extends etoolsBehaviors.SaveInDialogBehavior(Polymer.Element) {
 
-      is: 'etools-dialog',
+      static get is() {
+        return 'etools-dialog';
+      }
 
-      behaviors: [
-        etoolsBehaviors.SaveInDialogBehavior
-      ],
+      static get properties() {
+        return {
+          dialogTitle: {
+            type: String,
+            value: '',
+          },
+          okBtnText: {
+            type: String,
+            value: 'Ok'
+          },
+          cancelBtnText: {
+            type: String,
+            value: 'Cancel'
+          },
+          size: {
+            type: String,
+            value: 'sm'
+          },
+          opened: {
+            type: Boolean,
+            value: false,
+            notify: true
+          },
+          backdrop: {
+            type: Boolean,
+            value: true
+          },
+          modal: {
+            type: Boolean,
+            value: true
+          },
+          noPadding: {
+            type: Boolean,
+            value: false,
+            observer: '_noContentPaddingChanged'
+          },
+          disableConfirmBtn: {
+            type: Boolean,
+            value: false
+          },
+          hideConfirmBtn: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          },
+          theme: {
+            type: String,
+            value: 'default',
+            reflectToAttribute: true
+          },
+          noAutoFocus: {
+            type: Boolean,
+            value: false,
+            reflectToAttribute: true
+          }
+        };
+      }
 
-      properties: {
-        dialogTitle: {
-          type: String,
-          value: '',
-        },
-        okBtnText: {
-          type: String,
-          value: 'Ok'
-        },
-        cancelBtnText: {
-          type: String,
-          value: 'Cancel'
-        },
-        size: {
-          type: String,
-          value: 'sm'
-        },
-        opened: {
-          type: Boolean,
-          value: false,
-          notify: true
-        },
-        backdrop: {
-          type: Boolean,
-          value: true
-        },
-        modal: {
-          type: Boolean,
-          value: true
-        },
-        noPadding: {
-          type: Boolean,
-          value: false,
-          observer: '_noContentPaddingChanged'
-        },
-        disableConfirmBtn: {
-          type: Boolean,
-          value: false
-        },
-        hideConfirmBtn: {
-          type: Boolean,
-          value: false,
-          reflectToAttribute: true
-        },
-        theme: {
-          type: String,
-          value: 'default',
-          reflectToAttribute: true
-        },
-        noAutoFocus: {
-          type: Boolean,
-          value: false,
-          reflectToAttribute: true
-        }
-      },
-      _dialogCloseHandling: function(event) {
+      _dialogCloseHandling(event) {
         if (event.detail.confirmed === undefined) {
           //* prevent handling here, events fired by containing elements,
           // that also use the iron-overlay-behavior
           return;
         }
         this.fire('close', {confirmed: event.detail.confirmed});
-      },
+      }
 
-      getDialogClass: function(size, theme) {
+      getDialogClass(size, theme) {
         return size + ' ' + theme;
-      },
+      }
 
-      getScrollableDialogClass: function(noPadding) {
+      getScrollableDialogClass(noPadding) {
         return noPadding ? '' : 'padded-content';
-      },
+      }
 
-      _noContentPaddingChanged: function(noPaddingValue) {
+      _noContentPaddingChanged(noPaddingValue) {
         this.updateStyles();
-      },
+      }
 
-      notifyResize: function() {
+      notifyResize() {
         this.$$('#dialog').notifyResize();
       }
 
-    });
+    }
   </script>
 </dom-module>

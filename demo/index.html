@@ -5,11 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
     <script>
      window.Polymer = {
-        dom: 'shadow',
-        lazyRegister: true
+        dom: 'shadow'// TODO does this exist in polymer 2
       };
     </script>
 
@@ -20,7 +19,7 @@
     <link rel="import" href="demo-etools-dialog.html">
     <link rel="import" href="demo-save-in-dialog.html">
 
-    <style is="custom-style" include="demo-pages-shared-styles">
+    <style include="demo-pages-shared-styles">
       .vertical-section-container {
         max-width: 900px;
         line-height: 1.456;

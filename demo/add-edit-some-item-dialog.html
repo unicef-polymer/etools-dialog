@@ -1,4 +1,4 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../etools-dialog.html">
 <link rel="import" href="../../etools-loading/etools-loading.html">
 <link rel="import" href="../../iron-ajax/iron-request.html">
@@ -33,32 +33,33 @@
   </template>
 
   <script>
-    (function() {
-      // jscs:disable
       'use strict';
 
-      Polymer({
-        is: 'add-edit-some-item-dialog',
-        properties: {
-          showError: {
-            type: Boolean,
-            value: false
-          },
-          successfulApiCall: {
-            type : Boolean,
-            value: true
-          }
+      class AddEditSomeItemDialog extends Polymer.Element {
+        static get is() {
+          return 'add-edit-some-item-dialog';
+        }
+        static get properties() {
+          return {
+            showError: {
+              type: Boolean,
+              value: false
+            },
+            successfulApiCall: {
+              type : Boolean,
+              value: true
+            }
+          };
+        }
 
-        },
-
-        onClose: function() {
+        onClose() {
           this.showError = false;
           this.$.saveDialog.stopSpinner();
-        },
-        open: function() {
+        }
+        open() {
           this.$.saveDialog.opened = true;
-        },
-        _save: function() {
+        }
+        _save() {
           var self = this;
           var url = 'https://httpbin.org/delay/2';
           if (!this.successfulApiCall) {
@@ -76,9 +77,8 @@
             self.showError = true;
           })
         }
-      });
+      }
 
-    })();
   </script>
 </dom-module>
 

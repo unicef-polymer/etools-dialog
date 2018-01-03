@@ -3,11 +3,14 @@
      This behaviour will fix the issue. -->
 <link rel="import" href="etools-dialog.html">
 <script>
-  /** @polymerBehavior etoolsBehaviors.DynamicDialogBehavior */
   window.etoolsBehaviors = window.etoolsBehaviors || {};
-  // eslint-disable-next-line no-undef
-  etoolsBehaviors.DynamicDialogBehavior = {
-    createDialog: function(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
+  /*
+  * @polymer
+  * @mixinFunction
+  * @demo demo/index.html
+  */
+  etoolsBehaviors.DynamicDialogBehavior = (baseClass) => class extends baseClass {
+    createDialog(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
       if (typeof content === 'undefined' || content === null) {
         // eslint-disable-next-line no-console
         console.error('[DynamicDialogBehavior] You must provide a valid dialog content');
@@ -40,16 +43,16 @@
         });
       }
 
-      Polymer.dom(document.querySelector('body')).appendChild(dialog);
+      document.querySelector('body').appendChild(dialog);
 
-      let msgPlaceholder = Polymer.dom(dialog.root).querySelector('#dynamicContent');
+      let msgPlaceholder = dialog.shadowRoot.querySelector('#dynamicContent');
       msgPlaceholder.appendChild(content);
 
       return dialog;
-    },
+    }
 
-    removeDialog: function(dialogElement) {
-      Polymer.dom(document.querySelector('body')).removeChild(dialogElement);
+    removeDialog(dialogElement) {
+     document.querySelector('body').removeChild(dialogElement);
     }
 
   };

@@ -1,30 +1,26 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../dynamic-dialog-behavior.html">
 <link rel="import" href="../../paper-button/paper-button.html">
 
 <dom-module id="demo-etools-dialog">
-  <style>
-    :host {
-
-    }
-
-    paper-button {
-      margin-bottom: 24px;
-    }
-
-    .green {
-      background-color: #7FD4A4;
-    }
-
-    .orange {
-      background-color: #EBCE9C;
-    }
-
-    .red {
-      background-color: #EE8282;
-    }
-  </style>
   <template>
+    <style>
+      paper-button {
+        margin-bottom: 24px;
+      }
+
+      .green {
+        background-color: #7FD4A4;
+      }
+
+      .orange {
+        background-color: #EBCE9C;
+      }
+
+      .red {
+        background-color: #EE8282;
+      }
+    </style>
     <div>
       <paper-button class="green" raised on-tap="_openDialogWithDefaultStyle">Open dialog (default style)</paper-button>
       <paper-button class="orange" raised on-tap="_openDialogWithDefaultStyleAndBigContent">Open dialog (default style)
@@ -91,55 +87,55 @@
   </template>
 
   <script>
-    (function() {
-      // jscs:disable
       'use strict';
 
-      Polymer({
-        is: 'demo-etools-dialog',
+      class DemoEtoolsDialog extends etoolsBehaviors.DynamicDialogBehavior(Polymer.Element) {
+        static get is() {
+          return 'demo-etools-dialog';
+        }
 
-        behaviors: [etoolsBehaviors.DynamicDialogBehavior],
+        static get properties() {
+          return {
+            defaultStyleDialogOpened: {
+              value: false
+            },
+            _bigContent: Boolean,
+            confirmationDialog: Object
+          };
+        }
 
-        properties: {
-          defaultStyleDialogOpened: {
-            value: false
-          },
-          _bigContent: Boolean,
-          confirmationDialog: Object
-        },
-
-        ready: function() {
+        ready() {
+          super.ready();
           // add a dialog programmatically then open it
           var dialogContent = document.createElement('div');
           dialogContent.classList.add('confirmation-content');
           dialogContent.innerHTML = 'This is a dynamically created dialog ... yey!';
           this.confirmationDialog = this.createDialog('Dynamic dialog title', 'md', 'Ok', 'Close',
               this._dynamicDialogCloseCallback, dialogContent);
-        },
+        }
 
-        _openDialogWithDefaultStyle: function() {
+        _openDialogWithDefaultStyle() {
           this.set('_bigContent', false);
           this.set('defaultStyleDialogOpened', true);
-        },
-        _openDialogWithDefaultStyleAndBigContent: function() {
+        }
+        _openDialogWithDefaultStyleAndBigContent() {
           this.set('_bigContent', true);
           this.set('defaultStyleDialogOpened', true);
-        },
+        }
 
-        onCloseActionHandler: function(event) {
+        onCloseActionHandler(event) {
           console.log('onCloseActionHandler', event.detail);
-        },
+        }
 
-        _openDialogWithConfirmationMsgStyle: function() {
+        _openDialogWithConfirmationMsgStyle() {
           this.confirmationDialog.opened = true;
-        },
+        }
 
-        _dynamicDialogCloseCallback: function(event) {
+        _dynamicDialogCloseCallback(event) {
           console.log('dynamic dialog closed', event.detail);
         }
 
-      });
+      }
 
-    })();
   </script>
 </dom-module>

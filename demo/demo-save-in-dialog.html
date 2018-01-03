@@ -1,53 +1,50 @@
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../polymer/polymer-element.html">
 <link rel="import" href="../../paper-button/paper-button.html">
 <link rel="import" href="../etools-dialog.html">
 <link rel="import" href="add-edit-some-item-dialog.html">
 <link rel="import" href="../../etools-loading/etools-loading.html">
 
 <dom-module id="demo-save-in-dialog">
-  <style>
-    paper-button {
-      background-color: #006EFF;
-      color: white;
-    }
-    [hidden] {
-        display: none !important;
-    }
-   </style>
   <template>
+    <style>
+      paper-button {
+        background-color: #006EFF;
+        color: white;
+      }
+      [hidden] {
+          display: none !important;
+      }
+    </style>
+
     <paper-button on-tap="_openDialogWithOkApiCall"> Open Dialog Window with Successful Api call</paper-button>
     <paper-button on-tap="_openDialogWithNotOkApiCall"> Open Dialog Window with error on Api call</paper-button>
   </template>
 
   <script>
-    (function() {
-      // jscs:disable
       'use strict';
 
-      Polymer({
-        is: 'demo-save-in-dialog',
+      class DemoSaveInDialog extends Polymer.Element {
+        static get is() {
+          return 'demo-save-in-dialog';
+        }
 
-        properties: {
-
-        },
-
-        ready: function() {
+        ready() {
+          super.ready();
           this.addEditDialog = document.createElement('add-edit-some-item-dialog');
           this.addEditDialog.setAttribute('id', 'addEditDialog');
-          Polymer.dom(document.querySelector('body')).appendChild(this.addEditDialog);
+          document.querySelector('body').appendChild(this.addEditDialog);
 
-        },
-        _openDialogWithOkApiCall: function() {
+        }
+        _openDialogWithOkApiCall() {
           this.addEditDialog.successfulApiCall = true;
           this.addEditDialog.open();
-        },
-         _openDialogWithNotOkApiCall: function() {
+        }
+         _openDialogWithNotOkApiCall() {
           this.addEditDialog.successfulApiCall = false;
           this.addEditDialog.open();
         }
 
-      });
+      };
 
-    })();
   </script>
 </dom-module>

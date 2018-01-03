@@ -1,35 +1,40 @@
 
 <script>
-  /** @polymerBehavior etoolsBehaviors.SaveInDialogBehavior */
   window.etoolsBehaviors = window.etoolsBehaviors || {};
-  // eslint-disable-next-line no-undef
-  etoolsBehaviors.SaveInDialogBehavior = {
-    properties: {
-      keepDialogOpen: {
-        type: Boolean,
-        value: false,
-        reflectToAttribute: true
-      },
-      showSpinner: {
-        type: Boolean,
-        value: false,
-        reflectToAttribute: true
-      },
-      spinnerText: {
-        type: String,
-        value: 'Saving data..'
-      }
-    },
+  /*
+  * @polymer
+  * @mixinFunction
+  * @demo demo/index.html
+  */
+  etoolsBehaviors.SaveInDialogBehavior = (baseClass) => class extends baseClass{
+    static get properties() {
+      return {
+        keepDialogOpen: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+        showSpinner: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+        spinnerText: {
+          type: String,
+          value: 'Saving data..'
+        }
+      };
+    }
 
-    _confirmBtClicked: function() {
+    _confirmBtClicked() {
       if (this.keepDialogOpen) {
         this.fire('confirm-btn-clicked');
       }
-    },
-    startSpinner: function() {
+    }
+    startSpinner() {
       this.set('showSpinner', true);
-    },
-    stopSpinner: function() {
+    }
+    stopSpinner() {
       this.set('showSpinner', false);
     }
   };
