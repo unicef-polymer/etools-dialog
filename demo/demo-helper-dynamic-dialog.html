@@ -1,5 +1,5 @@
 <link rel="import" href="../../polymer/polymer-element.html">
-<link rel="import" href="../dynamic-dialog-behavior.html">
+<link rel="import" href="../dynamic-dialog-mixin.html">
 <link rel="import" href="../etools-dialog.html">
 <link rel="import" href="../../paper-button/paper-button.html">
 
@@ -23,7 +23,7 @@
 
   <script>
 
-      class DemoHelperDynamicDialog extends etoolsBehaviors.DynamicDialogBehavior(Polymer.Element) {
+      class DemoHelperDynamicDialog extends etoolsMixins.DynamicDialogMixin(Polymer.Element) {
         static get is() {
           return 'demo-helper-dynamic-dialog';
         }

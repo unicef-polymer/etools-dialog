@@ -3,19 +3,19 @@
      This behaviour will fix the issue. -->
 <link rel="import" href="etools-dialog.html">
 <script>
-  // @namespace etoolsBehaviors
-  window.etoolsBehaviors = window.etoolsBehaviors || {};
+  // @namespace etoolsMixins
+  window.etoolsMixins = window.etoolsMixins || {};
   /*
   * @polymer
   * @mixinFunction
   * @demo demo/index-dynamic.html
   */
-  etoolsBehaviors.DynamicDialogBehavior = (baseClass) => class extends baseClass {
+  etoolsMixins.DynamicDialogMixin = (baseClass) => class extends baseClass {
 
     createDialog(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
       if (typeof content === 'undefined' || content === null) {
         // eslint-disable-next-line no-console
-        console.error('[DynamicDialogBehavior] You must provide a valid dialog content');
+        console.error('[DynamicDialogMixin] You must provide a valid dialog content');
         return false;
       }
       var dialog = document.createElement('etools-dialog');

@@ -2,25 +2,25 @@
   "schema_version": "1.0.0",
   "namespaces": [
     {
-      "name": "etoolsBehaviors",
+      "name": "etoolsMixins",
       "description": " ",
       "summary": "",
       "sourceRange": {
-        "file": "dynamic-dialog-behavior.html",
+        "file": "dynamic-dialog-mixin.html",
         "start": {
           "line": 6,
           "column": 2
         },
         "end": {
           "line": 6,
-          "column": 56
+          "column": 50
         }
       },
       "mixins": [
         {
           "description": "",
           "summary": "",
-          "path": "dialog-spinner-behavior.html",
+          "path": "dialog-spinner-mixin.html",
           "properties": [
             {
               "name": "keepDialogOpen",
@@ -155,7 +155,7 @@
             }
           },
           "privacy": "public",
-          "name": "etoolsBehaviors.DialogSpinnerMixin",
+          "name": "etoolsMixins.DialogSpinnerMixin",
           "attributes": [
             {
               "name": "keep-dialog-open",
@@ -216,7 +216,7 @@
         {
           "description": "",
           "summary": "",
-          "path": "dynamic-dialog-behavior.html",
+          "path": "dynamic-dialog-mixin.html",
           "properties": [],
           "methods": [
             {
@@ -302,7 +302,7 @@
             }
           },
           "privacy": "public",
-          "name": "etoolsBehaviors.DynamicDialogBehavior",
+          "name": "etoolsMixins.DynamicDialogMixin",
           "attributes": [],
           "events": [],
           "styling": {
@@ -326,7 +326,7 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 12,
               "column": 8
@@ -340,7 +340,7 @@
             "polymer": {}
           },
           "defaultValue": "false",
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "showSpinner",
@@ -348,7 +348,7 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 17,
               "column": 8
@@ -362,7 +362,7 @@
             "polymer": {}
           },
           "defaultValue": "false",
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "spinnerText",
@@ -370,7 +370,7 @@
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 22,
               "column": 8
@@ -384,7 +384,7 @@
             "polymer": {}
           },
           "defaultValue": "\"Saving data..\"",
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "dialogTitle",
@@ -637,7 +637,7 @@
           "description": "",
           "privacy": "protected",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 29,
               "column": 4
@@ -649,14 +649,14 @@
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "startSpinner",
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 34,
               "column": 4
@@ -668,14 +668,14 @@
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "stopSpinner",
           "description": "",
           "privacy": "public",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 37,
               "column": 4
@@ -687,7 +687,7 @@
           },
           "metadata": {},
           "params": [],
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "_dialogCloseHandling",
@@ -820,7 +820,7 @@
           "name": "keep-dialog-open",
           "description": "",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 12,
               "column": 8
@@ -832,13 +832,13 @@
           },
           "metadata": {},
           "type": "boolean",
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "show-spinner",
           "description": "",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 17,
               "column": 8
@@ -850,13 +850,13 @@
           },
           "metadata": {},
           "type": "boolean",
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "spinner-text",
           "description": "",
           "sourceRange": {
-            "file": "dialog-spinner-behavior.html",
+            "file": "dialog-spinner-mixin.html",
             "start": {
               "line": 22,
               "column": 8
@@ -868,7 +868,7 @@
           },
           "metadata": {},
           "type": "string",
-          "inheritedFrom": "etoolsBehaviors.DialogSpinnerMixin"
+          "inheritedFrom": "etoolsMixins.DialogSpinnerMixin"
         },
         {
           "name": "dialog-title",
@@ -1094,7 +1094,7 @@
       ],
       "tagname": "etools-dialog",
       "mixins": [
-        "etoolsBehaviors.DialogSpinnerMixin"
+        "etoolsMixins.DialogSpinnerMixin"
       ]
     },
     {
