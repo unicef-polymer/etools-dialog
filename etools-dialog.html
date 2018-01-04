@@ -7,7 +7,7 @@
 <link rel="import" href="../paper-dialog-scrollable/paper-dialog-scrollable.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../etools-loading/etools-loading.html">
 
 <link rel="import" href="dialog-spinner-behavior.html">
@@ -26,6 +26,7 @@
           display: block;
           margin-top: 0;
         };
+
       }
 
       paper-dialog {
@@ -154,7 +155,6 @@
         margin-top: -20px;
       }
     </style>
-
     <paper-dialog id="dialog"
                   class$="[[getDialogClass(size, theme)]]"
                   opened="{{opened}}"
@@ -189,10 +189,10 @@
     'use strict'
      /*
     * @customElement
-    * @appliesMixin etoolsBehaviors.SaveInDialogBehavior
+    * @appliesMixin etoolsBehaviors.DialogSpinnerMixin
     * @demo demo/index.html
     */
-    class EtoolsDialog extends etoolsBehaviors.SaveInDialogBehavior(Polymer.Element) {
+    class EtoolsDialog extends etoolsBehaviors.DialogSpinnerMixin(Polymer.Element) {
 
       static get is() {
         return 'etools-dialog';

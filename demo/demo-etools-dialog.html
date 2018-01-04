@@ -1,5 +1,4 @@
 <link rel="import" href="../../polymer/polymer-element.html">
-<link rel="import" href="../dynamic-dialog-behavior.html">
 <link rel="import" href="../etools-dialog.html">
 <link rel="import" href="../../paper-button/paper-button.html">
 
@@ -18,9 +17,6 @@
         background-color: #EBCE9C;
       }
 
-      .red {
-        background-color: #EE8282;
-      }
     </style>
     <div>
       <paper-button class="green" raised on-tap="_openDialogWithDefaultStyle">Open dialog (default style)</paper-button>
@@ -80,16 +76,11 @@
         </template>
       </etools-dialog>
     </div>
-    <div>
-      <paper-button class="red" raised on-tap="_openDialogWithConfirmationMsgStyle">Open dialog (confirmation message
-        style)
-      </paper-button>
-    </div>
   </template>
 
   <script>
 
-      class DemoEtoolsDialog extends etoolsBehaviors.DynamicDialogBehavior(Polymer.Element) {
+      class DemoEtoolsDialog extends Polymer.Element {
         static get is() {
           return 'demo-etools-dialog';
         }
@@ -99,19 +90,8 @@
             defaultStyleDialogOpened: {
               value: false
             },
-            _bigContent: Boolean,
-            confirmationDialog: Object
+            _bigContent: Boolean
           };
-        }
-
-        ready() {
-          super.ready();
-          // add a dialog programmatically then open it
-          var dialogContent = document.createElement('div');
-          dialogContent.classList.add('confirmation-content');
-          dialogContent.innerHTML = 'This is a dynamically created dialog ... yey!';
-          this.confirmationDialog = this.createDialog('Dynamic dialog title', 'md', 'Ok', 'Close',
-              this._dynamicDialogCloseCallback, dialogContent);
         }
 
         _openDialogWithDefaultStyle() {
@@ -125,10 +105,6 @@
 
         onCloseActionHandler(event) {
           console.log('onCloseActionHandler', event.detail);
-        }
-
-        _openDialogWithConfirmationMsgStyle() {
-          this.confirmationDialog.opened = true;
         }
 
         _dynamicDialogCloseCallback(event) {

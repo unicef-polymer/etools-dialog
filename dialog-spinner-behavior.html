@@ -1,12 +1,13 @@
 
 <script>
+  // @namespace etoolsBehaviors
   window.etoolsBehaviors = window.etoolsBehaviors || {};
   /*
   * @polymer
   * @mixinFunction
-  * @demo demo/index.html
+  * @demo demo/index-spinner.html
   */
-  etoolsBehaviors.SaveInDialogBehavior = (baseClass) => class extends baseClass{
+  etoolsBehaviors.DialogSpinnerMixin = (baseClass) => class extends baseClass{
     static get properties() {
       return {
         keepDialogOpen: {

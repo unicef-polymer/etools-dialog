@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
   <head>
@@ -6,17 +7,10 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 
     <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script>
-    //  window.Polymer = {
-    //     dom: 'shadow'// TODO does this exist in polymer 2
-    //   };
-    </script>
-
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
 
-    <link rel="import" href="../etools-dialog.html">
-    <link rel="import" href="demo-etools-dialog.html">
+    <link rel="import" href="demo-helper-dynamic-dialog.html">
 
     <style include="demo-pages-shared-styles">
       .vertical-section-container {
@@ -27,12 +21,11 @@
     </style>
   </head>
   <body>
-
-    <div class="vertical-section-container centered">
-      <h3>etools-dialog demo</h3>
+      <div class="vertical-section-container centered">
+      <h3>etools-dialog dynamic</h3>
       <demo-snippet>
         <template>
-           <demo-etools-dialog></demo-etools-dialog>
+          <demo-helper-dynamic-dialog></demo-helper-dynamic-dialog>
         </template>
       </demo-snippet>
     </div>
