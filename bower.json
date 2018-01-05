@@ -12,7 +12,8 @@
     "iron-icon": "polymerelements/iron-icon#^2.0.0",
     "neon-animation": "PolymerElements/neon-animation#^2.0.0",
     "paper-dialog-scrollable": "^2.0.0",
-    "etools-loading": "58d40ad43fc374"
+    "etools-loading": "58d40ad43fc374",
+    "web-animations-js": "web-animations/web-animations-js#^2.2.0"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^3.0.0",
