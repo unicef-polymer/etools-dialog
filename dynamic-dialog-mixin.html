@@ -1,24 +1,26 @@
 <!-- Create etools-dialog programmatically and add them directly to the body.
      Now paper-dialog has an issues and the backdrop that covers all the content(if dialog is not a child of body), everything becomes unselectable.
      This behaviour will fix the issue. -->
+<link rel="import" href="../etools-behaviors/etools-logs-mixin.html">
 <link rel="import" href="etools-dialog.html">
 <script>
-  // @namespace etoolsMixins
-  window.etoolsMixins = window.etoolsMixins || {};
-  /*
-  * @polymer
-  * @mixinFunction
-  * @demo demo/index-dynamic.html
-  */
-  etoolsMixins.DynamicDialogMixin = (baseClass) => class extends baseClass {
+  // @namespace EtoolsMixins
+  window.EtoolsMixins = window.EtoolsMixins || {};
+  /**
+   * @polymer
+   * @mixinFunction
+   * @appliedMixin EtoolsLogsMixin
+   * @demo demo/index-dynamic.html
+   */
+  EtoolsMixins.DynamicDialogMixin = (baseClass) => class extends EtoolsLogsMixin(baseClass) {
 
     createDialog(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
       if (typeof content === 'undefined' || content === null) {
         // eslint-disable-next-line no-console
-        console.error('[DynamicDialogMixin] You must provide a valid dialog content');
+        this.logError('You must provide a valid dialog content', 'DynamicDialogMixin');
         return false;
       }
-      var dialog = document.createElement('etools-dialog');
+      let dialog = document.createElement('etools-dialog');
       dialog.theme = 'confirmation';
       if (typeof theme === 'string' && theme !== '') {
         dialog.theme = theme;
@@ -41,7 +43,7 @@
       // set close callback
       if (closeCallback) {
         dialog.addEventListener('close', function(event) {
-            closeCallback(event);
+          closeCallback(event);
         });
       }
 
@@ -54,7 +56,7 @@
     }
 
     removeDialog(dialogElement) {
-     document.querySelector('body').removeChild(dialogElement);
+      document.querySelector('body').removeChild(dialogElement);
     }
 
   }

@@ -1,4 +1,3 @@
-<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../neon-animation/web-animations.html">
 <link rel="import" href="../neon-animation/animations/scale-up-animation.html">
@@ -186,13 +185,14 @@
   </template>
 
   <script>
-    'use strict'
-     /*
-    * @customElement
-    * @appliesMixin etoolsMixins.DialogSpinnerMixin
-    * @demo demo/index.html
-    */
-    class EtoolsDialog extends etoolsMixins.DialogSpinnerMixin(Polymer.Element) {
+    'use strict';
+
+    /**
+     * @customElement
+     * @appliedMixin EtoolsMixins.DialogSpinnerMixin
+     * @demo demo/index.html
+     */
+    class EtoolsDialog extends EtoolsMixins.DialogSpinnerMixin(Polymer.Element) {
 
       static get is() {
         return 'etools-dialog';
@@ -262,7 +262,11 @@
           // that also use the iron-overlay-behavior
           return;
         }
-        this.dispatchEvent(new CustomEvent('close', {detail: {confirmed: event.detail.confirmed}, bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('close', {
+          detail: {confirmed: event.detail.confirmed},
+          bubbles: true,
+          composed: true
+        }));
       }
 
       getDialogClass(size, theme) {
@@ -274,11 +278,14 @@
       }
 
       _noContentPaddingChanged(noPaddingValue) {
+        if (noPaddingValue === undefined) {
+          return;
+        }
         this.updateStyles();
       }
 
       notifyResize() {
-        this.$$('#dialog').notifyResize();
+        this.shadowRoot.querySelector('#dialog').notifyResize();
       }
 
     }

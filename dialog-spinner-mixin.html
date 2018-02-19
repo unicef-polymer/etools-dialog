@@ -1,13 +1,12 @@
-
 <script>
-  // @namespace etoolsMixins
-  window.etoolsMixins = window.etoolsMixins || {};
+  // @namespace EtoolsMixins
+  window.EtoolsMixins = window.EtoolsMixins || {};
   /*
   * @polymer
   * @mixinFunction
   * @demo demo/index-spinner.html
   */
-  etoolsMixins.DialogSpinnerMixin = (baseClass) => class extends baseClass{
+  EtoolsMixins.DialogSpinnerMixin = (baseClass) => class extends baseClass {
     static get properties() {
       return {
         keepDialogOpen: {
@@ -29,12 +28,14 @@
 
     _confirmBtClicked() {
       if (this.keepDialogOpen) {
-        this.dispatchEvent(new CustomEvent('confirm-btn-clicked', {bubbles: true, composed: true }));
+        this.dispatchEvent(new CustomEvent('confirm-btn-clicked', {bubbles: true, composed: true}));
       }
     }
+
     startSpinner() {
       this.set('showSpinner', true);
     }
+
     stopSpinner() {
       this.set('showSpinner', false);
     }
