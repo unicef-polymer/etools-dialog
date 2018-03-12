@@ -1,6 +1,6 @@
 <!-- Create etools-dialog programmatically and add them directly to the body.
-     Now paper-dialog has an issues and the backdrop that covers all the content(if dialog is not a child of body), everything becomes unselectable.
-     This behaviour will fix the issue. -->
+Now paper-dialog has an issues and the backdrop that covers all the content(if dialog is not a child of body), everything becomes unselectable.
+This behaviour will fix the issue. -->
 <link rel="import" href="etools-dialog.html">
 <script>
   /** @polymerBehavior etoolsBehaviors.DynamicDialogBehavior */
@@ -8,42 +8,51 @@
   // eslint-disable-next-line no-undef
   etoolsBehaviors.DynamicDialogBehavior = {
     createDialog: function(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
-      if (typeof content === 'undefined' || content === null) {
-        // eslint-disable-next-line no-console
-        console.error('[DynamicDialogBehavior] You must provide a valid dialog content');
-        return false;
+      let config = {
+        title: title,
+        size: size,
+        okBtnText: okBtnText,
+        cancelBtnText: cancelBtnText,
+        content: content,
+        noPadding: removePadding,
+        theme: theme
       }
-      var dialog = document.createElement('etools-dialog');
-      dialog.theme = 'confirmation';
-      if (typeof theme === 'string' && theme !== '') {
-        dialog.theme = theme;
-      }
-      if (typeof removePadding === 'boolean') {
-        dialog.noPadding = removePadding;
-      }
-      if (typeof size === 'string' && size !== '') {
-        dialog.size = 'md';
-      }
-      if (typeof okBtnText === 'string' && okBtnText !== '') {
-        dialog.okBtnText = okBtnText;
-      }
-      if (typeof cancelBtnText === 'string' && cancelBtnText !== '') {
-        dialog.cancelBtnText = cancelBtnText;
-      }
-      if (typeof title === 'string' && title !== '') {
-        dialog.dialogTitle = title;
-      }
-      // set close callback
-      if (closeCallback) {
-        dialog.addEventListener('close', function(event) {
-            closeCallback(event);
-        });
-      }
+      let dialog = this.createDynamicDialog(config);
 
       Polymer.dom(document.querySelector('body')).appendChild(dialog);
 
+      return dialog;
+    },
+
+    createDynamicDialog: function(config) {
+      if (typeof config.content === 'undefined' || config.content === null) {
+        // eslint-disable-next-line no-console
+        console.error('[DynamicDialogBehavior] You must provide a valid dialog content');
+        return null;
+      }
+      let dialog = document.createElement('etools-dialog');
+      dialog.theme = 'confirmation';
+
+      for(var propertyName in config) {
+        if (!config.hasOwnProperty(propertyName)) {
+          continue;
+        }
+        if (propertyName === 'noPadding' && typeof config[propertyName] === 'boolean') {
+          dialog.noPadding = config.noPadding;
+        }
+        if (typeof config[propertyName] === 'string' && config[propertyName] !=='') { ///If typeof check necessary??
+          dialog[propertyName] = config[propertyName];
+        }
+      }
+
+      // set close callback
+      if (config.closeCallback) {
+        dialog.addEventListener('close', function(event) {
+            config.closeCallback(event);
+        });
+      }
       let msgPlaceholder = Polymer.dom(dialog.root).querySelector('#dynamicContent');
-      msgPlaceholder.appendChild(content);
+      msgPlaceholder.appendChild(config.content);
 
       return dialog;
     },
