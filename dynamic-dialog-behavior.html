@@ -31,14 +31,15 @@ This behaviour will fix the issue. -->
         return null;
       }
       let dialog = document.createElement('etools-dialog');
-      dialog.theme = 'confirmation';
+      this._applyDefaultDialogConfig(dialog);
 
       for(var propertyName in config) {
-        if (!config.hasOwnProperty(propertyName)) {
+        if (!config.hasOwnProperty(propertyName) || propertyName === 'closeCallback') {
           continue;
         }
         if (propertyName === 'noPadding' && typeof config[propertyName] === 'boolean') {
           dialog.noPadding = config.noPadding;
+          continue;
         }
         if (typeof config[propertyName] === 'string' && config[propertyName] !=='') {
           dialog[propertyName] = config[propertyName];
@@ -55,6 +56,12 @@ This behaviour will fix the issue. -->
       msgPlaceholder.appendChild(config.content);
 
       return dialog;
+    },
+
+    _applyDefaultDialogConfig: function(dialog) {
+      dialog.theme = 'confirmation';
+      dialog.okBtnText = 'Yes';
+      dialog.cancelBtnText = 'No';
     },
 
     removeDialog: function(dialogElement) {
