@@ -15,44 +15,67 @@
   EtoolsMixins.DynamicDialogMixin = (baseClass) => class extends EtoolsLogsMixin(baseClass) {
 
     createDialog(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
-      if (typeof content === 'undefined' || content === null) {
-        // eslint-disable-next-line no-console
-        this.logError('You must provide a valid dialog content', 'DynamicDialogMixin');
-        return false;
+      let config = {
+        title: title,
+        size: size,
+        okBtnText: okBtnText,
+        cancelBtnText: cancelBtnText,
+        closeCallback: closeCallback,
+        content: content,
+        noPadding: removePadding,
+        theme: theme
       }
+      let dialog = this.createDynamicDialog(config);
+      document.querySelector('body').appendChild(dialog);
+      return dialog;
+    }
+
+    createDynamicDialog(config) {
+      if (!this._validateParams(config)) {
+        return null;
+      }
+
       let dialog = document.createElement('etools-dialog');
-      dialog.theme = 'confirmation';
-      if (typeof theme === 'string' && theme !== '') {
-        dialog.theme = theme;
-      }
-      if (typeof removePadding === 'boolean') {
-        dialog.noPadding = removePadding;
-      }
-      if (typeof size === 'string' && size !== '') {
-        dialog.size = 'md';
-      }
-      if (typeof okBtnText === 'string' && okBtnText !== '') {
-        dialog.okBtnText = okBtnText;
-      }
-      if (typeof cancelBtnText === 'string' && cancelBtnText !== '') {
-        dialog.cancelBtnText = cancelBtnText;
-      }
-      if (typeof title === 'string' && title !== '') {
-        dialog.dialogTitle = title;
+      this._applyDefaultDialogConfig(dialog);
+
+      for(var propertyName in config) {
+        if (!config.hasOwnProperty(propertyName) || propertyName === 'closeCallback') {
+          continue;
+        }
+        if (propertyName === 'noPadding' && typeof config[propertyName] === 'boolean') {
+          dialog.noPadding = config.noPadding;
+          continue;
+        }
+        if (typeof config[propertyName] === 'string' && config[propertyName] !=='') {
+          dialog[propertyName] = config[propertyName];
+        }
       }
       // set close callback
-      if (closeCallback) {
+      if (config.closeCallback) {
         dialog.addEventListener('close', function(event) {
-          closeCallback(event);
+            config.closeCallback(event);
         });
       }
 
       document.querySelector('body').appendChild(dialog);
 
       let msgPlaceholder = dialog.shadowRoot.querySelector('#dynamicContent');
-      msgPlaceholder.appendChild(content);
-
+      msgPlaceholder.appendChild(config.content);
       return dialog;
+    }
+    _validateParams(config) {
+      if (typeof config.content === 'undefined' || config.content === null) {
+        // eslint-disable-next-line no-console
+        this.logError('[DynamicDialogBehavior] You must provide a valid dialog content');
+        return false;
+      }
+      return true
+    }
+
+    _applyDefaultDialogConfig(dialog) {
+      dialog.theme = 'confirmation';
+      dialog.okBtnText = 'Yes';
+      dialog.cancelBtnText = 'No';
     }
 
     removeDialog(dialogElement) {
