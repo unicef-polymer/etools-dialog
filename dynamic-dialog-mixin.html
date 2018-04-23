@@ -12,7 +12,7 @@
    * @appliesMixin EtoolsLogsMixin
    * @demo demo/index-dynamic.html
    */
-  EtoolsMixins.DynamicDialogMixin = (baseClass) => class extends EtoolsLogsMixin(baseClass) {
+  EtoolsMixins.DynamicDialogMixin = baseClass => class extends EtoolsLogsMixin(baseClass) {
 
     createDialog(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
       let config = {
@@ -24,7 +24,7 @@
         content: content,
         noPadding: removePadding,
         theme: theme
-      }
+      };
       let dialog = this.createDynamicDialog(config);
       document.querySelector('body').appendChild(dialog);
       return dialog;
@@ -69,7 +69,7 @@
         this.logError('[DynamicDialogBehavior] You must provide a valid dialog content');
         return false;
       }
-      return true
+      return true;
     }
 
     _applyDefaultDialogConfig(dialog) {
@@ -81,6 +81,5 @@
     removeDialog(dialogElement) {
       document.querySelector('body').removeChild(dialogElement);
     }
-
-  }
+  };
 </script>

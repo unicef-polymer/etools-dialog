@@ -6,7 +6,7 @@
   * @mixinFunction
   * @demo demo/index-spinner.html
   */
-  EtoolsMixins.DialogSpinnerMixin = (baseClass) => class extends baseClass {
+  EtoolsMixins.DialogSpinnerMixin = baseClass => class extends baseClass {
     static get properties() {
       return {
         keepDialogOpen: {
