@@ -9,8 +9,9 @@
         background-color: #006EFF;
         color: white;
       }
+
       [hidden] {
-          display: none !important;
+        display: none !important;
       }
     </style>
 
@@ -19,30 +20,37 @@
   </template>
 
   <script>
-      'use strict';
+    'use strict';
 
-      class DemoSaveInDialog extends Polymer.Element {
-        static get is() {
-          return 'demo-dialog-spinner';
-        }
+    /**
+     * @polymer
+     * @customElement
+     * @demo demo/index-spinner.html
+     */
+    class DemoSaveInDialog extends Polymer.Element {
+      static get is() {
+        return 'demo-dialog-spinner';
+      }
 
-        ready() {
-          super.ready();
-          this.addEditDialog = document.createElement('add-edit-some-item-dialog');
-          this.addEditDialog.setAttribute('id', 'addEditDialog');
-          document.querySelector('body').appendChild(this.addEditDialog);
+      ready() {
+        super.ready();
+        this.addEditDialog = document.createElement('add-edit-some-item-dialog');
+        this.addEditDialog.setAttribute('id', 'addEditDialog');
+        document.querySelector('body').appendChild(this.addEditDialog);
 
-        }
-        _openDialogWithOkApiCall() {
-          this.addEditDialog.successfulApiCall = true;
-          this.addEditDialog.open();
-        }
-         _openDialogWithNotOkApiCall() {
-          this.addEditDialog.successfulApiCall = false;
-          this.addEditDialog.open();
-        }
+      }
 
-      };
-      customElements.define(DemoSaveInDialog.is, DemoSaveInDialog);
+      _openDialogWithOkApiCall() {
+        this.addEditDialog.successfulApiCall = true;
+        this.addEditDialog.open();
+      }
+
+      _openDialogWithNotOkApiCall() {
+        this.addEditDialog.successfulApiCall = false;
+        this.addEditDialog.open();
+      }
+
+    };
+    customElements.define(DemoSaveInDialog.is, DemoSaveInDialog);
   </script>
 </dom-module>
