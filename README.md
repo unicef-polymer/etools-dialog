@@ -56,13 +56,6 @@ Then just run the linting task
 ```bash
 $ npm run lint
 ```
-You should also use polylint. If you don't have Polylint installed run `npm install -g polylint`.
-Then just run the linter on each file you wish to check like so
-
-```bash
-$ polylint -i filename.html
-```
-At the moment polylint crashes if it encounters a missing import. If that happens, temporarily comment out such imports and run the command again.
 
 ## Preview element locally
 Install needed dependencies by running: `$ bower install`.
