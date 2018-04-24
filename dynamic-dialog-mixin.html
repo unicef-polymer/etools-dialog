@@ -3,6 +3,7 @@
      This behaviour will fix the issue. -->
 <link rel="import" href="../etools-behaviors/etools-logs-mixin.html">
 <link rel="import" href="etools-dialog.html">
+
 <script>
   // @namespace EtoolsMixins
   window.EtoolsMixins = window.EtoolsMixins || {};
@@ -12,7 +13,7 @@
    * @appliesMixin EtoolsLogsMixin
    * @demo demo/index-dynamic.html
    */
-  EtoolsMixins.DynamicDialogMixin = (baseClass) => class extends EtoolsLogsMixin(baseClass) {
+  EtoolsMixins.DynamicDialogMixin = baseClass => class extends EtoolsLogsMixin(baseClass) {
 
     createDialog(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
       let config = {
@@ -24,7 +25,7 @@
         content: content,
         noPadding: removePadding,
         theme: theme
-      }
+      };
       let dialog = this.createDynamicDialog(config);
       document.querySelector('body').appendChild(dialog);
       return dialog;
@@ -38,7 +39,7 @@
       let dialog = document.createElement('etools-dialog');
       this._applyDefaultDialogConfig(dialog);
 
-      for(var propertyName in config) {
+      for (let propertyName in config) {
         if (!config.hasOwnProperty(propertyName) || propertyName === 'closeCallback') {
           continue;
         }
@@ -46,14 +47,14 @@
           dialog.noPadding = config.noPadding;
           continue;
         }
-        if (typeof config[propertyName] === 'string' && config[propertyName] !=='') {
+        if (typeof config[propertyName] === 'string' && config[propertyName] !== '') {
           dialog[propertyName] = config[propertyName];
         }
       }
       // set close callback
       if (config.closeCallback) {
         dialog.addEventListener('close', function(event) {
-            config.closeCallback(event);
+          config.closeCallback(event);
         });
       }
 
@@ -63,13 +64,14 @@
       msgPlaceholder.appendChild(config.content);
       return dialog;
     }
+
     _validateParams(config) {
       if (typeof config.content === 'undefined' || config.content === null) {
         // eslint-disable-next-line no-console
         this.logError('[DynamicDialogBehavior] You must provide a valid dialog content');
         return false;
       }
-      return true
+      return true;
     }
 
     _applyDefaultDialogConfig(dialog) {
@@ -81,6 +83,5 @@
     removeDialog(dialogElement) {
       document.querySelector('body').removeChild(dialogElement);
     }
-
-  }
+  };
 </script>

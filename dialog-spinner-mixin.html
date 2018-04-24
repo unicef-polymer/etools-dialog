@@ -1,12 +1,12 @@
 <script>
   // @namespace EtoolsMixins
   window.EtoolsMixins = window.EtoolsMixins || {};
-  /*
-  * @polymer
-  * @mixinFunction
-  * @demo demo/index-spinner.html
-  */
-  EtoolsMixins.DialogSpinnerMixin = (baseClass) => class extends baseClass {
+  /**
+   * @polymer
+   * @mixinFunction
+   * @demo demo/index-spinner.html
+   */
+  EtoolsMixins.DialogSpinnerMixin = baseClass => class extends baseClass {
     static get properties() {
       return {
         keepDialogOpen: {
