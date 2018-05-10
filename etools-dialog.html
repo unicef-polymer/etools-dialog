@@ -164,7 +164,7 @@
                   exit-animation="fade-out-animation"
                   on-iron-overlay-closed="_dialogCloseHandling"
                   no-auto-focus="[[noAutoFocus]]"
-                  on-dom-change="_notifyResize">
+                  on-dom-change="_onDomChange">
       <paper-icon-button icon="close" dialog-dismiss class="close-btn"></paper-icon-button>
       <h2 class="dialog-title">[[dialogTitle]]</h2>
 
@@ -271,7 +271,7 @@
         }));
       }
 
-      _notifyResize() {
+      _onDomChange() {
         this._domChangeDebouncer = Polymer.Debouncer.debounce(this._domChangeDebouncer,
             Polymer.Async.timeOut.after(20),
             () => {
