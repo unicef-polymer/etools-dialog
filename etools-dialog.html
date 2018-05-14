@@ -258,6 +258,11 @@
         };
       }
 
+      ready() {
+        super.ready();
+        this.addEventListener('iron-overlay-closed', this._onIronOverlayClosed);
+      }
+
       _dialogCloseHandling(event) {
         if (event.detail.confirmed === undefined) {
           //* prevent handling here, events fired by containing elements,
@@ -277,6 +282,12 @@
             () => {
               this.notifyResize();
             });
+      }
+
+      _onIronOverlayClosed(e) {
+        if (e.target instanceof EtoolsDropdownMulti) {
+          this.notifyResize();
+        }
       }
 
       getDialogClass(size, theme) {
