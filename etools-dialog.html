@@ -163,6 +163,7 @@
                   entry-animation="scale-up-animation"
                   exit-animation="fade-out-animation"
                   on-iron-overlay-closed="_dialogCloseHandling"
+                  on-iron-overlay-opened="_dialogOpenedHandling"
                   no-auto-focus="[[noAutoFocus]]"
                   on-dom-change="_onDomChange">
       <paper-icon-button icon="close" dialog-dismiss class="close-btn"></paper-icon-button>
@@ -260,7 +261,7 @@
 
       _dialogCloseHandling(event) {
         if (event.detail.confirmed === undefined) {
-          //* prevent handling here, events fired by containing elements,
+          //* prevent handling, here, events fired by containing elements,
           // that also use the iron-overlay-behavior
           return;
         }
@@ -269,6 +270,10 @@
           bubbles: true,
           composed: true
         }));
+      }
+
+      _dialogOpenedHandling() {
+        this.notifyResize();
       }
 
       _onDomChange() {
