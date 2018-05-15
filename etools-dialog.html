@@ -163,6 +163,7 @@
                   entry-animation="scale-up-animation"
                   exit-animation="fade-out-animation"
                   on-iron-overlay-closed="_dialogCloseHandling"
+                  on-iron-overlay-opened="_dialogOpenedHandling"
                   no-auto-focus="[[noAutoFocus]]"
                   on-dom-change="_onDomChange">
       <paper-icon-button icon="close" dialog-dismiss class="close-btn"></paper-icon-button>
@@ -260,7 +261,6 @@
 
       ready() {
         super.ready();
-        this.addEventListener('iron-overlay-closed', this._onIronOverlayClosed);
       }
 
       _dialogCloseHandling(event) {
@@ -276,18 +276,16 @@
         }));
       }
 
+      _dialogOpenedHandling() {
+        this.notifyResize();
+      }
+
       _onDomChange() {
         this._domChangeDebouncer = Polymer.Debouncer.debounce(this._domChangeDebouncer,
             Polymer.Async.timeOut.after(20),
             () => {
               this.notifyResize();
             });
-      }
-
-      _onIronOverlayClosed(e) {
-        if (e.target instanceof EtoolsDropdownMulti) {
-          this.notifyResize();
-        }
       }
 
       getDialogClass(size, theme) {
