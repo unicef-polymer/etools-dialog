@@ -299,8 +299,25 @@
         this.updateStyles();
       }
 
+      getPaperDialog() {
+        return this.shadowRoot.querySelector('#dialog');
+      }
+
       notifyResize() {
-        this.shadowRoot.querySelector('#dialog').notifyResize();
+        this.getPaperDialog().notifyResize();
+      }
+
+      scrollDown() {
+        setTimeout(() => {
+          let d = this.getPaperDialog();
+          if (d) {
+            let dialogScrollable = d.querySelector('paper-dialog-scrollable');
+            if (dialogScrollable) {
+              let scrollTarget = dialogScrollable.scrollTarget;
+              scrollTarget.scrollTop = scrollTarget.scrollHeight;
+            }
+          }
+        }, 100);
       }
 
     }
