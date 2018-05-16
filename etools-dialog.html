@@ -299,17 +299,17 @@
         this.updateStyles();
       }
 
-      _getPaperDialog() {
+      getPaperDialog() {
         return this.shadowRoot.querySelector('#dialog');
       }
 
       notifyResize() {
-        this._getPaperDialog().notifyResize();
+        this.getPaperDialog().notifyResize();
       }
 
-      _scrollDown() {
+      scrollDown() {
         setTimeout(() => {
-          let d = this._getPaperDialog();
+          let d = this.getPaperDialog();
           if (d) {
             let dialogScrollable = d.querySelector('paper-dialog-scrollable');
             if (dialogScrollable) {
