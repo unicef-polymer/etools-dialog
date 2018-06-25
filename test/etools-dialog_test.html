@@ -5,11 +5,11 @@
     <title>etools-dialog test</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../web-component-tester/browser.js"></script>
-    <link rel="import" href="../../iron-test-helpers/mock-interactions.html">
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../wct-browser-legacy/browser.js"></script>
+    <script type="module" src="../../@polymer/iron-test-helpers/mock-interactions.js"></script>
 
-    <link rel="import" href="../etools-dialog.html">
+    <script type="module" src="../etools-dialog.js"></script>
   </head>
   <body>
 
@@ -19,28 +19,30 @@
       </template>
     </test-fixture>
 
-    <script>
-      suite('etools-dialog', function() {
-        var basic;
-        setup(() => {
-          basic = fixture('basic');
-        });
-        test('instantiating the element works', function() {
-          assert.equal(basic.is, 'etools-dialog');
-        });
-        test('tapping cancel button closes dialog', function() {
-          basic.children[0].opened = true;
-          var button =basic.shadowRoot.querySelector(".cancel-btn");
-          MockInteractions.tap(button);
-          assert.equal(basic.children[0].opened, false);
-        });
-        test('tapping confirm button closes dialog', function() {
-          basic.children[0].opened = true;
-          var button = basic.shadowRoot.querySelector(".confirm-btn");
-          MockInteractions.tap(button);
-          assert.equal(basic.children[0].opened, false);
-        });
-      });
-    </script>
+    <script type="module">
+import '../../@polymer/iron-test-helpers/mock-interactions.js';
+import '../etools-dialog.js';
+suite('etools-dialog', function() {
+  var basic;
+  setup(() => {
+    basic = fixture('basic');
+  });
+  test('instantiating the element works', function() {
+    assert.equal(basic.is, 'etools-dialog');
+  });
+  test('tapping cancel button closes dialog', function() {
+    basic.children[0].opened = true;
+    var button =basic.shadowRoot.querySelector(".cancel-btn");
+    MockInteractions.tap(button);
+    assert.equal(basic.children[0].opened, false);
+  });
+  test('tapping confirm button closes dialog', function() {
+    basic.children[0].opened = true;
+    var button = basic.shadowRoot.querySelector(".confirm-btn");
+    MockInteractions.tap(button);
+    assert.equal(basic.children[0].opened, false);
+  });
+});
+</script>
   </body>
 </html>

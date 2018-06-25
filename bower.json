@@ -13,8 +13,8 @@
     "neon-animation": "PolymerElements/neon-animation#^2.0.0",
     "paper-dialog-scrollable": "^2.0.0",
     "web-animations-js": "web-animations/web-animations-js#^2.2.0",
-    "etools-loading": "3.0.0",
-    "etools-behaviors": "2.0.0"
+    "etools-loading": "dd8c083b85aa44ad809349878a426977dc89698d",
+    "etools-behaviors": "575692750251f8b592630b470a34d254fc212bd8"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^3.0.0",

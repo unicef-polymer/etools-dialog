@@ -3,6 +3,18 @@
 Simple dialog element
 
 ## Usage
+
+In order for this component to work properly please first run
+
+```bash
+$ npm install --save web-animations-js
+```
+and then include `web-animations-next-lite.min.js` in your index.html file.
+
+```html
+<link rel="import" href="../scripts/web-animations.html">
+```
+
 ```html
 <etools-dialog size="md" opened="[[opened]]"
   on-close="onCloseActionHandler" dialog-title="Some title">
