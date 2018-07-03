@@ -14,7 +14,8 @@
   },
   "scripts": {
     "lint": "npm run lint:javascript && polymer lint && exit 0",
-    "lint:javascript": "eslint . --ext js,html && exit 0"
+    "lint:javascript": "eslint . --ext js,html && exit 0",
+    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
   },
   "version": "3.0.0",
   "resolutions": {
@@ -34,6 +35,11 @@
     "@polymer/paper-dialog-scrollable": "^3.0.0-pre.18",
     "@polymer/paper-icon-button": "^3.0.0-pre.18",
     "@polymer/polymer": "^3.0.0",
-    "web-animations-js": "^2.3.1"
+    "web-animations-js": "^2.3.1",
+    "@bower_components/etools-behaviors": "unicef-polymer/etools-behaviors#575692750251f8b592630b470a34d254fc212bd8",
+    "@bower_components/etools-loading": "unicef-polymer/etools-loading#dd8c083b85aa44ad809349878a426977dc89698d"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
   }
 }

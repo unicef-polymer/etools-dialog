@@ -1,6 +1,6 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '../etools-dialog.js';
-import '../bower_components/etools-loading/etools-loading.js';
+import '@bower_components/etools-loading/etools-loading.js';
 import '@polymer/iron-ajax/iron-request.js';
 
 
