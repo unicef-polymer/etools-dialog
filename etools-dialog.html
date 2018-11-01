@@ -166,7 +166,7 @@
                   on-iron-overlay-opened="_dialogOpenedHandling"
                   no-auto-focus="[[noAutoFocus]]"
                   on-dom-change="_onDomChange">
-      <paper-icon-button icon="close" dialog-dismiss class="close-btn"></paper-icon-button>
+      <paper-icon-button icon="close" dialog-dismiss class="close-btn" disabled="[[disableDismissBtn]]"></paper-icon-button>
       <h2 class="dialog-title">[[dialogTitle]]</h2>
 
       <paper-dialog-scrollable class$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
@@ -176,7 +176,7 @@
       </paper-dialog-scrollable>
 
       <div class="buttons">
-        <paper-button dialog-dismiss class="cancel-btn">[[cancelBtnText]]</paper-button>
+        <paper-button dialog-dismiss class="cancel-btn" disabled="[[disableDismissBtn]]">[[cancelBtnText]]</paper-button>
         <paper-button dialog-confirm$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
                       disabled="{{disableConfirmBtn}}"
                       hidden="[[hideConfirmBtn]]"
@@ -238,6 +238,10 @@
             observer: '_noContentPaddingChanged'
           },
           disableConfirmBtn: {
+            type: Boolean,
+            value: false
+          },
+          disableDismissBtn: {
             type: Boolean,
             value: false
           },
