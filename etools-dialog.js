@@ -6,7 +6,7 @@ import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icons/iron-icons.js';
-import 'etools-loading/etools-loading.js';
+import 'etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {timeOut} from '@polymer/polymer/lib/utils/async.js';
 
