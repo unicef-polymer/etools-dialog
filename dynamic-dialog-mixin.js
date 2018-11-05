@@ -2,7 +2,7 @@
      Now paper-dialog has an issues and the backdrop that covers all the content(if dialog is not a child of body), everything becomes unselectable.
      This behaviour will fix the issue. */
 
-import EtoolsLogsMixin from '../etools-behaviors/etools-logs-mixin.js';
+import EtoolsLogsMixin from 'etools-behaviors/etools-logs-mixin.js';
 
 import './etools-dialog.js';
 
