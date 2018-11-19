@@ -154,6 +154,10 @@
       etools-loading {
         margin-top: -20px;
       }
+
+      #dialogContent {
+        height: 100%;
+      }
     </style>
     <paper-dialog id="dialog"
                   class$="[[getDialogClass(size, theme)]]"
@@ -170,7 +174,7 @@
       <h2 class="dialog-title">[[dialogTitle]]</h2>
 
       <paper-dialog-scrollable class$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
-        <slot></slot>
+        <div id="dialogContent"><slot></slot></div>
         <div id="dynamicContent"></div>
         <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
       </paper-dialog-scrollable>
