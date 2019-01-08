@@ -50,7 +50,7 @@ $ npm run lint
 ```
 
 ## Preview element locally
-Install needed dependencies by running: `$ bower install`.
+Install needed dependencies by running: `$ npm install`.
 Make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `$ polymer serve` to serve your element application locally.
 
 ## Running Tests
