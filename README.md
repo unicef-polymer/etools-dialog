@@ -32,37 +32,17 @@ onCloseActionHandler: function(event) {
 }
 ```
 
-Available attributes:
-* opened: Boolean, default: false
-* backdrop: Boolean, default: true
-* modal: Boolean, default: true
-* noPadding: Boolean, default: false
-* dialogTitle: String, default: ''
-* cancelBtnText: String, default: 'Cancel'
-* okBtnText: String, default: 'Ok'
-* hideConfirmBtn: Boolean, default: false,
-* disableConfirmBtn: Boolean, default: false,
-* theme: String, default: 'default', possible values: 'default', 'confirmation'
-* size: String, default: 'sm', possible values: 'sm', 'md', 'lg'
-* keepDialogOpen , showSpinner, spinnerText - Used to avoid dialog closing when confirm btn is clicked and to show a spinner inside the modal while the confirm btn action executes
-* noAutoFocus: Boolean, default:false . Binded to noAutoFocus property of the iron-overlay-behaviour. When false, it's used to set the focus on the item from which the event to open the overlay originated and if that's empty to the element that has the `autofocus` attribute.
-
-## Styling
-
-Custom property | Description | Default
- ----------------|-------------|----------
- `--etools-dialog-borders-color` | Borders color | `#dedede`
- `--etools-dialog-title` | Mixin applied to dialog title | `{}`
-
+Install & serve element locally to view demo and documentation
 
 ## Install
+TODO: create npm package
 ```bash
-$ bower install --save etools-dialog
+$ npm i --save unicef-polymer/etools-dialog#branch_name
 ```
 
 ## Linting the code
 
-Innstall local npm packages (run `npm install`)
+Install local npm packages (run `npm install`)
 Then just run the linting task
 
 ```bash
@@ -74,7 +54,7 @@ Install needed dependencies by running: `$ bower install`.
 Make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `$ polymer serve` to serve your element application locally.
 
 ## Running Tests
-
+TODO: improve and add more tests
 ```
 $ polymer test
 ```

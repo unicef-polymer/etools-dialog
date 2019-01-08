@@ -2,7 +2,6 @@ import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
 import '@polymer/paper-button/paper-button.js';
 import './add-edit-some-item-dialog.js';
 
-
 /**
  * @polymer
  * @customElement

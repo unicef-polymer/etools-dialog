@@ -101,7 +101,7 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
         paper-dialog.default paper-button.confirm-btn {
           min-width: 90px;
           margin-right: 0;
-          background: var(--etools-dialog-primary-color, var(--primary-color));
+          background: var(--etools-dialog-default-btn-bg, var(--primary-color));
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
 
@@ -159,24 +159,28 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
         etools-loading {
           margin-top: -20px;
         }
+
+        #dialogContent {
+          height: 100%;
+        }
       </style>
       <paper-dialog id="dialog" class\$="[[getDialogClass(size, theme)]]" opened="{{opened}}"
                     with-backdrop="[[backdrop]]" modal="[[modal]]" entry-animation="scale-up-animation"
                     exit-animation="fade-out-animation" on-iron-overlay-closed="_dialogCloseHandling"
                     on-iron-overlay-opened="_dialogOpenedHandling" no-auto-focus="[[noAutoFocus]]"
                     on-dom-change="_onDomChange">
-        <paper-icon-button icon="close" dialog-dismiss="" class="close-btn"></paper-icon-button>
+        <paper-icon-button icon="close" dialog-dismiss class="close-btn" disabled="[[disableDismissBtn]]"></paper-icon-button>
         <h2 class="dialog-title">[[dialogTitle]]</h2>
 
         <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
-          <slot></slot>
+          <div id="dialogContent"><slot></slot></div>
           <div id="dynamicContent"></div>
           <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
         </paper-dialog-scrollable>
 
         <div class="buttons">
-          <paper-button dialog-dismiss="" class="cancel-btn">[[cancelBtnText]]</paper-button>
-          <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus=""
+          <paper-button dialog-dismiss class="cancel-btn" disabled="[[disableDismissBtn]]">[[cancelBtnText]]</paper-button>
+          <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
                         disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">[[okBtnText]]
           </paper-button>
         </div>
@@ -225,6 +229,10 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
         observer: '_noContentPaddingChanged'
       },
       disableConfirmBtn: {
+        type: Boolean,
+        value: false
+      },
+      disableDismissBtn: {
         type: Boolean,
         value: false
       },
