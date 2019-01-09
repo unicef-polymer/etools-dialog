@@ -30,10 +30,12 @@ export const DialogSpinnerMixin = baseClass => class extends baseClass {
   }
 
   startSpinner() {
+    this.set('disableConfirmBtn', true);
     this.set('showSpinner', true);
   }
 
   stopSpinner() {
+    this.set('disableConfirmBtn', false);
     this.set('showSpinner', false);
   }
 };
