@@ -15,7 +15,7 @@ import {timeOut} from '@polymer/polymer/lib/utils/async.js';
  * @appliesMixin EtoolsMixins.DialogSpinnerMixin
  * @demo demo/index.html
  */
-export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
+class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
   static get template() {
     // language=HTML
     return html`
