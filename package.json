@@ -8,13 +8,15 @@
     "@polymer/iron-component-page": "^3.0.0-pre.18",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.18",
     "@polymer/paper-spinner": "^3.0.0-pre.18",
+    "@polymer/gen-typescript-declarations": "^1.6.0",
     "wct-browser-legacy": "^0.0.1-pre.11",
     "@polymer/iron-test-helpers": "^3.0.0-pre.18",
     "@webcomponents/webcomponentsjs": "^2.0.0"
   },
   "scripts": {
     "lint": "npm run lint:javascript && polymer lint && exit 0",
-    "lint:javascript": "eslint . --ext js,html && exit 0"
+    "lint:javascript": "eslint . --ext js,html && exit 0",
+    "gen-typings": "gen-typescript-declarations"
   },
   "version": "3.0.0",
   "resolutions": {
