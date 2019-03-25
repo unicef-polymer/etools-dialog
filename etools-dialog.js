@@ -12,7 +12,7 @@ import {timeOut} from '@polymer/polymer/lib/utils/async.js';
 
 /**
  * @customElement
- * @appliesMixin EtoolsMixins.DialogSpinnerMixin
+ * @appliesMixin DialogSpinnerMixin
  * @demo demo/index.html
  */
 class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
