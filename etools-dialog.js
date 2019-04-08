@@ -317,3 +317,5 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
 }
 
 customElements.define(EtoolsDialog.is, EtoolsDialog);
+
+export default EtoolsDialog;
