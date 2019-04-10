@@ -14,9 +14,7 @@
 
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 
-declare class EtoolsDialog extends
-  EtoolsMixins.DialogSpinnerMixin(
-  Object) {
+declare class EtoolsDialog extends DialogSpinnerMixin(Object) {
   dialogTitle: string|null|undefined;
   okBtnText: string|null|undefined;
   cancelBtnText: string|null|undefined;
@@ -40,6 +38,8 @@ declare class EtoolsDialog extends
   notifyResize(): void;
   scrollDown(): void;
 }
+
+export default EtoolsDialog;
 
 declare global {
 
