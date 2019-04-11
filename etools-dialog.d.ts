@@ -13,10 +13,9 @@
 // tslint:disable:no-any describes the API as best we are able today
 
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
+import { PolymerElement } from '@polymer/polymer';
 
-declare class EtoolsDialog extends
-  EtoolsMixins.DialogSpinnerMixin(
-  Object) {
+declare class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
   dialogTitle: string|null|undefined;
   okBtnText: string|null|undefined;
   cancelBtnText: string|null|undefined;
@@ -40,6 +39,8 @@ declare class EtoolsDialog extends
   notifyResize(): void;
   scrollDown(): void;
 }
+
+export default EtoolsDialog;
 
 declare global {
 
