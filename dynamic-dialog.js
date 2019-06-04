@@ -5,7 +5,7 @@
   This way of creating the dialog will fix the issue. */
 
 import './etools-dialog.js';
-import {logError} from 'etools-behaviors/etools-logging';
+import {logError} from '@unicef-polymer/etools-behaviors/etools-logging';
 
 export function createDynamicDialog(config) {
   if (!_validateParams(config)) {

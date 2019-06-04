@@ -1,7 +1,7 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-import '../etools-dialog.js';
-import 'etools-loading/etools-loading.js';
 import '@polymer/iron-ajax/iron-request.js';
+import '@unicef-polymer/etools-loading/etools-loading.js';
+import '../etools-dialog.js';
 
 /**
  * @polymer
@@ -24,7 +24,7 @@ class AddEditSomeItemDialog extends PolymerElement {
       </style>
       <div>
         <iron-request id="xhrEl"></iron-request>
-        <etools-dialog id="saveDialog" keep-dialog-open="" on-confirm-btn-clicked="_save" size="md" opened="[[opened]]"
+        <etools-dialog id="saveDialog" keep-dialog-open on-confirm-btn-clicked="_save" size="md" opened="[[opened]]"
                        dialog-title="Some title" on-close="onClose" ok-btn-text="Save">
           <div id="divErroMsg" hidden\$="[[!showError]]">
             There was an error saving data ...

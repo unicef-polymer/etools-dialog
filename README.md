@@ -1,6 +1,10 @@
 # \<etools-dialog\>
 
-Simple dialog element
+Simple dialog element.
+Main features:
+* simple dialog with configurable properties and 2 style themes (check demo for details)
+* loading message functionality for cases when dialog data is saved
+* dynamic dialog creation utility (ex: warning/confirmation messages displayed in dialogs)
 
 ## Usage
 
@@ -15,6 +19,7 @@ and then include `web-animations-next-lite.min.js` in your index.html file.
 <link rel="import" href="../scripts/web-animations.html">
 ```
 
+Simple dialog:
 ```html
 <etools-dialog size="md" opened="[[opened]]"
   on-close="onCloseActionHandler" dialog-title="Some title">
@@ -23,8 +28,9 @@ and then include `web-animations-next-lite.min.js` in your index.html file.
 ```
 
 ```javascript
-onCloseActionHandler: function(event) {
-  if (event.detail.confirmed === true) {
+onCloseActionHandler(e)
+{
+  if (e.detail.confirmed === true) {
     // ok action
   } else {
     // cancel action
@@ -32,12 +38,11 @@ onCloseActionHandler: function(event) {
 }
 ```
 
-Install & serve element locally to view demo and documentation
+Install & serve element locally to view demo and detailed documentation.
 
 ## Install
-TODO: create npm package
 ```bash
-$ npm i --save unicef-polymer/etools-dialog#branch_name
+$ npm i --save @unicef-polymer/etools-dialog
 ```
 
 ## Linting the code
