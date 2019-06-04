@@ -11,7 +11,7 @@
   "main": "etools-dialog.js",
   "devDependencies": {
     "@polymer/gen-typescript-declarations": "^1.6.0",
-    "@polymer/iron-component-page": "^3.0.0-pre.20",
+    "@polymer/iron-component-page": "^4.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0",
     "@polymer/iron-test-helpers": "^3.0.0",
     "@polymer/paper-spinner": "^3.0.0",
