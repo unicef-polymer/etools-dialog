@@ -160,9 +160,6 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
           margin-top: -20px;
         }
 
-        #dialogContent {
-          height: 100%;
-        }
       </style>
       <paper-dialog id="dialog" class\$="[[getDialogClass(size, theme)]]" opened="{{opened}}"
                     with-backdrop="[[backdrop]]" modal="[[modal]]" entry-animation="scale-up-animation"
