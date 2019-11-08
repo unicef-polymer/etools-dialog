@@ -1,8 +1,9 @@
 /* Create etools-dialog programmatically and add them directly to the body.
-     Now paper-dialog has an issues and the backdrop that covers all the content(if dialog is not a child of body), everything becomes unselectable.
+     Now paper-dialog has an issues and the backdrop that covers all the content(if dialog is not a child of body),
+     everything becomes unselectable.
      This behaviour will fix the issue. */
 
-import EtoolsLogsMixin from 'etools-behaviors/etools-logs-mixin.js';
+import EtoolsLogsMixin from '@unicef-polymer/etools-behaviors/etools-logs-mixin.js';
 
 import './etools-dialog.js';
 
@@ -52,7 +53,7 @@ export const DynamicDialogMixin = baseClass => class extends EtoolsLogsMixin(bas
     }
     // set close callback
     if (config.closeCallback) {
-      dialog.addEventListener('close', function (event) {
+      dialog.addEventListener('close', function(event) {
         config.closeCallback(event);
       });
     }

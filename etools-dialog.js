@@ -6,7 +6,7 @@ import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icons/iron-icons.js';
-import 'etools-loading/etools-loading';
+import '@unicef-polymer/etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {timeOut} from '@polymer/polymer/lib/utils/async.js';
 
@@ -15,7 +15,7 @@ import {timeOut} from '@polymer/polymer/lib/utils/async.js';
  * @appliesMixin DialogSpinnerMixin
  * @demo demo/index.html
  */
-class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
+class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disable-line new-cap
   static get template() {
     // language=HTML
     return html`
@@ -169,7 +169,11 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
                     exit-animation="fade-out-animation" on-iron-overlay-closed="_dialogCloseHandling"
                     on-iron-overlay-opened="_dialogOpenedHandling" no-auto-focus="[[noAutoFocus]]"
                     on-dom-change="_onDomChange">
-        <paper-icon-button icon="close" dialog-dismiss class="close-btn" disabled="[[disableDismissBtn]]"></paper-icon-button>
+        <paper-icon-button icon="close" 
+                           dialog-dismiss 
+                           class="close-btn" 
+                           disabled="[[disableDismissBtn]]">
+        </paper-icon-button>
         <h2 class="dialog-title">[[dialogTitle]]</h2>
 
         <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
@@ -179,9 +183,14 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) {
         </paper-dialog-scrollable>
 
         <div class="buttons">
-          <paper-button dialog-dismiss class="cancel-btn" disabled="[[disableDismissBtn]]">[[cancelBtnText]]</paper-button>
+          <paper-button dialog-dismiss 
+                        class="cancel-btn" 
+                        disabled="[[disableDismissBtn]]">
+            [[cancelBtnText]]
+          </paper-button>
           <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
-                        disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">[[okBtnText]]
+                        disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
+            [[okBtnText]]
           </paper-button>
         </div>
       </paper-dialog>

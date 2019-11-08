@@ -1,8 +1,11 @@
 import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
-import '../etools-dialog.js';
 import '@polymer/paper-button/paper-button.js';
+import '../etools-dialog.js';
 
-
+/**
+ * @polymer
+ * @customElement
+ */
 class DemoEtoolsDialog extends PolymerElement {
   static get template() {
     // language=HTML
