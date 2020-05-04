@@ -1,41 +1,54 @@
 <!doctype html>
 <html>
-  <head>
-    <title>etools-dialog demo</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+<head>
+  <title>etools-dialog demo</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
 
-    <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script>
-    //  window.Polymer = {
-    //     dom: 'shadow'// TODO does this exist in polymer 2
-    //   };
-    </script>
+  <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script type="module">
 
-    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
-    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  </script>
 
-    <link rel="import" href="../etools-dialog.html">
-    <link rel="import" href="demo-etools-dialog.html">
+  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
+  <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
 
-    <custom-style>
+  <link rel="import" href="../scripts/web-animations.html">
+  <script type="module" src="../etools-dialog.js"></script>
+  <script type="module" src="./demo-etools-dialog.js"></script>
+  <script type="module" src="./demo-dialog-spinner.js"></script>
+  <script type="module" src="./demo-helper-dynamic-dialog.js"></script>
+
+  <script type="module">
+    const $_documentContainer = document.createElement('template');
+
+    $_documentContainer.innerHTML = `<custom-style>
       <style include="demo-pages-shared-styles">
         .vertical-section-container {
           max-width: 900px;
           line-height: 1.456;
         }
       </style>
-    </custom-style>
-  </head>
-  <body>
+    </custom-style>`;
 
-    <div class="vertical-section-container centered">
+    document.body.appendChild($_documentContainer.content);
+  </script>
+</head>
+<body>
+
+<script type="module">
+  const $_documentContainer = document.createElement('template');
+
+  $_documentContainer.innerHTML = `<div class="vertical-section-container centered">
       <h3>etools-dialog demo</h3>
       <demo-snippet>
         <template>
            <demo-etools-dialog></demo-etools-dialog>
         </template>
       </demo-snippet>
-    </div>
-  </body>
+    </div>`;
+
+  document.body.appendChild($_documentContainer.content);
+</script>
+</body>
 </html>

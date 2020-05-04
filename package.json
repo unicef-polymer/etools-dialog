@@ -1,12 +1,48 @@
 {
-  "name": "etools-dialog",
+  "name": "@unicef-polymer/etools-dialog",
+  "description": "Simple dialog element",
+  "version": "3.0.0",
+  "homepage": "https://github.com/unicef-polymer/etools-dialog",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unicef-polymer/etools-dialog.git"
+  },
+  "license": "Apache-2.0",
+  "main": "etools-dialog.js",
   "devDependencies": {
-    "eslint": "^3.19.0",
-    "eslint-config-google": "^0.7.0",
-    "eslint-plugin-html": "^2.0.0"
+    "@polymer/gen-typescript-declarations": "^1.6.0",
+    "@polymer/iron-component-page": "^4.0.0",
+    "@polymer/iron-demo-helpers": "^3.0.0",
+    "@polymer/iron-test-helpers": "^3.0.0",
+    "@polymer/paper-spinner": "^3.0.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-html": "^6.0.2",
+    "wct-browser-legacy": "^0.0.1-pre.11"
   },
   "scripts": {
     "lint": "npm run lint:javascript && polymer lint && exit 0",
-    "lint:javascript": "eslint . --ext js,html && exit 0"
+    "lint:javascript": "eslint . --ext js,html && exit 0",
+    "gen-typings": "gen-typescript-declarations --deleteExisting --outDir './'"
+  },
+  "resolutions": {
+    "inherits": "2.0.3",
+    "samsam": "1.1.3",
+    "supports-color": "3.1.2",
+    "type-detect": "1.0.0",
+    "@webcomponents/webcomponentsjs": "^2.0.0"
+  },
+  "dependencies": {
+    "@polymer/iron-icon": "^3.0.0",
+    "@polymer/neon-animation": "^3.0.0",
+    "@polymer/paper-button": "^3.0.0",
+    "@polymer/paper-dialog": "^3.0.0",
+    "@polymer/paper-dialog-scrollable": "^3.0.0",
+    "@polymer/paper-icon-button": "^3.0.0",
+    "@polymer/polymer": "^3.0.0",
+    "@unicef-polymer/etools-behaviors": "^3.0.0-rc.1",
+    "@unicef-polymer/etools-loading": "^4.0.0-rc.1",
+    "web-animations-js": "^2.3.1"
   }
 }
