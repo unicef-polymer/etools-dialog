@@ -64,7 +64,7 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           @apply --etools-dialog-button-styles;
         }
 
-        @media screen and (max-width: 900px) {
+        @media screen and (max-width: 930px) {
           paper-dialog.lg {
             width: calc(100vw - 30px);
           }
@@ -287,10 +287,10 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
 
   _onDomChange() {
     this._domChangeDebouncer = Debouncer.debounce(this._domChangeDebouncer,
-        timeOut.after(20),
-        () => {
-          this.notifyResize();
-        });
+      timeOut.after(20),
+      () => {
+        this.notifyResize();
+      });
   }
 
   getDialogClass(size, theme) {
