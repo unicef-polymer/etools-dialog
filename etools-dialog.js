@@ -64,9 +64,14 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           @apply --etools-dialog-button-styles;
         }
 
-        @media screen and (max-width: 767px) {
-          paper-dialog.md,
+        @media screen and (max-width: 900px) {
           paper-dialog.lg {
+            width: calc(100vw - 30px);
+          }
+        }
+
+        @media screen and (max-width: 767px) {
+          paper-dialog.md {
             width: calc(100vw - 30px);
           }
         }
@@ -169,9 +174,9 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
                     exit-animation="fade-out-animation" on-iron-overlay-closed="_dialogCloseHandling"
                     on-iron-overlay-opened="_dialogOpenedHandling" no-auto-focus="[[noAutoFocus]]"
                     on-dom-change="_onDomChange">
-        <paper-icon-button icon="close" 
-                           dialog-dismiss 
-                           class="close-btn" 
+        <paper-icon-button icon="close"
+                           dialog-dismiss
+                           class="close-btn"
                            disabled="[[disableDismissBtn]]">
         </paper-icon-button>
         <h2 class="dialog-title">[[dialogTitle]]</h2>
@@ -183,8 +188,8 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
         </paper-dialog-scrollable>
 
         <div class="buttons">
-          <paper-button dialog-dismiss 
-                        class="cancel-btn" 
+          <paper-button dialog-dismiss
+                        class="cancel-btn"
                         disabled="[[disableDismissBtn]]">
             [[cancelBtnText]]
           </paper-button>
