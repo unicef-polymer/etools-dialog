@@ -20,7 +20,10 @@
     "eslint": "^6.6.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-html": "^6.0.2",
-    "wct-browser-legacy": "^0.0.1-pre.11"
+    "wct-browser-legacy": "^0.0.1-pre.11",
+    "minimist": ">=0.2.1",
+    "diff": ">=3.5.0",
+    "growl": ">=1.10.0"
   },
   "scripts": {
     "lint": "npm run lint:javascript && polymer lint && exit 0",
@@ -44,7 +47,9 @@
     "@polymer/polymer": "^3.4.1",
     "@unicef-polymer/etools-behaviors": "^3.0.2",
     "@unicef-polymer/etools-loading": "^4.0.2",
-    "web-animations-js": "^2.3.2"
+    "web-animations-js": "^2.3.2",
+    "lodash-es": ">=4.17.14",
+    "lodash": ">=4.17.12"
   },
   "publishConfig": {
     "access": "public"
