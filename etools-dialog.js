@@ -288,10 +288,10 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
 
   _onDomChange() {
     this._domChangeDebouncer = Debouncer.debounce(this._domChangeDebouncer,
-        timeOut.after(20),
-        () => {
-          this.notifyResize();
-        });
+      timeOut.after(20),
+      () => {
+        this.notifyResize();
+      });
   }
 
   getDialogClass(size, theme) {
@@ -319,11 +319,11 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
 
   scrollDown() {
     setTimeout(() => {
-      let d = this.getPaperDialog();
+      const d = this.getPaperDialog();
       if (d) {
-        let dialogScrollable = d.querySelector('paper-dialog-scrollable');
+        const dialogScrollable = d.querySelector('paper-dialog-scrollable');
         if (dialogScrollable) {
-          let scrollTarget = dialogScrollable.scrollTarget;
+          const scrollTarget = dialogScrollable.scrollTarget;
           scrollTarget.scrollTop = scrollTarget.scrollHeight;
         }
       }
