@@ -188,17 +188,19 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
         </paper-dialog-scrollable>
 
-        <div class="buttons">
-          <paper-button dialog-dismiss
-                        class="cancel-btn"
-                        disabled="[[disableDismissBtn]]">
-            [[cancelBtnText]]
-          </paper-button>
-          <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
-                        disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
-            [[okBtnText]]
-          </paper-button>
-        </div>
+        <slot name="buttons">
+          <div class="buttons">
+            <paper-button dialog-dismiss
+                          class="cancel-btn"
+                          disabled="[[disableDismissBtn]]">
+              [[cancelBtnText]]
+            </paper-button>
+            <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
+                          disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
+              [[okBtnText]]
+            </paper-button>
+          </div>
+        </slot>
       </paper-dialog>
     `;
   }
