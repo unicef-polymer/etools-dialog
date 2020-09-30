@@ -89,7 +89,7 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           min-width: 90px;
           margin-right: 0;
           background: var(--etools-dialog-default-btn-bg, var(--primary-color));
-          color: var(--etools-dialog-contrast-text-color, #fff);
+          color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
         paper-button {
@@ -102,7 +102,7 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
 
         paper-dialog.confirmation paper-button.confirm-btn {
           background: var(--etools-dialog-confirm-btn-bg, #ea4022);
-          color: var(--etools-dialog-contrast-text-color, #fff);
+          color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
         paper-dialog.confirmation .close-btn, paper-dialog .cancel-btn {
