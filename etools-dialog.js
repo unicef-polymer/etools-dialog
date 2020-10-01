@@ -62,6 +62,8 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           margin-top: 16px;
           padding: 8px;
           @apply --etools-dialog-button-styles;
+          @apply --layout-horizontal;
+          @apply --layout-end-justified;
         }
 
         paper-icon-button {
