@@ -63,3 +63,8 @@ TODO: improve and add more tests
 ```
 $ polymer test
 ```
+
+## Styling
+Custom property | Description | Default
+----------------|-------------|----------
+`--etools-dialog-confirm-btn-text-color` | dialog confirmation button default text color | `#fff`
