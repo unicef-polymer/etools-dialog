@@ -58,6 +58,10 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           @apply --etools-dialog-title;
         }
 
+        h2 {
+          margin: 0 !important;
+        }
+
         .buttons {
           margin-top: 16px;
           padding: 8px;
@@ -177,12 +181,16 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
                     exit-animation="fade-out-animation" on-iron-overlay-closed="_dialogCloseHandling"
                     on-iron-overlay-opened="_dialogOpenedHandling" no-auto-focus="[[noAutoFocus]]"
                     on-dom-change="_onDomChange">
-        <paper-icon-button icon="close"
-                           dialog-dismiss
-                           class="close-btn"
-                           disabled="[[disableDismissBtn]]">
-        </paper-icon-button>
-        <h2 class="dialog-title">[[dialogTitle]]</h2>
+
+        <div class="dialog-title">
+          <paper-icon-button icon="close"
+                            dialog-dismiss
+                            class="close-btn"
+                            disabled="[[disableDismissBtn]]">
+          </paper-icon-button>
+
+          <h2>[[dialogTitle]]</h2>
+        </div>
 
         <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
           <div id="dialogContent"><slot></slot></div>
