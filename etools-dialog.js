@@ -153,6 +153,10 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           height: 100%;
         }
 
+        .dialog-title {
+          padding-right:40px !important;
+        }
+
         @media screen and (max-width: 930px) {
           paper-dialog.lg {
             width: calc(100vw - 30px);
