@@ -194,19 +194,21 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
         </paper-dialog-scrollable>
 
-        <slot name="buttons">
+        <template is="dom-if" if="[[showButtons]]">
           <div class="buttons">
-            <paper-button dialog-dismiss
-                          class="cancel-btn"
-                          disabled="[[disableDismissBtn]]">
-              [[cancelBtnText]]
-            </paper-button>
-            <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
-                          disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
-              [[okBtnText]]
-            </paper-button>
+              <paper-button dialog-dismiss
+                            class="cancel-btn"
+                            disabled="[[disableDismissBtn]]">
+                [[cancelBtnText]]
+              </paper-button>
+              <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked"
+                            disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
+                [[okBtnText]]
+              </paper-button>
           </div>
-        </slot>
+        </template>
+
+        <slot id="buttons" name="buttons"></slot>
       </paper-dialog>
     `;
   }
@@ -273,6 +275,11 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
         type: Boolean,
         value: false,
         reflectToAttribute: true
+      },
+      showButtons: {
+        type: Boolean,
+        value: true,
+        reflectToAttribute: true
       }
     };
   }
@@ -288,6 +295,12 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
       bubbles: true,
       composed: true
     }));
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.set('showButtons', this.$.buttons.assignedNodes().length === 0);
   }
 
   _dialogOpenedHandling() {
