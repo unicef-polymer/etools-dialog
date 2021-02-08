@@ -68,3 +68,6 @@ $ polymer test
 Custom property | Description | Default
 ----------------|-------------|----------
 `--etools-dialog-confirm-btn-text-color` | dialog confirmation button default text color | `#fff`
+`etools-dialog::part(ed-title)` | etools-dialog title shadow part | `{}`
+`etools-dialog::part(ed-button-styles)` | etools-dialog button shadow part | `{}`
+`etools-dialog::part(ed-scrollable)` | etools-dialog scrollable shadow part | `{}`

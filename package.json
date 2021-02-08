@@ -17,12 +17,12 @@
     "@polymer/iron-test-helpers": "^3.0.0",
     "@polymer/paper-spinner": "^3.0.0",
     "@webcomponents/webcomponentsjs": "^2.4.3",
+    "diff": ">=3.5.0",
     "eslint": "^7.6.0",
     "eslint-config-google": "^0.14.0",
     "eslint-plugin-html": "^6.0.2",
-    "minimist": ">=0.2.1",
-    "diff": ">=3.5.0",
     "growl": ">=1.10.0",
+    "minimist": ">=0.2.1",
     "prismjs": ">=1.21.0"
   },
   "scripts": {
@@ -48,9 +48,9 @@
     "@polymer/polymer": "^3.4.1",
     "@unicef-polymer/etools-behaviors": "^3.0.2",
     "@unicef-polymer/etools-loading": "^4.0.2",
-    "web-animations-js": "^2.3.2",
+    "lodash": ">=4.17.19",
     "lodash-es": ">=4.17.14",
-    "lodash": ">=4.17.19"
+    "web-animations-js": "^2.3.2"
   },
   "publishConfig": {
     "access": "public"
