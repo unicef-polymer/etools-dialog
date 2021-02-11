@@ -16,14 +16,14 @@
     "@polymer/iron-demo-helpers": "^3.0.0",
     "@polymer/iron-test-helpers": "^3.0.0",
     "@polymer/paper-spinner": "^3.0.0",
-    "@webcomponents/webcomponentsjs": "^2.4.3",
-    "diff": ">=3.5.0",
-    "eslint": "^7.6.0",
+    "@webcomponents/webcomponentsjs": "^2.5.0",
+    "diff": "^5.0.0",
+    "eslint": "^7.19.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-html": "^6.1.1",
     "growl": ">=1.10.0",
     "minimist": ">=0.2.1",
-    "prismjs": ">=1.21.0"
+    "prismjs": "^1.23.0"
   },
   "scripts": {
     "lint": "npm run lint:javascript && polymer lint && exit 0",
@@ -47,9 +47,8 @@
     "@polymer/paper-icon-button": "^3.0.0",
     "@polymer/polymer": "^3.4.1",
     "@unicef-polymer/etools-behaviors": "^3.0.2",
-    "@unicef-polymer/etools-loading": "^4.0.2",
-    "lodash": ">=4.17.19",
-    "lodash-es": ">=4.17.14",
+    "@unicef-polymer/etools-loading": "^4.0.4",
+    "lodash-es": "^4.17.20",
     "web-animations-js": "^2.3.2"
   },
   "publishConfig": {
