@@ -55,15 +55,13 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
           margin: 0 !important;
           padding: 8px 24px;
           min-height: 40px;
-          @apply --etools-dialog-title;
         }
 
         .buttons {
           margin-top: 16px;
           padding: 8px;
-          @apply --etools-dialog-button-styles;
-          @apply --layout-horizontal;
-          @apply --layout-end-justified;
+          display: flex;
+          justify-content: flex-end;
         }
 
         paper-icon-button {
@@ -131,7 +129,6 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
             @apply --etools-dialog-content;
             padding: 0;
           };
-          @apply --etools-dialog-scrollable;
         }
 
         paper-dialog-scrollable.padded-content {
@@ -186,27 +183,30 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
                            class="close-btn"
                            disabled="[[disableDismissBtn]]">
         </paper-icon-button>
-        <h2 class="dialog-title">[[dialogTitle]]</h2>
+        <h2 class="dialog-title" part="ed-title">[[dialogTitle]]</h2>
 
-        <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]">
+        <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]" 
+                                 part="ed-scrollable">
           <div id="dialogContent"><slot></slot></div>
           <div id="dynamicContent"></div>
           <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
         </paper-dialog-scrollable>
 
-        <slot name="buttons">
-          <div class="buttons">
-            <paper-button dialog-dismiss
-                          class="cancel-btn"
-                          disabled="[[disableDismissBtn]]">
-              [[cancelBtnText]]
-            </paper-button>
-            <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked" autofocus
-                          disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
-              [[okBtnText]]
-            </paper-button>
+        <template is="dom-if" if="[[showButtons]]">
+          <div class="buttons" part="ed-button-styles">
+              <paper-button dialog-dismiss
+                            class="cancel-btn"
+                            disabled="[[disableDismissBtn]]">
+                [[cancelBtnText]]
+              </paper-button>
+              <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked"
+                            disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
+                [[okBtnText]]
+              </paper-button>
           </div>
-        </slot>
+        </template>
+
+        <slot id="buttons" name="buttons"></slot>
       </paper-dialog>
     `;
   }
@@ -273,6 +273,11 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
         type: Boolean,
         value: false,
         reflectToAttribute: true
+      },
+      showButtons: {
+        type: Boolean,
+        value: true,
+        reflectToAttribute: true
       }
     };
   }
@@ -288,6 +293,12 @@ class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disabl
       bubbles: true,
       composed: true
     }));
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.set('showButtons', this.$.buttons.assignedNodes().length === 0);
   }
 
   _dialogOpenedHandling() {
