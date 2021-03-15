@@ -143,7 +143,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
         }
 
         etools-loading {
-          margin-top: -20px;
+          margin-bottom: -58px;
         }
 
         #dialogContent {
