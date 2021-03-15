@@ -173,41 +173,43 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
         }
 
       </style>
-      <paper-dialog id="dialog" class\$="[[getDialogClass(size, theme)]]" opened="{{opened}}"
-                    with-backdrop="[[backdrop]]" modal="[[modal]]" entry-animation="scale-up-animation"
-                    exit-animation="fade-out-animation" on-iron-overlay-closed="_dialogCloseHandling"
-                    on-iron-overlay-opened="_dialogOpenedHandling" no-auto-focus="[[noAutoFocus]]"
-                    on-dom-change="_onDomChange">
-        <paper-icon-button icon="close"
-                           dialog-dismiss
-                           class="close-btn"
-                           disabled="[[disableDismissBtn]]">
-        </paper-icon-button>
-        <h2 class="dialog-title" part="ed-title">[[dialogTitle]]</h2>
-
-        <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]"
-                                 part="ed-scrollable">
-          <div id="dialogContent"><slot></slot></div>
-          <div id="dynamicContent"></div>
-          <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
-        </paper-dialog-scrollable>
-
-        <template is="dom-if" if="[[showButtons]]">
-          <div class="buttons" part="ed-button-styles">
-              <paper-button dialog-dismiss
-                            class="cancel-btn"
+      <focus-trap>
+        <paper-dialog id="dialog" class\$="[[getDialogClass(size, theme)]]" opened="{{opened}}"
+                      with-backdrop="[[backdrop]]" modal="[[modal]]" entry-animation="scale-up-animation"
+                      exit-animation="fade-out-animation" on-iron-overlay-closed="_dialogCloseHandling"
+                      on-iron-overlay-opened="_dialogOpenedHandling" no-auto-focus="[[noAutoFocus]]"
+                      on-dom-change="_onDomChange">
+          <paper-icon-button icon="close"
+                            dialog-dismiss
+                            class="close-btn"
                             disabled="[[disableDismissBtn]]">
-                [[cancelBtnText]]
-              </paper-button>
-              <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked"
-                            disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
-                [[okBtnText]]
-              </paper-button>
-          </div>
-        </template>
+          </paper-icon-button>
+          <h2 class="dialog-title" part="ed-title">[[dialogTitle]]</h2>
 
-        <slot id="buttons" name="buttons"></slot>
-      </paper-dialog>
+          <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]"
+                                  part="ed-scrollable">
+            <div id="dialogContent"><slot></slot></div>
+            <div id="dynamicContent"></div>
+            <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
+          </paper-dialog-scrollable>
+
+          <template is="dom-if" if="[[showButtons]]">
+            <div class="buttons" part="ed-button-styles">
+                <paper-button dialog-dismiss
+                              class="cancel-btn"
+                              disabled="[[disableDismissBtn]]">
+                  [[cancelBtnText]]
+                </paper-button>
+                <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked"
+                              disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
+                  [[okBtnText]]
+                </paper-button>
+            </div>
+          </template>
+
+          <slot id="buttons" name="buttons"></slot>
+        </paper-dialog>
+      </focus-trap>
     `;
   }
 
