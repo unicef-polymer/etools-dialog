@@ -12,10 +12,10 @@ export function createDynamicDialog(config) {
     return null;
   }
 
-  let dialog = document.createElement('etools-dialog');
+  const dialog = document.createElement('etools-dialog');
   _applyDefaultDialogConfig(dialog);
 
-  for (let propertyName in config) {
+  for (const propertyName in config) {
     if (!config.hasOwnProperty(propertyName) || propertyName === 'closeCallback') {
       continue;
     }
@@ -36,13 +36,13 @@ export function createDynamicDialog(config) {
 
   document.querySelector('body').appendChild(dialog);
 
-  let msgPlaceholder = dialog.shadowRoot.querySelector('#dynamicContent');
+  const msgPlaceholder = dialog.shadowRoot.querySelector('#dynamicContent');
   msgPlaceholder.appendChild(config.content);
   return dialog;
 }
 
 export function createDialog(title, size, okBtnText, cancelBtnText, closeCallback, content, removePadding, theme) {
-  let config = {
+  const config = {
     title: title,
     size: size,
     okBtnText: okBtnText,
@@ -52,7 +52,7 @@ export function createDialog(title, size, okBtnText, cancelBtnText, closeCallbac
     noPadding: removePadding,
     theme: theme
   };
-  let dialog = createDynamicDialog(config);
+  const dialog = createDynamicDialog(config);
   document.querySelector('body').appendChild(dialog);
   return dialog;
 }
