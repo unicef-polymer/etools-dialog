@@ -143,7 +143,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
         }
 
         etools-loading {
-          margin-bottom: -58px;
+          margin-top: 0px;
         }
 
         #dialogContent {
@@ -185,12 +185,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
                             disabled="[[disableDismissBtn]]">
           </paper-icon-button>
           <h2 class="dialog-title" part="ed-title">[[dialogTitle]]</h2>
-
+          <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
           <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]"
                                   part="ed-scrollable">
             <div id="dialogContent"><slot></slot></div>
             <div id="dynamicContent"></div>
-            <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
           </paper-dialog-scrollable>
 
           <template is="dom-if" if="[[showButtons]]">
