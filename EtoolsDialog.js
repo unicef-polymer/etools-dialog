@@ -308,10 +308,10 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
 
   _onDomChange() {
     this._domChangeDebouncer = Debouncer.debounce(this._domChangeDebouncer,
-      timeOut.after(20),
-      () => {
-        this.notifyResize();
-      });
+        timeOut.after(20),
+        () => {
+          this.notifyResize();
+        });
   }
 
   getDialogClass(size, theme) {
