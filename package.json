@@ -23,7 +23,9 @@
     "eslint-plugin-html": "^6.1.1",
     "growl": ">=1.10.0",
     "minimist": ">=0.2.1",
-    "prismjs": "^1.23.0"
+    "prismjs": ">=1.25.0",
+    "path-parse": ">=1.0.7",
+    "glob-parent": ">=5.1.2"
   },
   "scripts": {
     "lint": "eslint . --ext js,html",
