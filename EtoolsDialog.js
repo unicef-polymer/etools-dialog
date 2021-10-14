@@ -143,7 +143,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
         }
 
         etools-loading {
-          margin-bottom: -58px;
+          margin-top: 0px;
         }
 
         #dialogContent {
@@ -174,7 +174,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
 
       </style>
       <focus-trap>
-        <paper-dialog id="dialog" class\$="[[getDialogClass(size, theme)]]" opened="{{opened}}"
+        <paper-dialog id="dialog" class\$="[[getDialogClass(size, theme)]]" opened="{{opened}}" part="ed-paper-dialog"
                       with-backdrop="[[backdrop]]" modal="[[modal]]" entry-animation="scale-up-animation"
                       exit-animation="fade-out-animation" on-iron-overlay-closed="_dialogCloseHandling"
                       on-iron-overlay-opened="_dialogOpenedHandling" no-auto-focus="[[noAutoFocus]]"
@@ -185,12 +185,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
                             disabled="[[disableDismissBtn]]">
           </paper-icon-button>
           <h2 class="dialog-title" part="ed-title">[[dialogTitle]]</h2>
-
+          <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
           <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]"
                                   part="ed-scrollable">
             <div id="dialogContent"><slot></slot></div>
             <div id="dynamicContent"></div>
-            <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
           </paper-dialog-scrollable>
 
           <template is="dom-if" if="[[showButtons]]">
@@ -309,10 +308,10 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
 
   _onDomChange() {
     this._domChangeDebouncer = Debouncer.debounce(this._domChangeDebouncer,
-      timeOut.after(20),
-      () => {
-        this.notifyResize();
-      });
+        timeOut.after(20),
+        () => {
+          this.notifyResize();
+        });
   }
 
   getDialogClass(size, theme) {

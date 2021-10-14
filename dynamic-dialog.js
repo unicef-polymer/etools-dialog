@@ -16,7 +16,7 @@ export function createDynamicDialog(config) {
   _applyDefaultDialogConfig(dialog);
 
   for (const propertyName in config) {
-    if (!config.hasOwnProperty(propertyName) || propertyName === 'closeCallback') {
+    if (!Object.prototype.hasOwnProperty.call(config, propertyName) || propertyName === 'closeCallback') {
       continue;
     }
     if (propertyName === 'noPadding' && typeof config[propertyName] === 'boolean') {
