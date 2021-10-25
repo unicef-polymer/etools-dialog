@@ -176,7 +176,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
       <focus-trap>
         <paper-dialog id="dialog" class="${this.getDialogClass(this.size, this.theme)}"
               ?opened="${this.opened}" part="ed-paper-dialog"
-              ?withBackdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
+              with-backdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
               exit-animation="fade-out-animation" @iron-overlay-closed="${this._dialogCloseHandling}"
               @iron-overlay-opened="${this._dialogOpenedHandling}" no-auto-focus="${this.noAutoFocus}"
               @dom-change="${this._onDomChange}">
