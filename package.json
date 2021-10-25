@@ -51,6 +51,7 @@
     "@polymer/polymer": "^3.4.1",
     "@unicef-polymer/etools-behaviors": "^3.0.2",
     "@unicef-polymer/etools-loading": "^4.0.4",
+    "lit-element": "^2.5.1",
     "lodash-es": "^4.17.20",
     "web-animations-js": "^2.3.2"
   },

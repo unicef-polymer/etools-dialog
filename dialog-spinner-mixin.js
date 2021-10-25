@@ -8,19 +8,27 @@ export const DialogSpinnerMixin = baseClass => class extends baseClass {
     return {
       keepDialogOpen: {
         type: Boolean,
-        value: false,
-        reflectToAttribute: true
+        reflect: true
       },
       showSpinner: {
         type: Boolean,
-        value: false,
-        reflectToAttribute: true
+        reflect: true
       },
       spinnerText: {
-        type: String,
-        value: 'Saving data..'
+        type: String
       }
     };
+  }
+
+  constructor() {
+    super();
+    this.initializeProperties();
+  }
+
+  initializeProperties() {
+    this.keepDialogOpen = false;
+    this.showSpinner = false;
+    this.spinnerText = 'Saving data..';
   }
 
   _confirmBtClicked() {
@@ -30,12 +38,12 @@ export const DialogSpinnerMixin = baseClass => class extends baseClass {
   }
 
   startSpinner() {
-    this.set('disableConfirmBtn', true);
-    this.set('showSpinner', true);
+    this.disableConfirmBtn = true;
+    this.showSpinner = true;
   }
 
   stopSpinner() {
-    this.set('disableConfirmBtn', false);
-    this.set('showSpinner', false);
+    this.disableConfirmBtn = false;
+    this.showSpinner = false;
   }
 };

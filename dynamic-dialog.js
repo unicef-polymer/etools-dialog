@@ -36,8 +36,13 @@ export function createDynamicDialog(config) {
 
   document.querySelector('body').appendChild(dialog);
 
-  const msgPlaceholder = dialog.shadowRoot.querySelector('#dynamicContent');
-  msgPlaceholder.appendChild(config.content);
+  setTimeout(() => {
+    const msgPlaceholder = dialog.shadowRoot.querySelector('#dynamicContent');
+    if (msgPlaceholder) {
+      msgPlaceholder.appendChild(config.content);
+    }
+  }, 400);
+
   return dialog;
 }
 
