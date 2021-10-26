@@ -23,10 +23,6 @@ export const DialogSpinnerMixin = baseClass => class extends baseClass {
 
   constructor() {
     super();
-    this.initializeProperties();
-  }
-
-  initializeProperties() {
     this.keepDialogOpen = false;
     this.showSpinner = false;
     this.spinnerText = 'Saving data..';

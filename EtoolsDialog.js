@@ -177,11 +177,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         <paper-dialog id="dialog" class="${this.getDialogClass(this.size, this.theme)}" part="ed-paper-dialog"
             ?opened="${this.opened}"
             @opened-changed="${(e) => {
-				if (this.opened != e.detail.value) {
-				  this.opened = e.detail.value;
-				}
-			}}"
-            with-backdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
+        if (this.opened != e.detail.value) {
+          this.opened = e.detail.value;
+        }
+      }}"
+            ?withBackdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
             exit-animation="fade-out-animation" @iron-overlay-closed="${this._dialogCloseHandling}"
             @iron-overlay-opened="${this._dialogOpenedHandling}" no-auto-focus="${this.noAutoFocus}"
             @dom-change="${this._onDomChange}">
@@ -191,8 +191,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
                             ?disabled="${this.disableDismissBtn}">
           </paper-icon-button>
           <h2 class="dialog-title" part="ed-title">${this.dialogTitle}</h2>
-          <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}"
-            ?active="${this.showSpinner}">
+          <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
           </etools-loading>
           <paper-dialog-scrollable class="relative no-padding ${this.getScrollableDialogClass(this.noPadding)}"
                                   part="ed-scrollable">
@@ -291,7 +290,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         <paper-button dialog-dismiss class="cancel-btn" ?disabled="${this.disableDismissBtn}">
           ${this.cancelBtnText}
         </paper-button>
-        <paper-button dialog-confirm="${!this.keepDialogOpen}" @click="${this._confirmBtClicked}"
+        <paper-button ?dialogConfirm="${!this.keepDialogOpen}" @click="${this._confirmBtClicked}"
                       ?disabled="${this.disableConfirmBtn}" ?hidden="${this.hideConfirmBtn}" class="confirm-btn">
           ${this.okBtnText}
         </paper-button>
