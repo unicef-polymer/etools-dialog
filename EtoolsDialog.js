@@ -181,9 +181,9 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
           this.opened = e.detail.value;
         }
       }}"
-            ?withBackdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
+            ?with-backdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
             exit-animation="fade-out-animation" @iron-overlay-closed="${this._dialogCloseHandling}"
-            @iron-overlay-opened="${this._dialogOpenedHandling}" no-auto-focus="${this.noAutoFocus}"
+            @iron-overlay-opened="${this._dialogOpenedHandling}" ?noAutoFocus="${this.noAutoFocus}"
             @dom-change="${this._onDomChange}">
           <paper-icon-button icon="close"
                             dialog-dismiss
@@ -253,11 +253,13 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
       },
       noAutoFocus: {
         type: Boolean,
-        reflect: true
+        reflect: true,
+        attribute: 'no-auto-focus'
       },
       showButtons: {
         type: Boolean,
-        reflect: true
+        reflect: true,
+        attribute: 'show-buttons'
       }
     };
   }
