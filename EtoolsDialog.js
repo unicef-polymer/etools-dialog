@@ -174,12 +174,17 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
 
       </style>
       <focus-trap>
-        <paper-dialog id="dialog" class="${this.getDialogClass(this.size, this.theme)}"
-              ?opened="${this.opened}" part="ed-paper-dialog"
-              with-backdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
-              exit-animation="fade-out-animation" @iron-overlay-closed="${this._dialogCloseHandling}"
-              @iron-overlay-opened="${this._dialogOpenedHandling}" no-auto-focus="${this.noAutoFocus}"
-              @dom-change="${this._onDomChange}">
+        <paper-dialog id="dialog" class="${this.getDialogClass(this.size, this.theme)}" part="ed-paper-dialog"
+            ?opened="${this.opened}"
+            @opened-changed="${(e) => {
+				if (this.opened != e.detail.value) {
+				  this.opened = e.detail.value;
+				}
+			}}"
+            with-backdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
+            exit-animation="fade-out-animation" @iron-overlay-closed="${this._dialogCloseHandling}"
+            @iron-overlay-opened="${this._dialogOpenedHandling}" no-auto-focus="${this.noAutoFocus}"
+            @dom-change="${this._onDomChange}">
           <paper-icon-button icon="close"
                             dialog-dismiss
                             class="close-btn"
@@ -222,7 +227,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
       },
       opened: {
         type: Boolean,
-        notify: true
+        reflect: true
       },
       backdrop: {
         type: Boolean
@@ -305,16 +310,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
       bubbles: true,
       composed: true
     }));
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    setTimeout(() => {
-      const buttonsEl = this.shadowRoot.querySelector('#buttons');
-      if (buttonsEl) {
-        this.showButtons = Boolean(buttonsEl.assignedNodes().length);
-      }
-    }, 200);
   }
 
   _dialogOpenedHandling() {
