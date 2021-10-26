@@ -8,7 +8,8 @@ export const DialogSpinnerMixin = baseClass => class extends baseClass {
     return {
       keepDialogOpen: {
         type: Boolean,
-        reflect: true
+        reflect: true,
+        attribute: 'keep-dialog-open'
       },
       showSpinner: {
         type: Boolean,
