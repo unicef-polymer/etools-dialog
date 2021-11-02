@@ -177,10 +177,10 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         <paper-dialog id="dialog" class="${this.getDialogClass(this.size, this.theme)}" part="ed-paper-dialog"
             ?opened="${this.opened}"
             @opened-changed="${(e) => {
-        if (this.opened != e.detail.value) {
-          this.opened = e.detail.value;
-        }
-      }}"
+    if (this.opened != e.detail.value) {
+      this.opened = e.detail.value;
+    }
+  }}"
             ?with-backdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
             exit-animation="fade-out-animation" @iron-overlay-closed="${this._dialogCloseHandling}"
             @iron-overlay-opened="${this._dialogOpenedHandling}" ?noAutoFocus="${this.noAutoFocus}"
@@ -213,13 +213,19 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
   static get properties() {
     return {
       dialogTitle: {
-        type: String
+        type: String,
+        reflect: true,
+        attribute: 'dialog-title'
       },
       okBtnText: {
-        type: String
+        type: String,
+        reflect: true,
+        attribute: 'ok-btn-text'
       },
       cancelBtnText: {
-        type: String
+        type: String,
+        reflect: true,
+        attribute: 'cancel-btn-text'
       },
       size: {
         type: String
@@ -235,17 +241,24 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         type: Boolean
       },
       noPadding: {
-        type: Boolean
+        type: Boolean,
+        reflect: true,
+        attribute: 'no-padding'
       },
       disableConfirmBtn: {
-        type: Boolean
+        type: Boolean,
+        reflect: true,
+        attribute: 'disable-confirm-btn'
       },
       disableDismissBtn: {
-        type: Boolean
+        type: Boolean,
+        reflect: true,
+        attribute: 'disable-dismiss-btn'
       },
       hideConfirmBtn: {
         type: Boolean,
-        reflect: true
+        reflect: true,
+        attribute: 'hide-confirm-btn'
       },
       theme: {
         type: String,
@@ -319,10 +332,10 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
 
   _onDomChange() {
     this._domChangeDebouncer = Debouncer.debounce(this._domChangeDebouncer,
-      timeOut.after(20),
-      () => {
-        this.notifyResize();
-      });
+        timeOut.after(20),
+        () => {
+          this.notifyResize();
+        });
   }
 
   getDialogClass(size, theme) {

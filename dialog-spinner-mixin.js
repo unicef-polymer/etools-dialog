@@ -13,7 +13,8 @@ export const DialogSpinnerMixin = baseClass => class extends baseClass {
       },
       showSpinner: {
         type: Boolean,
-        reflect: true
+        reflect: true,
+        attribute: 'show-spinner'
       },
       spinnerText: {
         type: String
