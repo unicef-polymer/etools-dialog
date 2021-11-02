@@ -305,7 +305,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         <paper-button dialog-dismiss class="cancel-btn" ?disabled="${this.disableDismissBtn}">
           ${this.cancelBtnText}
         </paper-button>
-        <paper-button ?dialogConfirm="${!this.keepDialogOpen}" @click="${this._confirmBtClicked}"
+        <paper-button ?dialog-confirm="${!this.keepDialogOpen}" @click="${this._confirmBtClicked}"
                       ?disabled="${this.disableConfirmBtn}" ?hidden="${this.hideConfirmBtn}" class="confirm-btn">
           ${this.okBtnText}
         </paper-button>
