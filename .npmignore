@@ -1,0 +1,9 @@
+/node_modules
+.idea
+/.circleci
+/demo
+/test
+.eslintignore
+.eslintrc.json
+.prettierrc
+analysis.json
