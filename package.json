@@ -16,7 +16,14 @@
     "gen-typings": "gen-typescript-declarations --deleteExisting --outDir './'",
     "publish": "git push --tags && npm publish"
   },
-  "dependencies": {
+  
+  "scripts": {
+    "lint": "eslint . --ext js,html",
+    "prepublishOnly": "npm run lint",
+    "gen-typings": "gen-typescript-declarations --deleteExisting --outDir './'",
+    "publish": "git push --tags && npm publish"
+  },
+ "dependencies": {
     "@a11y/focus-trap": "^1.0.5",
     "@polymer/iron-icon": "^3.0.0",
     "@polymer/neon-animation": "^3.0.0",
