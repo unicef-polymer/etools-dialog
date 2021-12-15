@@ -199,8 +199,9 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
             <div id="dynamicContent"></div>
           </paper-dialog-scrollable>
 
-          ${this.getButtonsHTML()}
-          <slot id="buttons" name="buttons"></slot>
+          <slot id="buttons" name="buttons">
+            ${this.getButtonsHTML()}
+          </slot>
         </paper-dialog>
       </focus-trap>
     `;
