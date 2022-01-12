@@ -1,4 +1,4 @@
-import {PolymerElement, html} from '@polymer/polymer/polymer-element.js';
+import {LitElement, html} from 'lit-element';
 import {Debouncer} from '@polymer/polymer/lib/utils/debounce.js';
 import '@polymer/neon-animation/neon-animations.js';
 import '@polymer/paper-dialog/paper-dialog.js';
@@ -15,8 +15,8 @@ import {timeOut} from '@polymer/polymer/lib/utils/async.js';
  * @appliesMixin DialogSpinnerMixin
  * @demo demo/index.html
  */
-export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint-disable-line new-cap
-  static get template() {
+export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-disable-line new-cap
+  render() {
     // language=HTML
     return html`
       <style>
@@ -174,39 +174,34 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
 
       </style>
       <focus-trap>
-        <paper-dialog id="dialog" class\$="[[getDialogClass(size, theme)]]" opened="{{opened}}" part="ed-paper-dialog"
-                      with-backdrop="[[backdrop]]" modal="[[modal]]" entry-animation="scale-up-animation"
-                      exit-animation="fade-out-animation" on-iron-overlay-closed="_dialogCloseHandling"
-                      on-iron-overlay-opened="_dialogOpenedHandling" no-auto-focus="[[noAutoFocus]]"
-                      on-dom-change="_onDomChange">
+        <paper-dialog id="dialog" class="${this.getDialogClass(this.size, this.theme)}" part="ed-paper-dialog"
+            ?opened="${this.opened}"
+            @opened-changed="${(e) => {
+    if (this.opened != e.detail.value) {
+      this.opened = e.detail.value;
+    }
+  }}"
+            ?with-backdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
+            exit-animation="fade-out-animation" @iron-overlay-closed="${this._dialogCloseHandling}"
+            @iron-overlay-opened="${this._dialogOpenedHandling}" ?noAutoFocus="${this.noAutoFocus}"
+            @dom-change="${this._onDomChange}">
           <paper-icon-button icon="close"
                             dialog-dismiss
                             class="close-btn"
-                            disabled="[[disableDismissBtn]]">
+                            ?disabled="${this.disableDismissBtn}">
           </paper-icon-button>
-          <h2 class="dialog-title" part="ed-title">[[dialogTitle]]</h2>
-          <etools-loading id="etoolsLoading" loading-text="[[spinnerText]]" active="[[showSpinner]]"></etools-loading>
-          <paper-dialog-scrollable class\$="relative no-padding [[getScrollableDialogClass(noPadding)]]"
+          <h2 class="dialog-title" part="ed-title">${this.dialogTitle}</h2>
+          <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
+          </etools-loading>
+          <paper-dialog-scrollable class="relative no-padding ${this.getScrollableDialogClass(this.noPadding)}"
                                   part="ed-scrollable">
             <div id="dialogContent"><slot></slot></div>
             <div id="dynamicContent"></div>
           </paper-dialog-scrollable>
 
-          <template is="dom-if" if="[[showButtons]]">
-            <div class="buttons" part="ed-button-styles">
-                <paper-button dialog-dismiss
-                              class="cancel-btn"
-                              disabled="[[disableDismissBtn]]">
-                  [[cancelBtnText]]
-                </paper-button>
-                <paper-button dialog-confirm\$="[[!keepDialogOpen]]" on-tap="_confirmBtClicked"
-                              disabled="{{disableConfirmBtn}}" hidden="[[hideConfirmBtn]]" class="confirm-btn">
-                  [[okBtnText]]
-                </paper-button>
-            </div>
-          </template>
-
-          <slot id="buttons" name="buttons"></slot>
+          <slot id="buttons" name="buttons">
+            ${this.getButtonsHTML()}
+          </slot>
         </paper-dialog>
       </focus-trap>
     `;
@@ -220,67 +215,103 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
     return {
       dialogTitle: {
         type: String,
-        value: ''
+        reflect: true,
+        attribute: 'dialog-title'
       },
       okBtnText: {
         type: String,
-        value: 'Ok'
+        reflect: true,
+        attribute: 'ok-btn-text'
       },
       cancelBtnText: {
         type: String,
-        value: 'Cancel'
+        reflect: true,
+        attribute: 'cancel-btn-text'
       },
       size: {
-        type: String,
-        value: 'sm'
+        type: String
       },
       opened: {
         type: Boolean,
-        value: false,
-        notify: true
+        reflect: true
       },
       backdrop: {
-        type: Boolean,
-        value: true
+        type: Boolean
       },
       modal: {
-        type: Boolean,
-        value: true
+        type: Boolean
       },
       noPadding: {
         type: Boolean,
-        value: false,
-        observer: '_noContentPaddingChanged'
+        reflect: true,
+        attribute: 'no-padding'
       },
       disableConfirmBtn: {
         type: Boolean,
-        value: false
+        reflect: true,
+        attribute: 'disable-confirm-btn'
       },
       disableDismissBtn: {
         type: Boolean,
-        value: false
+        reflect: true,
+        attribute: 'disable-dismiss-btn'
       },
       hideConfirmBtn: {
         type: Boolean,
-        value: false,
-        reflectToAttribute: true
+        reflect: true,
+        attribute: 'hide-confirm-btn'
       },
       theme: {
         type: String,
-        value: 'default',
-        reflectToAttribute: true
+        reflect: true
       },
       noAutoFocus: {
         type: Boolean,
-        value: false,
-        reflectToAttribute: true
+        reflect: true,
+        attribute: 'no-auto-focus'
       },
       showButtons: {
         type: Boolean,
-        value: true,
-        reflectToAttribute: true
+        reflect: true,
+        attribute: 'show-buttons'
       }
     };
+  }
+
+  constructor() {
+    super();
+    this.initializeProperties();
+  }
+
+  initializeProperties() {
+    this.dialogTitle = '';
+    this.okBtnText = 'Ok';
+    this.cancelBtnText = 'Cancel';
+    this.size = 'sm';
+    this.opened = false;
+    this.backdrop = true;
+    this.modal = true;
+    this.noPadding = false;
+    this.disableConfirmBtn = false;
+    this.disableDismissBtn = false;
+    this.hideConfirmBtn = false;
+    this.theme = 'default';
+    this.noAutoFocus = false;
+    this.showButtons = true;
+  }
+
+  getButtonsHTML() {
+    return this.showButtons ? html`
+     <div class="buttons" part="ed-button-styles">
+        <paper-button dialog-dismiss class="cancel-btn" ?disabled="${this.disableDismissBtn}">
+          ${this.cancelBtnText}
+        </paper-button>
+        <paper-button ?dialog-confirm="${!this.keepDialogOpen}" @click="${this._confirmBtClicked}"
+                      ?disabled="${this.disableConfirmBtn}" ?hidden="${this.hideConfirmBtn}" class="confirm-btn">
+          ${this.okBtnText}
+        </paper-button>
+     </div>`:
+      html``;
   }
 
   _dialogCloseHandling(event) {
@@ -294,12 +325,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
       bubbles: true,
       composed: true
     }));
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-
-    this.set('showButtons', this.$.buttons.assignedNodes().length === 0);
   }
 
   _dialogOpenedHandling() {
@@ -320,13 +345,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(PolymerElement) { // eslint
 
   getScrollableDialogClass(noPadding) {
     return noPadding ? '' : 'padded-content';
-  }
-
-  _noContentPaddingChanged(noPaddingValue) {
-    if (noPaddingValue === undefined) {
-      return;
-    }
-    this.updateStyles();
   }
 
   getPaperDialog() {

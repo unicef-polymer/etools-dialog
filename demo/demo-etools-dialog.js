@@ -118,6 +118,7 @@ class DemoEtoolsDialog extends PolymerElement {
   }
 
   onCloseActionHandler(event) {
+    this.set('defaultStyleDialogOpened', false);
     console.log('onCloseActionHandler', event.detail);
   }
 
