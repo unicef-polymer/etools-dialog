@@ -76,10 +76,10 @@ class AddEditSomeItemDialog extends PolymerElement {
     self.$.saveDialog.startSpinner();
     var req = document.createElement('iron-request');
     req.send({url: url, headers: {'Cache-Control': 'no-cache'}});
-    req.completes.then(function (resp) {
+    req.completes.then(function(resp) {
       self.$.saveDialog.stopSpinner();
       self.$.saveDialog.opened = false;
-    }).catch(function (err) {
+    }).catch(function(err) {
       console.log('Error caught', err);
       self.$.saveDialog.stopSpinner();
       self.showError = true;
