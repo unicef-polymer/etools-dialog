@@ -303,13 +303,15 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
   getButtonsHTML() {
     return this.showButtons ? html`
      <div class="buttons" part="ed-button-styles">
-        <paper-button dialog-dismiss class="cancel-btn" ?disabled="${this.disableDismissBtn}">
-          ${this.cancelBtnText}
-        </paper-button>
-        <paper-button ?dialog-confirm="${!this.keepDialogOpen}" @click="${this._confirmBtClicked}"
-                      ?disabled="${this.disableConfirmBtn}" ?hidden="${this.hideConfirmBtn}" class="confirm-btn">
-          ${this.okBtnText}
-        </paper-button>
+          <default-dialog-buttons
+            class="${this.theme}"
+            .disableDismissBtn="${this.disableDismissBtn}"
+            .cancelBtnText="${this.cancelBtnText}"
+            .keepDialogOpen="${this.keepDialogOpen}"
+            .disableConfirmBtn="${this.disableConfirmBtn}"
+            .hideConfirmBtn="${this.hideConfirmBtn}"
+            .okBtnText="${this.okBtnText}"
+          ></default-dialog-buttons>
      </div>`:
       html``;
   }
