@@ -1,7 +1,7 @@
 {
   "name": "@unicef-polymer/etools-dialog",
   "description": "Simple dialog element",
-  "version": "6.0.4",
+  "version": "6.0.5-rc.1",
   "homepage": "https://github.com/unicef-polymer/etools-dialog",
   "repository": {
     "type": "git",
