@@ -9,6 +9,7 @@ import '@polymer/iron-icons/iron-icons.js';
 import '@unicef-polymer/etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {timeOut} from '@polymer/polymer/lib/utils/async.js';
+import {getTranslation} from './utils/translate.js';
 
 /**
  * @customElement
@@ -274,6 +275,9 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         type: Boolean,
         reflect: true,
         attribute: 'show-buttons'
+      },
+      language: {
+        type: String
       }
     };
   }
@@ -285,8 +289,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
 
   initializeProperties() {
     this.dialogTitle = '';
-    this.okBtnText = 'Ok';
-    this.cancelBtnText = 'Cancel';
+    this.okBtnText = getTranslation(this.language, 'OK');
+    this.cancelBtnText = getTranslation(this.language, 'CANCEL');
     this.size = 'sm';
     this.opened = false;
     this.backdrop = true;
@@ -298,6 +302,20 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
     this.theme = 'default';
     this.noAutoFocus = false;
     this.showButtons = true;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
+  }
+
+  handleLanguageChange(e) {
+    this.language = e.detail.language;
   }
 
   getButtonsHTML() {
