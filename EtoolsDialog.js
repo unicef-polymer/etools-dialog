@@ -118,7 +118,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
           min-height: 80px;
           margin-top: 16px;
           margin-right: 56px;
-          padding-right: 0 !important;
+          padding-inline-end: 0 !important;
           font-size: 20px;
           line-height: 1.4;
           @apply --etools-dialog-confirmation-content;
@@ -152,7 +152,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         }
 
         .dialog-title {
-          padding-right:40px !important;
+          padding-inline-end:40px !important;
         }
 
         @media screen and (max-width: 930px) {
