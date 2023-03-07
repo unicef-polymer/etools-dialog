@@ -68,7 +68,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         paper-icon-button {
           position: absolute;
           top: 9px;
-          right: 14px;
+          inset-inline-end: 14px;
           z-index: 1;
           margin: 0 !important;
           padding: 8px !important;
@@ -88,7 +88,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
 
         paper-dialog.default paper-button.confirm-btn {
           min-width: 90px;
-          margin-right: 0;
+          margin-inline-end: 0;
           background: var(--etools-dialog-default-btn-bg, var(--primary-color));
           color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
@@ -117,7 +117,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         paper-dialog.confirmation paper-dialog-scrollable {
           min-height: 80px;
           margin-top: 16px;
-          margin-right: 56px;
+          margin-inline-end: 56px;
           padding-inline-end: 0 !important;
           font-size: 20px;
           line-height: 1.4;
