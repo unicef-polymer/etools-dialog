@@ -43,7 +43,7 @@ export class DefaultDialogButtons extends DialogSpinnerMixin(LitElement) { // es
         }
         :host(.default) paper-button.confirm-btn {
           min-width: 90px;
-          margin-right: 0;
+          margin-inline-end: 0;
           background: var(--etools-dialog-default-btn-bg, var(--primary-color));
           color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
