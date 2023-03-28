@@ -196,7 +196,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
           </etools-loading>
           <paper-dialog-scrollable class="relative no-padding ${this.getScrollableDialogClass(this.noPadding)}"
                                   part="ed-scrollable">
-            <div id="dialogContent"><slot></slot></div>
+            <div id="dialogContent"><slot tabindex="0"></slot></div>
             <div id="dynamicContent"></div>
           </paper-dialog-scrollable>
 
