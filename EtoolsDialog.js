@@ -9,6 +9,7 @@ import '@polymer/iron-icons/iron-icons.js';
 import '@unicef-polymer/etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {timeOut} from '@polymer/polymer/lib/utils/async.js';
+import {getTranslation} from './utils/translate.js';
 
 /**
  * @customElement
@@ -67,7 +68,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         paper-icon-button {
           position: absolute;
           top: 9px;
-          right: 14px;
+          inset-inline-end: 14px;
           z-index: 1;
           margin: 0 !important;
           padding: 8px !important;
@@ -87,7 +88,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
 
         paper-dialog.default paper-button.confirm-btn {
           min-width: 90px;
-          margin-right: 0;
+          margin-inline-end: 0;
           background: var(--etools-dialog-default-btn-bg, var(--primary-color));
           color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
@@ -116,8 +117,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         paper-dialog.confirmation paper-dialog-scrollable {
           min-height: 80px;
           margin-top: 16px;
-          margin-right: 56px;
-          padding-right: 0 !important;
+          margin-inline-end: 56px;
+          padding-inline-end: 0 !important;
           font-size: 20px;
           line-height: 1.4;
           @apply --etools-dialog-confirmation-content;
@@ -151,7 +152,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         }
 
         .dialog-title {
-          padding-right:40px !important;
+          padding-inline-end:40px !important;
         }
 
         @media screen and (max-width: 930px) {
@@ -195,7 +196,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
           </etools-loading>
           <paper-dialog-scrollable class="relative no-padding ${this.getScrollableDialogClass(this.noPadding)}"
                                   part="ed-scrollable">
-            <div id="dialogContent"><slot></slot></div>
+            <div id="dialogContent"><slot tabindex="0"></slot></div>
             <div id="dynamicContent"></div>
           </paper-dialog-scrollable>
 
@@ -274,6 +275,9 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
         type: Boolean,
         reflect: true,
         attribute: 'show-buttons'
+      },
+      language: {
+        type: String
       }
     };
   }
@@ -285,8 +289,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
 
   initializeProperties() {
     this.dialogTitle = '';
-    this.okBtnText = 'Ok';
-    this.cancelBtnText = 'Cancel';
+    this.okBtnText = getTranslation(this.language, 'OK');
+    this.cancelBtnText = getTranslation(this.language, 'CANCEL');
     this.size = 'sm';
     this.opened = false;
     this.backdrop = true;
@@ -298,6 +302,20 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
     this.theme = 'default';
     this.noAutoFocus = false;
     this.showButtons = true;
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
+  }
+
+  handleLanguageChange(e) {
+    this.language = e.detail.language;
   }
 
   getButtonsHTML() {

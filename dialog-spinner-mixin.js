@@ -1,3 +1,5 @@
+import {getTranslation} from './utils/translate';
+
 /**
  * @polymer
  * @mixinFunction
@@ -17,6 +19,10 @@ export const DialogSpinnerMixin = baseClass => class extends baseClass {
         attribute: 'show-spinner'
       },
       spinnerText: {
+        type: String,
+        attribute: 'spinner-text'
+      },
+      language: {
         type: String
       }
     };
@@ -26,8 +32,26 @@ export const DialogSpinnerMixin = baseClass => class extends baseClass {
     super();
     this.keepDialogOpen = false;
     this.showSpinner = false;
-    this.spinnerText = 'Saving data..';
+    if (!this.language) {
+      this.language = window.localStorage.defaultLanguage || 'en';
+    }
+    this.spinnerText = getTranslation(this.language, 'SAVING_DATA');
   }
+
+  connectedCallback() {
+    super.connectedCallback();
+    document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
+  }
+
+  handleLanguageChange(e) {
+    this.language = e.detail.language;
+  }
+
 
   _confirmBtClicked() {
     if (this.keepDialogOpen) {
