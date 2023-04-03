@@ -17,7 +17,6 @@
     "publish": "git push --tags && npm publish"
   },
   "dependencies": {
-    "@a11y/focus-trap": "^1.0.5",
     "@polymer/iron-icon": "^3.0.1",
     "@polymer/neon-animation": "^3.0.1",
     "@polymer/paper-button": "^3.0.1",
@@ -25,12 +24,13 @@
     "@polymer/paper-dialog-scrollable": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.2",
     "@polymer/polymer": "^3.5.1",
+    "@shoelace-style/shoelace": "^2.3.0",
     "@unicef-polymer/etools-behaviors": "^3.1.1",
     "@unicef-polymer/etools-loading": "^6.1.0",
+    "dexie": ">=3.2.2",
     "lit-element": "^2.5.1",
     "lodash-es": "^4.17.21",
-    "web-animations-js": "^2.3.2",
-    "dexie": ">=3.2.2"
+    "web-animations-js": "^2.3.2"
   },
   "devDependencies": {
     "@polymer/gen-typescript-declarations": "^1.6.2",

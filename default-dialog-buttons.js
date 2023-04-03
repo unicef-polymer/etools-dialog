@@ -1,10 +1,11 @@
 import {LitElement, html, css} from 'lit-element';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin';
 
-export class DefaultDialogButtons extends DialogSpinnerMixin(LitElement) { // eslint-disable-line new-cap
+export class DefaultDialogButtons extends DialogSpinnerMixin(LitElement) {
+  // eslint-disable-line new-cap
   render() {
     return html`
-      <paper-button dialog-dismiss class="cancel-btn" ?disabled="${this.disableDismissBtn}">
+      <paper-button @click="${this._cancelBtClicked}" class="cancel-btn" ?disabled="${this.disableDismissBtn}">
         ${this.cancelBtnText}
       </paper-button>
       <paper-button
