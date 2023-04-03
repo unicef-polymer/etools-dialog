@@ -8,7 +8,6 @@
  *   etools-dialog.js
  */
 
-
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
 // tslint:disable:no-any describes the API as best we are able today
 
@@ -16,35 +15,32 @@ import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {LitElement} from 'lit-element';
 
 declare class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
-  dialogTitle: string|null|undefined;
-  okBtnText: string|null|undefined;
-  cancelBtnText: string|null|undefined;
-  size: string|null|undefined;
-  opened: boolean|null|undefined;
-  backdrop: boolean|null|undefined;
-  modal: boolean|null|undefined;
-  noPadding: boolean|null|undefined;
-  disableConfirmBtn: boolean|null|undefined;
-  disableDismissBtn: boolean|null|undefined;
-  hideConfirmBtn: boolean|null|undefined;
-  theme: string|null|undefined;
-  noAutoFocus: boolean|null|undefined;
+  dialogTitle: string | null | undefined;
+  okBtnText: string | null | undefined;
+  cancelBtnText: string | null | undefined;
+  size: string | null | undefined;
+  opened: boolean | null | undefined;
+  backdrop: boolean | null | undefined;
+  modal: boolean | null | undefined;
+  noPadding: boolean | null | undefined;
+  disableConfirmBtn: boolean | null | undefined;
+  disableDismissBtn: boolean | null | undefined;
+  hideConfirmBtn: boolean | null | undefined;
+  theme: string | null | undefined;
+  noAutoFocus: boolean | null | undefined;
   _dialogCloseHandling(event: any): void;
-  _dialogOpenedHandling(): void;
   _onDomChange(): void;
   getDialogClass(size: any, theme: any): any;
   getScrollableDialogClass(noPadding: any): any;
   _noContentPaddingChanged(noPaddingValue: any): void;
   getPaperDialog(): any;
-  notifyResize(): void;
   scrollDown(): void;
 }
 
 export default EtoolsDialog;
 
 declare global {
-
   interface HTMLElementTagNameMap {
-    "etools-dialog": EtoolsDialog;
+    'etools-dialog': EtoolsDialog;
   }
 }

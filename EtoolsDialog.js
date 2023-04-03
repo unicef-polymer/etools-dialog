@@ -367,16 +367,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     );
   }
 
-  _dialogOpenedHandling() {
-    this.notifyResize();
-  }
-
-  _onDomChange() {
-    this._domChangeDebouncer = Debouncer.debounce(this._domChangeDebouncer, timeOut.after(20), () => {
-      this.notifyResize();
-    });
-  }
-
   getDialogClass(size, theme) {
     return size + ' ' + theme;
   }
@@ -389,18 +379,13 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     return this.shadowRoot.querySelector('#dialog');
   }
 
-  notifyResize() {
-    this.getPaperDialog().notifyResize();
-  }
-
   scrollDown() {
     setTimeout(() => {
       const d = this.getPaperDialog();
       if (d) {
-        const dialogScrollable = d.querySelector('paper-dialog-scrollable');
-        if (dialogScrollable) {
-          const scrollTarget = dialogScrollable.scrollTarget;
-          scrollTarget.scrollTop = scrollTarget.scrollHeight;
+        const scrollableContent = d.shadowRoot.querySelector('slot[part="body"]');
+        if (scrollableContent) {
+          scrollableContent.scrollTop = scrollableContent.scrollHeight;
         }
       }
     }, 100);
