@@ -1,5 +1,4 @@
 import {LitElement, html} from 'lit-element';
-import {Debouncer} from '@polymer/polymer/lib/utils/debounce.js';
 import '@polymer/neon-animation/neon-animations.js';
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
@@ -8,7 +7,6 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@unicef-polymer/etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
-import {timeOut} from '@polymer/polymer/lib/utils/async.js';
 import {getTranslation} from './utils/translate.js';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 
@@ -36,6 +34,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           }
         }
 
+        sl-dialog::part(overlay) {
+          background-color: rgb(0 0 0);
+          opacity: 0.6;
+        }
+
         paper-button.confirm-btn {
           background: var(--etools-dialog-confirm-btn-bg, #ea4022);
           color: var(--etools-dialog-confirm-btn-text-color, #fff);
@@ -47,13 +50,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
-        paper-dialog .cancel-btn {
+        sl-dialog .cancel-btn {
           color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
-        }
-
-        paper-dialog {
-          background-color: #fff;
-          border-radius: 4px;
         }
 
         sl-dialog.sm {
@@ -66,12 +64,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
         sl-dialog.lg {
           --width: 900px;
-        }
-
-        paper-dialog .dialog-title {
-          margin: 0 !important;
-          padding: 8px 24px;
-          min-height: 40px;
         }
 
         .buttons {
@@ -92,17 +84,17 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
 
-        paper-dialog.default .buttons {
+        sl-dialog.default .buttons {
           border-top: 1px solid var(--divider-color);
         }
 
-        paper-dialog.default .dialog-title {
+        sl-dialog.default::part(title) {
           line-height: 40px;
           background: var(--etools-dialog-primary-color, var(--primary-color));
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
 
-        paper-dialog.default paper-button.confirm-btn {
+        sl-dialog.default paper-button.confirm-btn {
           min-width: 90px;
           margin-inline-end: 0;
           background: var(--etools-dialog-default-btn-bg, var(--primary-color));
@@ -117,27 +109,33 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           opacity: 0.85;
         }
 
-        paper-dialog.confirmation paper-button.confirm-btn {
+        sl-dialog.confirmation paper-button.confirm-btn {
           background: var(--etools-dialog-confirm-btn-bg, #ea4022);
           color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
-        paper-dialog.confirmation .close-btn,
+        sl-dialog.confirmation .close-btn,
         paper-dialog .cancel-btn {
           color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
         }
 
-        paper-dialog.confirmation .dialog-title {
-          display: none;
+        sl-dialog.confirmation::part(header-actions) {
+          padding: 15px 15px 0 15px;
         }
 
-        paper-dialog.confirmation paper-dialog-scrollable {
-          min-height: 80px;
-          margin-top: 16px;
-          margin-inline-end: 56px;
-          padding-inline-end: 0 !important;
+        sl-dialog.confirmation::part(title) {
+          padding: 15px 15px 0 15px;
+        }
+
+        sl-dialog.confirmation {
+          --footer-spacing: 25px 0 0 0;
+        }
+
+        sl-dialog.confirmation::part(body) {
           font-size: 20px;
           line-height: 1.4;
+          padding: 0;
+          padding-inline: 15px;
           @apply --etools-dialog-confirmation-content;
         }
 
@@ -168,24 +166,20 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           height: 100%;
         }
 
-        .dialog-title {
-          padding-inline-end: 40px !important;
-        }
-
         @media screen and (max-width: 930px) {
-          paper-dialog.lg {
+          sl-dialog.lg {
             width: calc(100vw - 30px);
           }
         }
 
         @media screen and (max-width: 767px) {
-          paper-dialog.md {
+          sl-dialog.md {
             width: calc(100vw - 30px);
           }
         }
 
         @media screen and (max-width: 480px) {
-          paper-dialog.sm {
+          sl-dialog.sm {
             width: calc(100vw - 30px);
           }
         }
