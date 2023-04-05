@@ -1,5 +1,4 @@
 import {LitElement, html} from 'lit-element';
-import {Debouncer} from '@polymer/polymer/lib/utils/debounce.js';
 import '@polymer/neon-animation/neon-animations.js';
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
@@ -8,15 +7,16 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@unicef-polymer/etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
-import {timeOut} from '@polymer/polymer/lib/utils/async.js';
 import {getTranslation} from './utils/translate.js';
+import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 
 /**
  * @customElement
  * @appliesMixin DialogSpinnerMixin
  * @demo demo/index.html
  */
-export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-disable-line new-cap
+export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
+  // eslint-disable-line new-cap
   render() {
     // language=HTML
     return html`
@@ -31,31 +31,39 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
             overflow-y: auto;
             display: block;
             margin-top: 0;
-          };
-
+          }
         }
 
-        paper-dialog {
-          background-color: #fff;
-          border-radius: 4px;
+        sl-dialog::part(overlay) {
+          background-color: rgb(0 0 0);
+          opacity: 0.6;
         }
 
-        paper-dialog.sm {
-          width: 450px;
+        paper-button.confirm-btn {
+          background: var(--etools-dialog-confirm-btn-bg, #ea4022);
+          color: var(--etools-dialog-confirm-btn-text-color, #fff);
+        }
+        paper-button.confirm-btn.default {
+          min-width: 90px;
+          margin-inline-end: 0;
+          background: var(--etools-dialog-default-btn-bg, var(--primary-color));
+          color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
-        paper-dialog.md {
-          width: 720px;
+        sl-dialog .cancel-btn {
+          color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
         }
 
-        paper-dialog.lg {
-          width: 900px;
+        sl-dialog.sm {
+          --width: 450px;
         }
 
-        paper-dialog .dialog-title {
-          margin: 0 !important;
-          padding: 8px 24px;
-          min-height: 40px;
+        sl-dialog.md {
+          --width: 720px;
+        }
+
+        sl-dialog.lg {
+          --width: 900px;
         }
 
         .buttons {
@@ -76,17 +84,17 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
 
-        paper-dialog.default .buttons {
+        sl-dialog.default .buttons {
           border-top: 1px solid var(--divider-color);
         }
 
-        paper-dialog.default .dialog-title {
+        sl-dialog.default::part(title) {
           line-height: 40px;
           background: var(--etools-dialog-primary-color, var(--primary-color));
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
 
-        paper-dialog.default paper-button.confirm-btn {
+        sl-dialog.default paper-button.confirm-btn {
           min-width: 90px;
           margin-inline-end: 0;
           background: var(--etools-dialog-default-btn-bg, var(--primary-color));
@@ -101,26 +109,33 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
           opacity: 0.85;
         }
 
-        paper-dialog.confirmation paper-button.confirm-btn {
+        sl-dialog.confirmation paper-button.confirm-btn {
           background: var(--etools-dialog-confirm-btn-bg, #ea4022);
           color: var(--etools-dialog-confirm-btn-text-color, #fff);
         }
 
-        paper-dialog.confirmation .close-btn, paper-dialog .cancel-btn {
+        sl-dialog.confirmation .close-btn,
+        paper-dialog .cancel-btn {
           color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
         }
 
-        paper-dialog.confirmation .dialog-title {
-          display: none;
+        sl-dialog.confirmation::part(header-actions) {
+          padding: 15px 15px 0 15px;
         }
 
-        paper-dialog.confirmation paper-dialog-scrollable {
-          min-height: 80px;
-          margin-top: 16px;
-          margin-inline-end: 56px;
-          padding-inline-end: 0 !important;
+        sl-dialog.confirmation::part(title) {
+          padding: 15px 15px 0 15px;
+        }
+
+        sl-dialog.confirmation {
+          --footer-spacing: 25px 0 0 0;
+        }
+
+        sl-dialog.confirmation::part(body) {
           font-size: 20px;
           line-height: 1.4;
+          padding: 0;
+          padding-inline: 15px;
           @apply --etools-dialog-confirmation-content;
         }
 
@@ -129,14 +144,14 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
           --paper-dialog-scrollable: {
             @apply --etools-dialog-content;
             padding: 0;
-          };
+          }
         }
 
         paper-dialog-scrollable.padded-content {
           --paper-dialog-scrollable: {
             @apply --etools-dialog-content;
             padding: 0 24px;
-          };
+          }
         }
 
         .relative {
@@ -151,60 +166,37 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
           height: 100%;
         }
 
-        .dialog-title {
-          padding-inline-end:40px !important;
-        }
-
         @media screen and (max-width: 930px) {
-          paper-dialog.lg {
+          sl-dialog.lg {
             width: calc(100vw - 30px);
           }
         }
 
         @media screen and (max-width: 767px) {
-          paper-dialog.md {
+          sl-dialog.md {
             width: calc(100vw - 30px);
           }
         }
 
         @media screen and (max-width: 480px) {
-          paper-dialog.sm {
+          sl-dialog.sm {
             width: calc(100vw - 30px);
           }
         }
-
       </style>
-      <focus-trap>
-        <paper-dialog id="dialog" class="${this.getDialogClass(this.size, this.theme)}" part="ed-paper-dialog"
-            ?opened="${this.opened}"
-            @opened-changed="${(e) => {
-    if (this.opened != e.detail.value) {
-      this.opened = e.detail.value;
-    }
-  }}"
-            ?with-backdrop="${this.backdrop}" modal="${this.modal}" entry-animation="scale-up-animation"
-            exit-animation="fade-out-animation" @iron-overlay-closed="${this._dialogCloseHandling}"
-            @iron-overlay-opened="${this._dialogOpenedHandling}" ?noAutoFocus="${this.noAutoFocus}"
-            @dom-change="${this._onDomChange}">
-          <paper-icon-button icon="close"
-                            dialog-dismiss
-                            class="close-btn"
-                            ?disabled="${this.disableDismissBtn}">
-          </paper-icon-button>
-          <h2 class="dialog-title" part="ed-title">${this.dialogTitle}</h2>
-          <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
-          </etools-loading>
-          <paper-dialog-scrollable class="relative no-padding ${this.getScrollableDialogClass(this.noPadding)}"
-                                  part="ed-scrollable">
-            <div id="dialogContent"><slot tabindex="0"></slot></div>
-            <div id="dynamicContent"></div>
-          </paper-dialog-scrollable>
-
-          <slot id="buttons" name="buttons">
-            ${this.getButtonsHTML()}
-          </slot>
-        </paper-dialog>
-      </focus-trap>
+      <sl-dialog
+        id="dialog"
+        class="${this.getDialogClass(this.size, this.theme)}"
+        part="ed-paper-dialog"
+        .label="${this.dialogTitle}"
+        ?open="${this.opened}"
+      >
+        <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
+        </etools-loading>
+        <slot></slot>
+        <div id="dynamicContent"></div>
+        <slot slot="footer" id="buttons" name="buttons"> ${this.getButtonsHTML()} </slot>
+      </sl-dialog>
     `;
   }
 
@@ -307,6 +299,12 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
+    this.addEventListener('sl-request-close', (event) => {
+      if (event.detail.source === 'overlay') {
+        console.log(event.detail.source);
+        event.preventDefault();
+      }
+    });
   }
 
   disconnectedCallback() {
@@ -319,19 +317,22 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
   }
 
   getButtonsHTML() {
-    return this.showButtons ? html`
-     <div class="buttons" part="ed-button-styles">
-          <default-dialog-buttons
-            class="${this.theme}"
-            .disableDismissBtn="${this.disableDismissBtn}"
-            .cancelBtnText="${this.cancelBtnText}"
-            .keepDialogOpen="${this.keepDialogOpen}"
-            .disableConfirmBtn="${this.disableConfirmBtn}"
-            .hideConfirmBtn="${this.hideConfirmBtn}"
-            .okBtnText="${this.okBtnText}"
-          ></default-dialog-buttons>
-     </div>`:
-      html``;
+    return this.showButtons
+      ? html` <div class="buttons" part="ed-button-styles" slot="footer">
+          <paper-button @click="${this._cancelBtClicked}" class="cancel-btn" ?disabled="${this.disableDismissBtn}">
+            ${this.cancelBtnText}
+          </paper-button>
+          <paper-button
+            ?dialog-confirm="${!this.keepDialogOpen}"
+            @click="${this._confirmBtClicked}"
+            ?disabled="${this.disableConfirmBtn}"
+            ?hidden="${this.hideConfirmBtn}"
+            class="confirm-btn"
+          >
+            ${this.okBtnText}
+          </paper-button>
+        </div>`
+      : html``;
   }
 
   _dialogCloseHandling(event) {
@@ -340,23 +341,24 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
       // that also use the iron-overlay-behavior
       return;
     }
-    this.dispatchEvent(new CustomEvent('close', {
-      detail: {confirmed: event.detail.confirmed},
-      bubbles: true,
-      composed: true
-    }));
+    this.dispatchEvent(
+      new CustomEvent('close', {
+        detail: {confirmed: event.detail.confirmed},
+        bubbles: true,
+        composed: true
+      })
+    );
   }
 
-  _dialogOpenedHandling() {
-    this.notifyResize();
-  }
-
-  _onDomChange() {
-    this._domChangeDebouncer = Debouncer.debounce(this._domChangeDebouncer,
-        timeOut.after(20),
-        () => {
-          this.notifyResize();
-        });
+  _cancelBtClicked() {
+    this.opened = false;
+    this.dispatchEvent(
+      new CustomEvent('close', {
+        detail: {confirmed: false},
+        bubbles: true,
+        composed: true
+      })
+    );
   }
 
   getDialogClass(size, theme) {
@@ -371,21 +373,15 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) { // eslint-dis
     return this.shadowRoot.querySelector('#dialog');
   }
 
-  notifyResize() {
-    this.getPaperDialog().notifyResize();
-  }
-
   scrollDown() {
     setTimeout(() => {
       const d = this.getPaperDialog();
       if (d) {
-        const dialogScrollable = d.querySelector('paper-dialog-scrollable');
-        if (dialogScrollable) {
-          const scrollTarget = dialogScrollable.scrollTarget;
-          scrollTarget.scrollTop = scrollTarget.scrollHeight;
+        const scrollableContent = d.shadowRoot.querySelector('slot[part="body"]');
+        if (scrollableContent) {
+          scrollableContent.scrollTop = scrollableContent.scrollHeight;
         }
       }
     }, 100);
   }
 }
-
