@@ -34,7 +34,8 @@
       {
         "properties": "never"
       }
-    ]
+    ],
+    "space-before-function-paren": "off"
   },
   "globals": {
     "moment": true,
