@@ -1,8 +1,5 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "google"
-  ],
+  "extends": ["eslint:recommended", "google"],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
@@ -10,9 +7,7 @@
   "env": {
     "browser": true
   },
-  "plugins": [
-    "html"
-  ],
+  "plugins": ["html"],
   "rules": {
     "padded-blocks": "off",
     "linebreak-style": "off",
@@ -20,19 +15,14 @@
     "new-cap": [
       "error",
       {
-        "capIsNewExceptions": [
-          "Polymer"
-        ],
+        "capIsNewExceptions": ["Polymer"],
         "capIsNewExceptionPattern": "^Etools.."
       }
     ],
     "no-var": "off",
     "require-jsdoc": "off",
     "valid-jsdoc": "off",
-    "comma-dangle": [
-      "error",
-      "never"
-    ],
+    "comma-dangle": ["error", "never"],
     "max-len": [
       "error",
       {
@@ -43,13 +33,6 @@
       "error",
       {
         "properties": "never"
-      }
-    ],
-    "arrow-parens": [
-      2,
-      "as-needed",
-      {
-        "requireForBlockBody": true
       }
     ]
   },
