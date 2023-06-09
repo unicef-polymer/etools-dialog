@@ -63,7 +63,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         }
 
         sl-dialog.lg {
-          --width: 900px;
+          --width: 1200px;
         }
 
         .buttons {
