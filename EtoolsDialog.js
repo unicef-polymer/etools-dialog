@@ -73,14 +73,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           justify-content: flex-end;
         }
 
-        paper-icon-button {
-          position: absolute;
-          top: 9px;
-          inset-inline-end: 14px;
-          z-index: 1;
-          margin: 0 !important;
-          padding: 8px !important;
-          opacity: 0.65;
+        sl-dialog::part(close-button) {
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
 
@@ -118,6 +111,10 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         sl-dialog.confirmation .close-btn,
         paper-dialog .cancel-btn {
           color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
+        }
+
+        sl-dialog::part(header-actions) {
+          background: var(--etools-dialog-primary-color, var(--primary-color));
         }
 
         sl-dialog.confirmation::part(header-actions) {
