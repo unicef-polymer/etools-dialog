@@ -153,8 +153,9 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           @apply --etools-dialog-confirmation-content;
         }
 
-        sl-dialog.padded-content::part(body) {
-          padding: 0 24px;
+        :host([padded-content]) sl-dialog::part(body) {
+          padding-inline-start: 24px;
+          padding-inline-end: 24px;
         }
 
         .relative {
@@ -193,6 +194,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         part="ed-paper-dialog"
         .label="${this.dialogTitle}"
         ?open="${this.opened}"
+        exportparts="body,title,footer"
       >
         <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
         </etools-loading>
