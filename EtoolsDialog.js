@@ -90,6 +90,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
         sl-dialog.default::part(title) {
           line-height: 40px;
+          font-weight: 500;
           background: var(--etools-dialog-primary-color, var(--primary-color));
           color: var(--etools-dialog-contrast-text-color, #fff);
         }
@@ -122,13 +123,22 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         sl-dialog.confirmation::part(header-actions) {
           padding: 15px 15px 0 15px;
         }
-
+        sl-dialog::part(title) {
+          padding: 8px 0 8px 24px;
+        }
         sl-dialog.confirmation::part(title) {
           padding: 15px 15px 0 15px;
         }
-
+        sl-dialog {
+          --footer-spacing: 0;
+          --body-spacing: 12px 0 16px 0;
+        }
         sl-dialog.confirmation {
           --footer-spacing: 25px 0 0 0;
+        }
+
+        sl-dialog.default::part(body) {
+          border-top: 1px solid var(--dark-divider-color);
         }
 
         sl-dialog.confirmation::part(body) {
@@ -136,22 +146,14 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           line-height: 1.4;
           padding: 0;
           padding-inline: 15px;
+          border-top: none;
+          margin-top: -15px;
+          margin-bottom: 10px;
           @apply --etools-dialog-confirmation-content;
         }
 
-        paper-dialog-scrollable {
-          --divider-color: #fff;
-          --paper-dialog-scrollable: {
-            @apply --etools-dialog-content;
-            padding: 0;
-          }
-        }
-
-        paper-dialog-scrollable.padded-content {
-          --paper-dialog-scrollable: {
-            @apply --etools-dialog-content;
-            padding: 0 24px;
-          }
+        sl-dialog.padded-content::part(body) {
+          padding: 0 24px;
         }
 
         .relative {
