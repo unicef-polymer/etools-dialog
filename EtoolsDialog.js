@@ -142,6 +142,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         }
 
         sl-dialog.confirmation::part(body) {
+          max-width: 90%;
           font-size: 20px;
           line-height: 1.4;
           padding: 0;
