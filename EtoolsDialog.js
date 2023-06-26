@@ -192,7 +192,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           class="${this.getDialogClass(this.size, this.theme)}"
           part="ed-paper-dialog"
           .label="${this.dialogTitle}"
-          ?open="${this.opened}"
           exportparts="body,title,footer"
         >
           <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
@@ -301,12 +300,28 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     this.showButtons = true;
   }
 
+  firstUpdated() {
+    if (this.opened) {
+      this.shadowRoot.querySelector('#dialog').show();
+    }
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('opened') && changedProperties.get('opened') != undefined) {
+      // eslint-disable-next-line
+      if (Boolean(changedProperties.get('opened'))) {
+        this.shadowRoot.querySelector('#dialog').show();
+      } else {
+        this.shadowRoot.querySelector('#dialog').hide();
+      }
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
     this.addEventListener('sl-request-close', (event) => {
       if (event.detail.source === 'overlay') {
-        console.log(event.detail.source);
         event.preventDefault();
       }
     });
@@ -341,7 +356,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   }
 
   _cancelBtClicked() {
-    this.opened = false;
+    this.close();
     this.dispatchEvent(
       new CustomEvent('close', {
         detail: {confirmed: false},
@@ -349,6 +364,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         composed: true
       })
     );
+  }
+
+  close() {
+    this.shadowRoot.querySelector('#dialog').hide();
+    this.opened = false;
   }
 
   getDialogClass(size, theme) {
