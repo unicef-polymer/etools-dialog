@@ -17,6 +17,7 @@
     "publish": "git push --tags && npm publish"
   },
   "dependencies": {
+    "@a11y/focus-trap": "^1.0.5",
     "@polymer/iron-icon": "^3.0.1",
     "@polymer/neon-animation": "^3.0.1",
     "@polymer/paper-button": "^3.0.1",
@@ -40,11 +41,11 @@
     "@polymer/paper-spinner": "^3.0.0",
     "@webcomponents/webcomponentsjs": "^2.5.0",
     "diff": "^5.0.0",
-    "eslint": "^7.20.0",
+    "eslint": "^7.32.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.15.0",
-    "eslint-plugin-html": "^6.1.1",
-    "eslint-plugin-prettier": "^3.2.0",
+    "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-prettier": "^3.4.1",
     "prettier": "^2.3.2",
     "growl": ">=1.10.0",
     "minimist": ">=1.2.6",

@@ -1,4 +1,5 @@
 import {LitElement, html} from 'lit-element';
+import '@a11y/focus-trap/focus-trap.js';
 import '@polymer/neon-animation/neon-animations.js';
 import '@polymer/paper-dialog/paper-dialog.js';
 import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
@@ -185,20 +186,22 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           }
         }
       </style>
-      <sl-dialog
-        id="dialog"
-        class="${this.getDialogClass(this.size, this.theme)}"
-        part="ed-paper-dialog"
-        .label="${this.dialogTitle}"
-        ?open="${this.opened}"
-        exportparts="body,title,footer"
-      >
-        <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
-        </etools-loading>
-        <slot></slot>
-        <div id="dynamicContent"></div>
-        <slot slot="footer" id="buttons" name="buttons"> ${this.getButtonsHTML()} </slot>
-      </sl-dialog>
+      <focus-trap>
+        <sl-dialog
+          id="dialog"
+          class="${this.getDialogClass(this.size, this.theme)}"
+          part="ed-paper-dialog"
+          .label="${this.dialogTitle}"
+          ?open="${this.opened}"
+          exportparts="body,title,footer"
+        >
+          <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
+          </etools-loading>
+          <slot></slot>
+          <div id="dynamicContent"></div>
+          <slot slot="footer" id="buttons" name="buttons"> ${this.getButtonsHTML()} </slot>
+        </sl-dialog>
+      </focus-trap>
     `;
   }
 
@@ -335,21 +338,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           </paper-button>
         </div>`
       : html``;
-  }
-
-  _dialogCloseHandling(event) {
-    if (event.detail.confirmed === undefined) {
-      //* prevent handling, here, events fired by containing elements,
-      // that also use the iron-overlay-behavior
-      return;
-    }
-    this.dispatchEvent(
-      new CustomEvent('close', {
-        detail: {confirmed: event.detail.confirmed},
-        bubbles: true,
-        composed: true
-      })
-    );
   }
 
   _cancelBtClicked() {

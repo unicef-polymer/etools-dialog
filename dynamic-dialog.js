@@ -29,7 +29,7 @@ export function createDynamicDialog(config) {
   }
   // set close callback
   if (config.closeCallback) {
-    dialog.addEventListener('close', function(event) {
+    dialog.addEventListener('close', function (event) {
       config.closeCallback(event);
     });
   }
@@ -80,5 +80,3 @@ function _applyDefaultDialogConfig(dialog) {
   dialog.okBtnText = 'Yes';
   dialog.cancelBtnText = 'No';
 }
-
-

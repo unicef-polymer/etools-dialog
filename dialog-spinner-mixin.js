@@ -57,6 +57,14 @@ export const DialogSpinnerMixin = (baseClass) =>
     _confirmBtClicked() {
       if (this.keepDialogOpen) {
         this.dispatchEvent(new CustomEvent('confirm-btn-clicked', {bubbles: true, composed: true}));
+      } else {
+        this.dispatchEvent(
+          new CustomEvent('close', {
+            detail: {confirmed: true},
+            bubbles: true,
+            composed: true
+          })
+        );
       }
     }
 
