@@ -2,3 +2,7 @@ bower_components/
 node_modules/
 .idea/
 npm-debug.log
+dialog-spinner-mixin.js
+EtoolsDialog.js
+utils/translate.js
+assets/translations.js

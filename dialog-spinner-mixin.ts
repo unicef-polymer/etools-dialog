@@ -1,6 +1,10 @@
 import {property} from 'lit-element';
 import {getTranslation} from './utils/translate';
-
+declare global {
+  interface Window {
+    EtoolsLanguage: any;
+  }
+}
 /**
  * @polymer
  * @mixinFunction
@@ -38,7 +42,7 @@ export function DialogSpinnerMixin(baseClass: any) {
       document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
     }
 
-    handleLanguageChange(e) {
+    handleLanguageChange(e: any) {
       this.language = e.detail.language;
     }
 

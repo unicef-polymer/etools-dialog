@@ -25,15 +25,9 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
       <style>
         :host {
           color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
-          --etools-dialog-content: {
-            width: 100%;
-            max-width: 100% !important;
-            max-height: calc(90vh - 132px) !important; /* 90vh - (header height + buttons section height) */
-            overflow-x: hidden;
-            overflow-y: auto;
-            display: block;
-            margin-top: 0;
-          }
+        }
+        sl-dialog {
+          --footer-spacing: 0;
         }
 
         sl-dialog::part(overlay) {
@@ -65,7 +59,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         }
 
         sl-dialog.lg {
-          --width: 1200px;
+          --width: 900px;
         }
 
         .buttons {
@@ -128,9 +122,12 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         sl-dialog.confirmation::part(title) {
           padding: 15px 15px 0 15px;
         }
-        sl-dialog {
-          --footer-spacing: 0;
-          --body-spacing: 12px 0 16px 0;
+        sl-dialog::part(body) {
+          padding: 12px 24px 16px 24px;
+        }
+
+        :host-context([no-padding]) sl-dialog::part(body) {
+          padding: 12px 0 16px 0;
         }
         sl-dialog.confirmation {
           --footer-spacing: 25px 0 0 0;
@@ -169,11 +166,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           height: 100%;
         }
 
-        sl-dialog:defined {
-          opacity: 1;
-          transition: 0.1s opacity;
-        }
-
         @media screen and (max-width: 930px) {
           sl-dialog.lg {
             width: calc(100vw - 30px);
@@ -198,7 +190,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           class="${this.getDialogClass(this.size, this.theme)}"
           part="ed-paper-dialog"
           .label="${this.dialogTitle}"
-          exportparts="body,title,footer"
+          exportparts="panel,body,title,footer"
         >
           <etools-loading id="etoolsLoading" loading-text="${this.spinnerText}" ?active="${this.showSpinner}">
           </etools-loading>
@@ -296,7 +288,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   connectedCallback() {
     super.connectedCallback();
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
-    this.addEventListener('sl-request-close', (event) => {
+    this.addEventListener('sl-request-close', (event: any) => {
       if (event.detail.source === 'overlay') {
         event.preventDefault();
       }
@@ -308,7 +300,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     document.removeEventListener('language-changed', this.handleLanguageChange.bind(this));
   }
 
-  handleLanguageChange(e) {
+  handleLanguageChange(e: any) {
     this.language = e.detail.language;
   }
 
@@ -346,21 +338,17 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     this.opened = false;
   }
 
-  getDialogClass(size, theme) {
+  getDialogClass(size: string, theme: string) {
     return size + ' ' + theme;
   }
 
-  getScrollableDialogClass(noPadding) {
-    return noPadding ? '' : 'padded-content';
-  }
-
-  getPaperDialog() {
+  getDialog() {
     return this.shadowRoot.querySelector('#dialog');
   }
 
   scrollDown() {
     setTimeout(() => {
-      const d = this.getPaperDialog();
+      const d = this.getDialog();
       if (d) {
         const scrollableContent = d.shadowRoot.querySelector('slot[part="body"]');
         if (scrollableContent) {

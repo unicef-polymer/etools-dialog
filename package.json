@@ -12,7 +12,7 @@
   "module": "index.js",
   "scripts": {
     "lint": "eslint . --ext js,html",
-    "prepublishOnly": "npm run lint",
+    "prepublishOnly": "npm run lint && tsc",
     "gen-typings": "gen-typescript-declarations --deleteExisting --outDir './'",
     "publish": "git push --tags && npm publish"
   },

@@ -77,7 +77,7 @@ $ polymer test
 | `--etools-dialog-confirm-btn-text-color`                                                   | dialog confirmation button default text color | `#fff`  |
 | `etools-dialog::part(ed-title)` -> :part(title)                                            | etools-dialog title shadow part               | `{}`    |
 | `etools-dialog::part(ed-button-styles)` -> shouldn't be needed, but there is :part(footer) | etools-dialog button shadow part              | `{}`    |
-| `etools-dialog::part(ed-scrollable)` -> :part(body)                                        | etools-dialog scrollable shadow part          | `{}`    |
+| `etools-dialog::part(ed-scrollable)` -> :part(panel)                                       | etools-dialog scrollable shadow part          | `{}`    |
 
 ## Circle CI
 
