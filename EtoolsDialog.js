@@ -218,7 +218,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     set opened(val) {
         this._opened = val;
         if (this.slDialog) {
-            // Opening the dialog using show(), hide() and not binding directly to ?open in order to activate animation=ease in & out
+            // Opening the dialog using show(), hide()
+            // and not binding directly to ?open in order to activate animation=ease in & out
             if (val) {
                 this.slDialog.show();
             }
@@ -297,15 +298,12 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     getDialogClass(size, theme) {
         return size + ' ' + theme;
     }
-    getScrollableDialogClass(noPadding) {
-        return noPadding ? '' : 'padded-content';
-    }
-    getPaperDialog() {
+    getDialog() {
         return this.shadowRoot.querySelector('#dialog');
     }
     scrollDown() {
         setTimeout(() => {
-            const d = this.getPaperDialog();
+            const d = this.getDialog();
             if (d) {
                 const scrollableContent = d.shadowRoot.querySelector('slot[part="body"]');
                 if (scrollableContent) {
@@ -330,9 +328,6 @@ __decorate([
 __decorate([
     property({ type: Boolean, reflect: true })
 ], EtoolsDialog.prototype, "opened", null);
-__decorate([
-    query('#dialog')
-], EtoolsDialog.prototype, "slDialog", void 0);
 __decorate([
     property({ type: Boolean })
 ], EtoolsDialog.prototype, "backdrop", void 0);
@@ -363,3 +358,6 @@ __decorate([
 __decorate([
     property({ type: String })
 ], EtoolsDialog.prototype, "language", void 0);
+__decorate([
+    query('#dialog')
+], EtoolsDialog.prototype, "slDialog", void 0);

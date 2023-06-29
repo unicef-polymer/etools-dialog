@@ -1,19 +1,43 @@
 {
-  "extends": ["eslint:recommended", "google", "plugin:prettier/recommended"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:lit/recommended",
+    "google",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 9,
+    "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "env": {
     "browser": true,
+    "node": true,
     "es6": true
   },
-  "plugins": ["html", "prettier"],
+  "plugins": ["@typescript-eslint", "lit", "prettier"],
   "rules": {
-    "padded-blocks": "off",
+    "prettier/prettier": "error",
+    "lit/attribute-value-entities": "off",
+    "lit/no-legacy-template-syntax": "off",
     "linebreak-style": "off",
+    "no-irregular-whitespace": [
+      "error",
+      {
+        "skipTemplates": true
+      }
+    ],
+    "@typescript-eslint/no-object-literal-type-assertion": "off",
+    "padded-blocks": "off",
     "brace-style": "off",
-    "new-cap": "off",
+    "new-cap": [
+      "error",
+      {
+        "capIsNewExceptions": ["GestureEventListeners"],
+        "capIsNewExceptionPattern": "^Etools..|..Mixin$"
+      }
+    ],
     "no-var": "off",
     "require-jsdoc": "off",
     "valid-jsdoc": "off",
@@ -21,28 +45,34 @@
     "max-len": [
       "error",
       {
-        "code": 120
+        "code": 120,
+        "ignoreUrls": true
       }
     ],
-    "camelcase": [
+    "prefer-promise-reject-errors": "off",
+    "camelcase": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/explicit-member-accessibility": "off",
+    "@typescript-eslint/camelcase": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off",
+    "@typescript-eslint/ban-types": ["warn"],
+    "@typescript-eslint/no-use-before-define": [
       "error",
       {
-        "properties": "never"
+        "functions": false,
+        "classes": true,
+        "variables": true
       }
     ],
-    "arrow-parens": [
-      2,
-      "as-needed",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
       {
-        "requireForBlockBody": true
+        "argsIgnorePattern": "^_"
       }
     ]
-  },
-  "globals": {
-    "moment": true,
-    "Promise": true,
-    "Polymer": true,
-    "EtoolsLogsMixin": true,
-    "EtoolsMixins": true
   }
 }

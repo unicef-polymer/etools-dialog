@@ -220,14 +220,11 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   get opened() {
     return this._opened;
   }
-
-  @query('#dialog')
-  slDialog!: SlDialog;
-
   set opened(val: boolean) {
     this._opened = val;
     if (this.slDialog) {
-      // Opening the dialog using show(), hide() and not binding directly to ?open in order to activate animation=ease in & out
+      // Opening the dialog using show(), hide()
+      // and not binding directly to ?open in order to activate animation=ease in & out
       if (val) {
         this.slDialog!.show();
       } else if (val != undefined) {
@@ -255,6 +252,8 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   showButtons!: boolean;
   @property({type: String})
   language!: string;
+  @query('#dialog')
+  slDialog!: SlDialog;
 
   constructor() {
     super();

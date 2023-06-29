@@ -8,6 +8,4 @@
  *   scripts/web-animations.html
  */
 
-
 // tslint:disable:variable-name Describing an API that's defined elsewhere.
-

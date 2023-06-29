@@ -1,7 +1,7 @@
 {
   "name": "@unicef-polymer/etools-dialog",
   "description": "Simple dialog element",
-  "version": "7.0.0",
+  "version": "8.0.0-rc.1",
   "homepage": "https://github.com/unicef-polymer/etools-dialog",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "main": "index.js",
   "module": "index.js",
   "scripts": {
-    "lint": "eslint . --ext js,html",
+    "lint": "eslint . --ext ts",
     "prepublishOnly": "npm run lint && tsc",
     "gen-typings": "gen-typescript-declarations --deleteExisting --outDir './'",
     "publish": "git push --tags && npm publish"
@@ -35,6 +35,9 @@
   },
   "devDependencies": {
     "@polymer/gen-typescript-declarations": "^1.6.2",
+    "@typescript-eslint/eslint-plugin": "^5.7.0",
+    "@typescript-eslint/parser": "^5.7.0",
+    "@typescript-eslint/typescript-estree": "^5.7.0",
     "@polymer/iron-component-page": "^4.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0",
     "@polymer/iron-test-helpers": "^3.0.0",
@@ -45,6 +48,7 @@
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-html": "^6.2.0",
+    "eslint-plugin-lit": "^1.6.1",
     "eslint-plugin-prettier": "^3.4.1",
     "prettier": "^2.3.2",
     "growl": ">=1.10.0",

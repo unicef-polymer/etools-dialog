@@ -2,3 +2,4 @@
 demo/*
 test/*
 node_modules/*
+*.d.ts
