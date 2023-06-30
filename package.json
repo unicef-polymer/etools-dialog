@@ -1,7 +1,7 @@
 {
   "name": "@unicef-polymer/etools-dialog",
   "description": "Simple dialog element",
-  "version": "8.0.0-rc.1",
+  "version": "8.0.0-rc.2",
   "homepage": "https://github.com/unicef-polymer/etools-dialog",
   "repository": {
     "type": "git",
@@ -12,7 +12,6 @@
   "module": "index.js",
   "scripts": {
     "lint": "eslint . --ext ts",
-    "prepublishOnly": "npm run lint && tsc",
     "gen-typings": "gen-typescript-declarations --deleteExisting --outDir './'",
     "publish": "git push --tags && npm publish"
   },

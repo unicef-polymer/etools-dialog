@@ -126,7 +126,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           padding: 12px 24px 16px 24px;
         }
 
-        :host-context([no-padding]) sl-dialog::part(body) {
+        :host-context([no-padding]) sl-dialog:not(.confirmation)::part(body) {
           padding: 12px 0 16px 0;
         }
         sl-dialog.confirmation {
@@ -188,7 +188,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         <sl-dialog
           id="dialog"
           class="${this.getDialogClass(this.size, this.theme)}"
-          part="ed-paper-dialog"
           .label="${this.dialogTitle}"
           exportparts="panel,body,title,footer"
         >
