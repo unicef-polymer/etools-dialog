@@ -7,4 +7,3 @@
 .eslintrc.json
 .prettierrc
 analysis.json
-*.ts

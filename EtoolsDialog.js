@@ -6,12 +6,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { LitElement, html, property, query } from 'lit-element';
 import '@a11y/focus-trap/focus-trap.js';
-import '@polymer/neon-animation/neon-animations.js';
-import '@polymer/paper-dialog/paper-dialog.js';
-import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
-import '@polymer/iron-icons/iron-icons.js';
 import '@unicef-polymer/etools-loading/etools-loading';
 import { DialogSpinnerMixin } from './dialog-spinner-mixin.js';
 import { getTranslation } from './utils/translate.js';
@@ -134,7 +130,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
           padding: 12px 24px 16px 24px;
         }
 
-        :host-context([no-padding]) sl-dialog::part(body) {
+        :host-context([no-padding]) sl-dialog:not(.confirmation)::part(body) {
           padding: 12px 0 16px 0;
         }
         sl-dialog.confirmation {
@@ -196,7 +192,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         <sl-dialog
           id="dialog"
           class="${this.getDialogClass(this.size, this.theme)}"
-          part="ed-paper-dialog"
           .label="${this.dialogTitle}"
           exportparts="panel,body,title,footer"
         >
@@ -257,6 +252,13 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
             if (event.detail.source === 'overlay') {
                 event.preventDefault();
             }
+            else {
+                this.dispatchEvent(new CustomEvent('close', {
+                    detail: { confirmed: false },
+                    bubbles: true,
+                    composed: true
+                }));
+            }
         });
     }
     disconnectedCallback() {
@@ -284,16 +286,12 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
             : html ``;
     }
     _cancelBtClicked() {
-        this.close();
+        this.opened = false;
         this.dispatchEvent(new CustomEvent('close', {
             detail: { confirmed: false },
             bubbles: true,
             composed: true
         }));
-    }
-    close() {
-        this.shadowRoot.querySelector('#dialog').hide();
-        this.opened = false;
     }
     getDialogClass(size, theme) {
         return size + ' ' + theme;

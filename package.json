@@ -1,7 +1,7 @@
 {
   "name": "@unicef-polymer/etools-dialog",
   "description": "Simple dialog element",
-  "version": "8.0.0-rc.2",
+  "version": "8.0.0-rc.5",
   "homepage": "https://github.com/unicef-polymer/etools-dialog",
   "repository": {
     "type": "git",
@@ -17,11 +17,7 @@
   },
   "dependencies": {
     "@a11y/focus-trap": "^1.0.5",
-    "@polymer/iron-icon": "^3.0.1",
-    "@polymer/neon-animation": "^3.0.1",
     "@polymer/paper-button": "^3.0.1",
-    "@polymer/paper-dialog": "^3.0.1",
-    "@polymer/paper-dialog-scrollable": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.2",
     "@polymer/polymer": "^3.5.1",
     "@shoelace-style/shoelace": "^2.3.0",

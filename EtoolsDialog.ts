@@ -1,11 +1,7 @@
 import {LitElement, html, property, query} from 'lit-element';
 import '@a11y/focus-trap/focus-trap.js';
-import '@polymer/neon-animation/neon-animations.js';
-import '@polymer/paper-dialog/paper-dialog.js';
-import '@polymer/paper-dialog-scrollable/paper-dialog-scrollable.js';
 import '@polymer/paper-button/paper-button.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
-import '@polymer/iron-icons/iron-icons.js';
 import '@unicef-polymer/etools-loading/etools-loading';
 import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {getTranslation} from './utils/translate.js';
@@ -105,7 +101,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         }
 
         sl-dialog.confirmation .close-btn,
-        paper-dialog .cancel-btn {
+        sl-dialog .cancel-btn {
           color: var(--primary-text-color, rgba(0, 0, 0, 0.87));
         }
 
@@ -289,6 +285,14 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
     this.addEventListener('sl-request-close', (event: any) => {
       if (event.detail.source === 'overlay') {
         event.preventDefault();
+      } else {
+        this.dispatchEvent(
+          new CustomEvent('close', {
+            detail: {confirmed: false},
+            bubbles: true,
+            composed: true
+          })
+        );
       }
     });
   }
@@ -321,7 +325,7 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
   }
 
   _cancelBtClicked() {
-    this.close();
+    this.opened = false;
     this.dispatchEvent(
       new CustomEvent('close', {
         detail: {confirmed: false},
@@ -329,11 +333,6 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
         composed: true
       })
     );
-  }
-
-  close() {
-    this.shadowRoot.querySelector('#dialog').hide();
-    this.opened = false;
   }
 
   getDialogClass(size: string, theme: string) {
