@@ -7,6 +7,7 @@ import {DialogSpinnerMixin} from './dialog-spinner-mixin.js';
 import {getTranslation} from './utils/translate.js';
 import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import {SlDialog} from '@shoelace-style/shoelace';
+import {setDefaultAnimation} from '@shoelace-style/shoelace/dist/utilities/animation-registry.js';
 
 /**
  * @customElement
@@ -281,6 +282,14 @@ export class EtoolsDialog extends DialogSpinnerMixin(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
+    setDefaultAnimation('dialog.overlay.show', {
+      keyframes: [{opacity: 0}, {opacity: 0.6}],
+      options: {duration: 250}
+    });
+    setDefaultAnimation('dialog.overlay.hide', {
+      keyframes: [{opacity: 0.6}, {opacity: 0}],
+      options: {duration: 250}
+    });
     document.addEventListener('language-changed', this.handleLanguageChange.bind(this));
     this.addEventListener('sl-request-close', (event: any) => {
       if (event.detail.source === 'overlay') {

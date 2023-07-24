@@ -7,4 +7,7 @@
 .eslintrc.json
 .prettierrc
 analysis.json
-*.ts
+dialog-spinner-mixin.ts
+EtoolsDialog.ts
+utils/translate.ts
+assets/translations.ts
